@@ -1,6 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:kuwot/core/error/failure.dart';
 import 'package:kuwot/core/error/server_failure.dart';
+import 'package:kuwot/features/daily_quote/data/data_sources/remote/deepl_api_remote_data_source.dart';
 import 'package:kuwot/features/daily_quote/data/data_sources/remote/favqs_api_remote_data_source.dart';
 import 'package:kuwot/features/daily_quote/data/data_sources/remote/pexels_api_remote_data_source.dart';
 import 'package:kuwot/features/daily_quote/domain/entities/background_photos.dart';
@@ -10,17 +11,26 @@ import 'package:kuwot/features/daily_quote/domain/repositories/daily_quote_repos
 class DailyQuoteRepositoryImpl implements DailyQuoteRepository {
   final FavqsApiRemoteDataSource favqsDataSource;
   final PexelsApiRemoteDataSource pexelsDataSource;
+  final DeeplApiRemoteDataSource deeplDataSource;
 
   DailyQuoteRepositoryImpl({
     required this.favqsDataSource,
     required this.pexelsDataSource,
+    required this.deeplDataSource,
   });
 
   @override
   Future<Either<Failure, DailyQuote>> getDailyQuote() async {
     try {
       final quote = await favqsDataSource.getDailyQuote();
-      return right(DailyQuote.fromModel(quote));
+      final translatedQuoteBody = await deeplDataSource.translateText(
+        quote.quote.body,
+        'ID',
+      );
+      return right(DailyQuote.fromModel(
+        quote,
+        translatedBody: translatedQuoteBody,
+      ));
     } on Exception catch (e) {
       return left(
         ServerFailure(

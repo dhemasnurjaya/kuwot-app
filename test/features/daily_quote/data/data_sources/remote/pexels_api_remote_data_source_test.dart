@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kuwot/core/network/network.dart';
 import 'package:kuwot/features/daily_quote/data/data_sources/remote/pexels_api_remote_data_source.dart';
@@ -13,7 +14,8 @@ void main() {
   late MockNetwork network;
   late PexelsApiRemoteDataSource dataSource;
 
-  setUp(() {
+  setUp(() async {
+    await dotenv.load(fileName: '.env');
     network = MockNetwork();
     dataSource = PexelsApiRemoteDataSourceImpl(network: network);
   });
@@ -22,7 +24,8 @@ void main() {
     test('should return PhotoListModel when response is successful', () async {
       // arrange
       final tResponse = readResponse('curated_photos');
-      when(network.get(any)).thenAnswer((_) async => tResponse);
+      when(network.get(any, headers: anyNamed('headers')))
+          .thenAnswer((_) async => tResponse);
       // act
       final result = await dataSource.getCuratedPhotos();
       // assert

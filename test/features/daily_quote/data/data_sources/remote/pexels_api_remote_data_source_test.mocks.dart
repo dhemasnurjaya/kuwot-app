@@ -50,4 +50,32 @@ class MockNetwork extends _i1.Mock implements _i2.Network {
           ),
         )),
       ) as _i3.Future<String>);
+
+  @override
+  _i3.Future<String> post(
+    Uri? uri, {
+    Map<String, String>? headers,
+    Object? body,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #post,
+          [uri],
+          {
+            #headers: headers,
+            #body: body,
+          },
+        ),
+        returnValue: _i3.Future<String>.value(_i4.dummyValue<String>(
+          this,
+          Invocation.method(
+            #post,
+            [uri],
+            {
+              #headers: headers,
+              #body: body,
+            },
+          ),
+        )),
+      ) as _i3.Future<String>);
 }

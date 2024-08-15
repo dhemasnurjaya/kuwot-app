@@ -2,6 +2,7 @@ import 'package:kuwot/core/data/local/config.dart';
 import 'package:kuwot/core/data/local/theme_mode_config.dart';
 import 'package:kuwot/core/network/network.dart';
 import 'package:kuwot/core/presentation/theme/theme_mode_cubit.dart';
+import 'package:kuwot/features/daily_quote/data/data_sources/remote/deepl_api_remote_data_source.dart';
 import 'package:kuwot/features/daily_quote/data/data_sources/remote/favqs_api_remote_data_source.dart';
 import 'package:kuwot/features/daily_quote/data/data_sources/remote/pexels_api_remote_data_source.dart';
 import 'package:kuwot/features/daily_quote/data/repositories/daily_quote_repository_impl.dart';
@@ -45,12 +46,18 @@ void setup() {
       network: getIt(),
     ),
   );
+  getIt.registerLazySingleton<DeeplApiRemoteDataSource>(
+    () => DeeplApiRemoteDataSourceImpl(
+      network: getIt(),
+    ),
+  );
 
   // repositories
   getIt.registerLazySingleton<DailyQuoteRepository>(
     () => DailyQuoteRepositoryImpl(
       favqsDataSource: getIt(),
       pexelsDataSource: getIt(),
+      deeplDataSource: getIt(),
     ),
   );
 

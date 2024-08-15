@@ -18,8 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DailyQuote {
   String get qotdDate => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
-  String get body => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
+  String get body => throw _privateConstructorUsedError;
+  String? get translatedBody => throw _privateConstructorUsedError;
 
   /// Create a copy of DailyQuote
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +35,12 @@ abstract class $DailyQuoteCopyWith<$Res> {
           DailyQuote value, $Res Function(DailyQuote) then) =
       _$DailyQuoteCopyWithImpl<$Res, DailyQuote>;
   @useResult
-  $Res call({String qotdDate, List<String> tags, String body, String author});
+  $Res call(
+      {String qotdDate,
+      List<String> tags,
+      String author,
+      String body,
+      String? translatedBody});
 }
 
 /// @nodoc
@@ -54,8 +60,9 @@ class _$DailyQuoteCopyWithImpl<$Res, $Val extends DailyQuote>
   $Res call({
     Object? qotdDate = null,
     Object? tags = null,
-    Object? body = null,
     Object? author = null,
+    Object? body = null,
+    Object? translatedBody = freezed,
   }) {
     return _then(_value.copyWith(
       qotdDate: null == qotdDate
@@ -66,14 +73,18 @@ class _$DailyQuoteCopyWithImpl<$Res, $Val extends DailyQuote>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      body: null == body
-          ? _value.body
-          : body // ignore: cast_nullable_to_non_nullable
-              as String,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as String,
+      body: null == body
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String,
+      translatedBody: freezed == translatedBody
+          ? _value.translatedBody
+          : translatedBody // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -86,7 +97,12 @@ abstract class _$$DailyQuoteImplCopyWith<$Res>
       __$$DailyQuoteImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String qotdDate, List<String> tags, String body, String author});
+  $Res call(
+      {String qotdDate,
+      List<String> tags,
+      String author,
+      String body,
+      String? translatedBody});
 }
 
 /// @nodoc
@@ -104,8 +120,9 @@ class __$$DailyQuoteImplCopyWithImpl<$Res>
   $Res call({
     Object? qotdDate = null,
     Object? tags = null,
-    Object? body = null,
     Object? author = null,
+    Object? body = null,
+    Object? translatedBody = freezed,
   }) {
     return _then(_$DailyQuoteImpl(
       qotdDate: null == qotdDate
@@ -116,14 +133,18 @@ class __$$DailyQuoteImplCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      body: null == body
-          ? _value.body
-          : body // ignore: cast_nullable_to_non_nullable
-              as String,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as String,
+      body: null == body
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String,
+      translatedBody: freezed == translatedBody
+          ? _value.translatedBody
+          : translatedBody // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -134,8 +155,9 @@ class _$DailyQuoteImpl implements _DailyQuote {
   const _$DailyQuoteImpl(
       {required this.qotdDate,
       required final List<String> tags,
+      required this.author,
       required this.body,
-      required this.author})
+      this.translatedBody})
       : _tags = tags;
 
   @override
@@ -149,13 +171,15 @@ class _$DailyQuoteImpl implements _DailyQuote {
   }
 
   @override
+  final String author;
+  @override
   final String body;
   @override
-  final String author;
+  final String? translatedBody;
 
   @override
   String toString() {
-    return 'DailyQuote(qotdDate: $qotdDate, tags: $tags, body: $body, author: $author)';
+    return 'DailyQuote(qotdDate: $qotdDate, tags: $tags, author: $author, body: $body, translatedBody: $translatedBody)';
   }
 
   @override
@@ -166,13 +190,15 @@ class _$DailyQuoteImpl implements _DailyQuote {
             (identical(other.qotdDate, qotdDate) ||
                 other.qotdDate == qotdDate) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.author, author) || other.author == author) &&
             (identical(other.body, body) || other.body == body) &&
-            (identical(other.author, author) || other.author == author));
+            (identical(other.translatedBody, translatedBody) ||
+                other.translatedBody == translatedBody));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, qotdDate,
-      const DeepCollectionEquality().hash(_tags), body, author);
+      const DeepCollectionEquality().hash(_tags), author, body, translatedBody);
 
   /// Create a copy of DailyQuote
   /// with the given fields replaced by the non-null parameter values.
@@ -187,17 +213,20 @@ abstract class _DailyQuote implements DailyQuote {
   const factory _DailyQuote(
       {required final String qotdDate,
       required final List<String> tags,
+      required final String author,
       required final String body,
-      required final String author}) = _$DailyQuoteImpl;
+      final String? translatedBody}) = _$DailyQuoteImpl;
 
   @override
   String get qotdDate;
   @override
   List<String> get tags;
   @override
+  String get author;
+  @override
   String get body;
   @override
-  String get author;
+  String? get translatedBody;
 
   /// Create a copy of DailyQuote
   /// with the given fields replaced by the non-null parameter values.

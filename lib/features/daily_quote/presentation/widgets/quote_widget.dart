@@ -43,7 +43,7 @@ class _QuoteWidgetState extends State<QuoteWidget>
       },
       builder: (context, state) {
         if (state is DailyQuoteLoadedState) {
-          _quoteBody = state.dailyQuote.body;
+          _quoteBody = state.dailyQuote.translatedBody ?? state.dailyQuote.body;
           _quoteAuthor = state.dailyQuote.author;
         }
 

@@ -8,14 +8,20 @@ class DailyQuote with _$DailyQuote {
   const factory DailyQuote({
     required String qotdDate,
     required List<String> tags,
-    required String body,
     required String author,
+    required String body,
+    String? translatedBody,
   }) = _DailyQuote;
 
-  static DailyQuote fromModel(DailyQuoteModel model) => DailyQuote(
+  static DailyQuote fromModel(
+    DailyQuoteModel model, {
+    String? translatedBody,
+  }) =>
+      DailyQuote(
         qotdDate: model.qotdDate,
         tags: model.quote.tags,
-        body: model.quote.body,
         author: model.quote.author,
+        body: model.quote.body,
+        translatedBody: translatedBody,
       );
 }
