@@ -1,3 +1,4 @@
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kuwot/core/domain/no_params.dart';
@@ -14,7 +15,10 @@ class DailyQuoteBloc extends Bloc<DailyQuoteEvent, DailyQuoteState> {
   DailyQuoteBloc({
     required this.getDailyQuote,
   }) : super(const DailyQuoteInitialState()) {
-    on<GetDailyQuoteEvent>(_onGetDailyQuoteEvent);
+    on<GetDailyQuoteEvent>(
+      _onGetDailyQuoteEvent,
+      transformer: droppable(),
+    );
   }
 
   Future<void> _onGetDailyQuoteEvent(
@@ -22,6 +26,10 @@ class DailyQuoteBloc extends Bloc<DailyQuoteEvent, DailyQuoteState> {
     Emitter<DailyQuoteState> emit,
   ) async {
     emit(const DailyQuoteLoadingState());
+
+    // add delay to limit the number of api calls
+    await Future.delayed(const Duration(seconds: 1));
+
     final result = await getDailyQuote.execute(const NoParams());
     result.fold(
       (failure) => emit(

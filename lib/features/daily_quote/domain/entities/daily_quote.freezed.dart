@@ -17,17 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DailyQuote {
   String get qotdDate => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
-  bool get dialogue => throw _privateConstructorUsedError;
-  bool get private => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
-  int get favoritesCount => throw _privateConstructorUsedError;
-  int get upvotesCount => throw _privateConstructorUsedError;
-  int get downvotesCount => throw _privateConstructorUsedError;
-  String get author => throw _privateConstructorUsedError;
-  String get authorPermalink => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
+  String get author => throw _privateConstructorUsedError;
 
   /// Create a copy of DailyQuote
   /// with the given fields replaced by the non-null parameter values.
@@ -42,19 +34,7 @@ abstract class $DailyQuoteCopyWith<$Res> {
           DailyQuote value, $Res Function(DailyQuote) then) =
       _$DailyQuoteCopyWithImpl<$Res, DailyQuote>;
   @useResult
-  $Res call(
-      {String qotdDate,
-      int id,
-      bool dialogue,
-      bool private,
-      List<String> tags,
-      String url,
-      int favoritesCount,
-      int upvotesCount,
-      int downvotesCount,
-      String author,
-      String authorPermalink,
-      String body});
+  $Res call({String qotdDate, List<String> tags, String body, String author});
 }
 
 /// @nodoc
@@ -73,66 +53,26 @@ class _$DailyQuoteCopyWithImpl<$Res, $Val extends DailyQuote>
   @override
   $Res call({
     Object? qotdDate = null,
-    Object? id = null,
-    Object? dialogue = null,
-    Object? private = null,
     Object? tags = null,
-    Object? url = null,
-    Object? favoritesCount = null,
-    Object? upvotesCount = null,
-    Object? downvotesCount = null,
-    Object? author = null,
-    Object? authorPermalink = null,
     Object? body = null,
+    Object? author = null,
   }) {
     return _then(_value.copyWith(
       qotdDate: null == qotdDate
           ? _value.qotdDate
           : qotdDate // ignore: cast_nullable_to_non_nullable
               as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      dialogue: null == dialogue
-          ? _value.dialogue
-          : dialogue // ignore: cast_nullable_to_non_nullable
-              as bool,
-      private: null == private
-          ? _value.private
-          : private // ignore: cast_nullable_to_non_nullable
-              as bool,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      favoritesCount: null == favoritesCount
-          ? _value.favoritesCount
-          : favoritesCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      upvotesCount: null == upvotesCount
-          ? _value.upvotesCount
-          : upvotesCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      downvotesCount: null == downvotesCount
-          ? _value.downvotesCount
-          : downvotesCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      author: null == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorPermalink: null == authorPermalink
-          ? _value.authorPermalink
-          : authorPermalink // ignore: cast_nullable_to_non_nullable
-              as String,
       body: null == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
+              as String,
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -146,19 +86,7 @@ abstract class _$$DailyQuoteImplCopyWith<$Res>
       __$$DailyQuoteImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String qotdDate,
-      int id,
-      bool dialogue,
-      bool private,
-      List<String> tags,
-      String url,
-      int favoritesCount,
-      int upvotesCount,
-      int downvotesCount,
-      String author,
-      String authorPermalink,
-      String body});
+  $Res call({String qotdDate, List<String> tags, String body, String author});
 }
 
 /// @nodoc
@@ -175,66 +103,26 @@ class __$$DailyQuoteImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? qotdDate = null,
-    Object? id = null,
-    Object? dialogue = null,
-    Object? private = null,
     Object? tags = null,
-    Object? url = null,
-    Object? favoritesCount = null,
-    Object? upvotesCount = null,
-    Object? downvotesCount = null,
-    Object? author = null,
-    Object? authorPermalink = null,
     Object? body = null,
+    Object? author = null,
   }) {
     return _then(_$DailyQuoteImpl(
       qotdDate: null == qotdDate
           ? _value.qotdDate
           : qotdDate // ignore: cast_nullable_to_non_nullable
               as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      dialogue: null == dialogue
-          ? _value.dialogue
-          : dialogue // ignore: cast_nullable_to_non_nullable
-              as bool,
-      private: null == private
-          ? _value.private
-          : private // ignore: cast_nullable_to_non_nullable
-              as bool,
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      favoritesCount: null == favoritesCount
-          ? _value.favoritesCount
-          : favoritesCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      upvotesCount: null == upvotesCount
-          ? _value.upvotesCount
-          : upvotesCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      downvotesCount: null == downvotesCount
-          ? _value.downvotesCount
-          : downvotesCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      author: null == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorPermalink: null == authorPermalink
-          ? _value.authorPermalink
-          : authorPermalink // ignore: cast_nullable_to_non_nullable
-              as String,
       body: null == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
+              as String,
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -245,27 +133,13 @@ class __$$DailyQuoteImplCopyWithImpl<$Res>
 class _$DailyQuoteImpl implements _DailyQuote {
   const _$DailyQuoteImpl(
       {required this.qotdDate,
-      required this.id,
-      required this.dialogue,
-      required this.private,
       required final List<String> tags,
-      required this.url,
-      required this.favoritesCount,
-      required this.upvotesCount,
-      required this.downvotesCount,
-      required this.author,
-      required this.authorPermalink,
-      required this.body})
+      required this.body,
+      required this.author})
       : _tags = tags;
 
   @override
   final String qotdDate;
-  @override
-  final int id;
-  @override
-  final bool dialogue;
-  @override
-  final bool private;
   final List<String> _tags;
   @override
   List<String> get tags {
@@ -275,23 +149,13 @@ class _$DailyQuoteImpl implements _DailyQuote {
   }
 
   @override
-  final String url;
-  @override
-  final int favoritesCount;
-  @override
-  final int upvotesCount;
-  @override
-  final int downvotesCount;
+  final String body;
   @override
   final String author;
-  @override
-  final String authorPermalink;
-  @override
-  final String body;
 
   @override
   String toString() {
-    return 'DailyQuote(qotdDate: $qotdDate, id: $id, dialogue: $dialogue, private: $private, tags: $tags, url: $url, favoritesCount: $favoritesCount, upvotesCount: $upvotesCount, downvotesCount: $downvotesCount, author: $author, authorPermalink: $authorPermalink, body: $body)';
+    return 'DailyQuote(qotdDate: $qotdDate, tags: $tags, body: $body, author: $author)';
   }
 
   @override
@@ -301,39 +165,14 @@ class _$DailyQuoteImpl implements _DailyQuote {
             other is _$DailyQuoteImpl &&
             (identical(other.qotdDate, qotdDate) ||
                 other.qotdDate == qotdDate) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.dialogue, dialogue) ||
-                other.dialogue == dialogue) &&
-            (identical(other.private, private) || other.private == private) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
-            (identical(other.url, url) || other.url == url) &&
-            (identical(other.favoritesCount, favoritesCount) ||
-                other.favoritesCount == favoritesCount) &&
-            (identical(other.upvotesCount, upvotesCount) ||
-                other.upvotesCount == upvotesCount) &&
-            (identical(other.downvotesCount, downvotesCount) ||
-                other.downvotesCount == downvotesCount) &&
-            (identical(other.author, author) || other.author == author) &&
-            (identical(other.authorPermalink, authorPermalink) ||
-                other.authorPermalink == authorPermalink) &&
-            (identical(other.body, body) || other.body == body));
+            (identical(other.body, body) || other.body == body) &&
+            (identical(other.author, author) || other.author == author));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      qotdDate,
-      id,
-      dialogue,
-      private,
-      const DeepCollectionEquality().hash(_tags),
-      url,
-      favoritesCount,
-      upvotesCount,
-      downvotesCount,
-      author,
-      authorPermalink,
-      body);
+  int get hashCode => Object.hash(runtimeType, qotdDate,
+      const DeepCollectionEquality().hash(_tags), body, author);
 
   /// Create a copy of DailyQuote
   /// with the given fields replaced by the non-null parameter values.
@@ -347,42 +186,18 @@ class _$DailyQuoteImpl implements _DailyQuote {
 abstract class _DailyQuote implements DailyQuote {
   const factory _DailyQuote(
       {required final String qotdDate,
-      required final int id,
-      required final bool dialogue,
-      required final bool private,
       required final List<String> tags,
-      required final String url,
-      required final int favoritesCount,
-      required final int upvotesCount,
-      required final int downvotesCount,
-      required final String author,
-      required final String authorPermalink,
-      required final String body}) = _$DailyQuoteImpl;
+      required final String body,
+      required final String author}) = _$DailyQuoteImpl;
 
   @override
   String get qotdDate;
   @override
-  int get id;
-  @override
-  bool get dialogue;
-  @override
-  bool get private;
-  @override
   List<String> get tags;
   @override
-  String get url;
-  @override
-  int get favoritesCount;
-  @override
-  int get upvotesCount;
-  @override
-  int get downvotesCount;
+  String get body;
   @override
   String get author;
-  @override
-  String get authorPermalink;
-  @override
-  String get body;
 
   /// Create a copy of DailyQuote
   /// with the given fields replaced by the non-null parameter values.

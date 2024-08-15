@@ -20,7 +20,6 @@ DailyQuoteModel _$DailyQuoteModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DailyQuoteModel {
-  @JsonKey(name: 'qotd_date')
   String get qotdDate => throw _privateConstructorUsedError;
   DailyQuoteQuote get quote => throw _privateConstructorUsedError;
 
@@ -40,8 +39,7 @@ abstract class $DailyQuoteModelCopyWith<$Res> {
           DailyQuoteModel value, $Res Function(DailyQuoteModel) then) =
       _$DailyQuoteModelCopyWithImpl<$Res, DailyQuoteModel>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'qotd_date') String qotdDate, DailyQuoteQuote quote});
+  $Res call({String qotdDate, DailyQuoteQuote quote});
 
   $DailyQuoteQuoteCopyWith<$Res> get quote;
 }
@@ -95,8 +93,7 @@ abstract class _$$DailyQuoteModelImplCopyWith<$Res>
       __$$DailyQuoteModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'qotd_date') String qotdDate, DailyQuoteQuote quote});
+  $Res call({String qotdDate, DailyQuoteQuote quote});
 
   @override
   $DailyQuoteQuoteCopyWith<$Res> get quote;
@@ -132,17 +129,15 @@ class __$$DailyQuoteModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$DailyQuoteModelImpl implements _DailyQuoteModel {
-  const _$DailyQuoteModelImpl(
-      {@JsonKey(name: 'qotd_date') required this.qotdDate,
-      required this.quote});
+  const _$DailyQuoteModelImpl({required this.qotdDate, required this.quote});
 
   factory _$DailyQuoteModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$DailyQuoteModelImplFromJson(json);
 
   @override
-  @JsonKey(name: 'qotd_date')
   final String qotdDate;
   @override
   final DailyQuoteQuote quote;
@@ -185,14 +180,13 @@ class _$DailyQuoteModelImpl implements _DailyQuoteModel {
 
 abstract class _DailyQuoteModel implements DailyQuoteModel {
   const factory _DailyQuoteModel(
-      {@JsonKey(name: 'qotd_date') required final String qotdDate,
+      {required final String qotdDate,
       required final DailyQuoteQuote quote}) = _$DailyQuoteModelImpl;
 
   factory _DailyQuoteModel.fromJson(Map<String, dynamic> json) =
       _$DailyQuoteModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'qotd_date')
   String get qotdDate;
   @override
   DailyQuoteQuote get quote;
@@ -216,14 +210,10 @@ mixin _$DailyQuoteQuote {
   bool get private => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
-  @JsonKey(name: 'favorites_count')
   int get favoritesCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'upvotes_count')
   int get upvotesCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'downvotes_count')
   int get downvotesCount => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
-  @JsonKey(name: 'author_permalink')
   String get authorPermalink => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
 
@@ -249,11 +239,11 @@ abstract class $DailyQuoteQuoteCopyWith<$Res> {
       bool private,
       List<String> tags,
       String url,
-      @JsonKey(name: 'favorites_count') int favoritesCount,
-      @JsonKey(name: 'upvotes_count') int upvotesCount,
-      @JsonKey(name: 'downvotes_count') int downvotesCount,
+      int favoritesCount,
+      int upvotesCount,
+      int downvotesCount,
       String author,
-      @JsonKey(name: 'author_permalink') String authorPermalink,
+      String authorPermalink,
       String body});
 }
 
@@ -347,11 +337,11 @@ abstract class _$$DailyQuoteQuoteImplCopyWith<$Res>
       bool private,
       List<String> tags,
       String url,
-      @JsonKey(name: 'favorites_count') int favoritesCount,
-      @JsonKey(name: 'upvotes_count') int upvotesCount,
-      @JsonKey(name: 'downvotes_count') int downvotesCount,
+      int favoritesCount,
+      int upvotesCount,
+      int downvotesCount,
       String author,
-      @JsonKey(name: 'author_permalink') String authorPermalink,
+      String authorPermalink,
       String body});
 }
 
@@ -430,7 +420,8 @@ class __$$DailyQuoteQuoteImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$DailyQuoteQuoteImpl implements _DailyQuoteQuote {
   const _$DailyQuoteQuoteImpl(
       {required this.id,
@@ -438,11 +429,11 @@ class _$DailyQuoteQuoteImpl implements _DailyQuoteQuote {
       required this.private,
       required final List<String> tags,
       required this.url,
-      @JsonKey(name: 'favorites_count') required this.favoritesCount,
-      @JsonKey(name: 'upvotes_count') required this.upvotesCount,
-      @JsonKey(name: 'downvotes_count') required this.downvotesCount,
+      required this.favoritesCount,
+      required this.upvotesCount,
+      required this.downvotesCount,
       required this.author,
-      @JsonKey(name: 'author_permalink') required this.authorPermalink,
+      required this.authorPermalink,
       required this.body})
       : _tags = tags;
 
@@ -466,18 +457,14 @@ class _$DailyQuoteQuoteImpl implements _DailyQuoteQuote {
   @override
   final String url;
   @override
-  @JsonKey(name: 'favorites_count')
   final int favoritesCount;
   @override
-  @JsonKey(name: 'upvotes_count')
   final int upvotesCount;
   @override
-  @JsonKey(name: 'downvotes_count')
   final int downvotesCount;
   @override
   final String author;
   @override
-  @JsonKey(name: 'author_permalink')
   final String authorPermalink;
   @override
   final String body;
@@ -550,11 +537,11 @@ abstract class _DailyQuoteQuote implements DailyQuoteQuote {
       required final bool private,
       required final List<String> tags,
       required final String url,
-      @JsonKey(name: 'favorites_count') required final int favoritesCount,
-      @JsonKey(name: 'upvotes_count') required final int upvotesCount,
-      @JsonKey(name: 'downvotes_count') required final int downvotesCount,
+      required final int favoritesCount,
+      required final int upvotesCount,
+      required final int downvotesCount,
       required final String author,
-      @JsonKey(name: 'author_permalink') required final String authorPermalink,
+      required final String authorPermalink,
       required final String body}) = _$DailyQuoteQuoteImpl;
 
   factory _DailyQuoteQuote.fromJson(Map<String, dynamic> json) =
@@ -571,18 +558,14 @@ abstract class _DailyQuoteQuote implements DailyQuoteQuote {
   @override
   String get url;
   @override
-  @JsonKey(name: 'favorites_count')
   int get favoritesCount;
   @override
-  @JsonKey(name: 'upvotes_count')
   int get upvotesCount;
   @override
-  @JsonKey(name: 'downvotes_count')
   int get downvotesCount;
   @override
   String get author;
   @override
-  @JsonKey(name: 'author_permalink')
   String get authorPermalink;
   @override
   String get body;

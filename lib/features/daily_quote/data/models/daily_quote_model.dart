@@ -5,8 +5,11 @@ part 'daily_quote_model.g.dart';
 
 @freezed
 class DailyQuoteModel with _$DailyQuoteModel {
+  @JsonSerializable(
+    fieldRename: FieldRename.snake,
+  )
   const factory DailyQuoteModel({
-    @JsonKey(name: 'qotd_date') required String qotdDate,
+    required String qotdDate,
     required DailyQuoteQuote quote,
   }) = _DailyQuoteModel;
 
@@ -16,17 +19,20 @@ class DailyQuoteModel with _$DailyQuoteModel {
 
 @freezed
 class DailyQuoteQuote with _$DailyQuoteQuote {
+  @JsonSerializable(
+    fieldRename: FieldRename.snake,
+  )
   const factory DailyQuoteQuote({
     required int id,
     required bool dialogue,
     required bool private,
     required List<String> tags,
     required String url,
-    @JsonKey(name: 'favorites_count') required int favoritesCount,
-    @JsonKey(name: 'upvotes_count') required int upvotesCount,
-    @JsonKey(name: 'downvotes_count') required int downvotesCount,
+    required int favoritesCount,
+    required int upvotesCount,
+    required int downvotesCount,
     required String author,
-    @JsonKey(name: 'author_permalink') required String authorPermalink,
+    required String authorPermalink,
     required String body,
   }) = _DailyQuoteQuote;
 
