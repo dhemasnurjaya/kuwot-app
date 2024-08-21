@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kuwot/core/presentation/error_retry_snackbar.dart';
 import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
 
 class QuoteWidget extends StatefulWidget {
@@ -35,10 +36,22 @@ class _QuoteWidgetState extends State<QuoteWidget>
   Widget build(BuildContext context) {
     return BlocConsumer<QuoteBloc, QuoteState>(
       listener: (context, state) {
+        // animate quote loading state
         if (state is QuoteLoadingState) {
           _animationController.repeat(reverse: true);
         } else {
           _animationController.forward();
+        }
+
+        // handle error state
+        if (state is QuoteErrorState) {
+          ErrorRetrySnackbar.show(
+            context,
+            errorMessage: state.message,
+            onRetry: () {
+              context.read<QuoteBloc>().add(const GetQuoteEvent());
+            },
+          );
         }
       },
       builder: (context, state) {
