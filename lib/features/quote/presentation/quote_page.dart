@@ -168,6 +168,7 @@ class _QuotePageState extends State<QuotePage> {
                   onPressed: () async {
                     final result = await showAdaptiveDialog<TranslationTarget?>(
                       context: context,
+                      barrierDismissible: true,
                       builder: (context) => const TranslateTargetDialog(),
                     );
 
