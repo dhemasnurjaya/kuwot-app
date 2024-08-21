@@ -1,11 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:kuwot/core/presentation/bloc/app_bloc_observer.dart';
+import 'package:kuwot/core/presentation/bloc/config/translation_target_cubit.dart';
 import 'package:kuwot/core/presentation/theme/app_theme.dart';
-import 'package:kuwot/core/presentation/theme/theme_mode_cubit.dart';
+import 'package:kuwot/core/presentation/bloc/config/theme_mode_cubit.dart';
 import 'package:kuwot/core/router/app_router.dart';
-import 'package:kuwot/features/daily_quote/presentation/bloc/background_photos_bloc.dart';
-import 'package:kuwot/features/daily_quote/presentation/bloc/daily_quote_bloc.dart';
+import 'package:kuwot/features/quote/presentation/bloc/background_photos_bloc.dart';
+import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'injection_container.dart' as ic;
@@ -48,7 +49,10 @@ class KuwotApp extends StatelessWidget {
         BlocProvider<ThemeModeCubit>(
           create: (context) => ic.getIt(),
         ),
-        BlocProvider<DailyQuoteBloc>(
+        BlocProvider<TranslationTargetCubit>(
+          create: (context) => ic.getIt(),
+        ),
+        BlocProvider<QuoteBloc>(
           create: (context) => ic.getIt(),
         ),
         BlocProvider<BackgroundPhotosBloc>(

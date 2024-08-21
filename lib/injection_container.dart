@@ -1,16 +1,20 @@
 import 'package:kuwot/core/data/local/config.dart';
 import 'package:kuwot/core/data/local/theme_mode_config.dart';
+import 'package:kuwot/core/data/local/translation_target_config.dart';
 import 'package:kuwot/core/network/network.dart';
-import 'package:kuwot/core/presentation/theme/theme_mode_cubit.dart';
-import 'package:kuwot/features/daily_quote/data/data_sources/remote/deepl_api_remote_data_source.dart';
-import 'package:kuwot/features/daily_quote/data/data_sources/remote/favqs_api_remote_data_source.dart';
-import 'package:kuwot/features/daily_quote/data/data_sources/remote/pexels_api_remote_data_source.dart';
-import 'package:kuwot/features/daily_quote/data/repositories/daily_quote_repository_impl.dart';
-import 'package:kuwot/features/daily_quote/domain/repositories/daily_quote_repository.dart';
-import 'package:kuwot/features/daily_quote/domain/use_cases/get_background_photos.dart';
-import 'package:kuwot/features/daily_quote/domain/use_cases/get_daily_quote.dart';
-import 'package:kuwot/features/daily_quote/presentation/bloc/background_photos_bloc.dart';
-import 'package:kuwot/features/daily_quote/presentation/bloc/daily_quote_bloc.dart';
+import 'package:kuwot/core/presentation/bloc/config/theme_mode_cubit.dart';
+import 'package:kuwot/core/presentation/bloc/config/translation_target_cubit.dart';
+import 'package:kuwot/features/quote/data/data_sources/remote/libretranslate_api_remote_data_source.dart';
+import 'package:kuwot/features/quote/data/data_sources/remote/quote_api_remote_data_source.dart';
+import 'package:kuwot/features/quote/data/data_sources/remote/pexels_api_remote_data_source.dart';
+import 'package:kuwot/features/quote/data/repositories/quote_repository_impl.dart';
+import 'package:kuwot/features/quote/domain/repositories/quote_repository.dart';
+import 'package:kuwot/features/quote/domain/use_cases/get_background_photos.dart';
+import 'package:kuwot/features/quote/domain/use_cases/get_quote.dart';
+import 'package:kuwot/features/quote/domain/use_cases/get_translated_quote.dart';
+import 'package:kuwot/features/quote/domain/use_cases/translate_text.dart';
+import 'package:kuwot/features/quote/presentation/bloc/background_photos_bloc.dart';
+import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,10 +38,14 @@ void setup() {
     () => ThemeModeConfig(sharedPreferences: getIt()),
     dependsOn: [SharedPreferences],
   );
+  getIt.registerSingletonWithDependencies<Config<TranslationTarget>>(
+    () => TranslationTargetConfig(sharedPreferences: getIt()),
+    dependsOn: [SharedPreferences],
+  );
 
   // data sources
-  getIt.registerLazySingleton<FavqsApiRemoteDataSource>(
-    () => FavqsApiRemoteApiImpl(
+  getIt.registerLazySingleton<QuoteApiRemoteDataSource>(
+    () => QuoteApiRemoteApiImpl(
       network: getIt(),
     ),
   );
@@ -46,29 +54,39 @@ void setup() {
       network: getIt(),
     ),
   );
-  getIt.registerLazySingleton<DeeplApiRemoteDataSource>(
-    () => DeeplApiRemoteDataSourceImpl(
+  getIt.registerLazySingleton<LibretranslateApiRemoteDataSource>(
+    () => LibretranslateApiRemoteDataSourceImpl(
       network: getIt(),
     ),
   );
 
   // repositories
-  getIt.registerLazySingleton<DailyQuoteRepository>(
-    () => DailyQuoteRepositoryImpl(
-      favqsDataSource: getIt(),
+  getIt.registerLazySingleton<QuoteRepository>(
+    () => QuoteRepositoryImpl(
+      quoteDataSource: getIt(),
       pexelsDataSource: getIt(),
-      deeplDataSource: getIt(),
+      libretranslateDataSource: getIt(),
     ),
   );
 
   // use cases
-  getIt.registerLazySingleton<GetDailyQuote>(
-    () => GetDailyQuote(
+  getIt.registerLazySingleton<GetQuote>(
+    () => GetQuote(
+      getIt(),
+    ),
+  );
+  getIt.registerLazySingleton<GetTranslatedQuote>(
+    () => GetTranslatedQuote(
       getIt(),
     ),
   );
   getIt.registerLazySingleton<GetBackgroundPhotos>(
     () => GetBackgroundPhotos(
+      getIt(),
+    ),
+  );
+  getIt.registerLazySingleton<TranslateText>(
+    () => TranslateText(
       getIt(),
     ),
   );
@@ -79,14 +97,28 @@ void setup() {
       final initialThemeMode = await getIt<Config<ThemeMode>>().get();
       return ThemeModeCubit(
         themeModeConfig: getIt(),
-        initialThemeMode: initialThemeMode,
+        initialThemeMode: initialThemeMode ?? ThemeMode.system,
       );
     },
     dependsOn: [SharedPreferences, Config<ThemeMode>],
   );
-  getIt.registerFactory<DailyQuoteBloc>(
-    () => DailyQuoteBloc(
-      getDailyQuote: getIt(),
+  getIt.registerSingletonAsync<TranslationTargetCubit>(
+    () async {
+      final initialTranslationTarget =
+          await getIt<Config<TranslationTarget>>().get();
+      return TranslationTargetCubit(
+        translationTargetConfig: getIt(),
+        initialTranslationTarget:
+            initialTranslationTarget ?? defaultTranslationTarget,
+      );
+    },
+    dependsOn: [SharedPreferences, Config<TranslationTarget>],
+  );
+  getIt.registerFactory<QuoteBloc>(
+    () => QuoteBloc(
+      getQuote: getIt(),
+      getTranslatedQuote: getIt(),
+      translationTargetConfig: getIt(),
     ),
   );
   getIt.registerFactory<BackgroundPhotosBloc>(

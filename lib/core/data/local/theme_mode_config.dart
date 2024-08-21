@@ -39,4 +39,9 @@ class ThemeModeConfig extends Config<ThemeMode> {
         await sharedPreferences.setString(themeModeConfigKey, 'system');
     }
   }
+
+  @override
+  Future<void> remove() async {
+    await sharedPreferences.remove(themeModeConfigKey);
+  }
 }

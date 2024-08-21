@@ -6,7 +6,7 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-          page: DailyQuoteRoute.page,
+          page: QuoteRoute.page,
           initial: true,
         ),
         AutoRoute(page: AppSettingsRoute.page),
