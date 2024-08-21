@@ -11,8 +11,7 @@
 import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:kuwot/features/app_settings/presentation/app_settings_page.dart'
     as _i1;
-import 'package:kuwot/features/daily_quote/presentation/daily_quote_page.dart'
-    as _i2;
+import 'package:kuwot/features/quote/presentation/quote_page.dart' as _i2;
 
 /// generated route for
 /// [_i1.AppSettingsPage]
@@ -34,20 +33,20 @@ class AppSettingsRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.DailyQuotePage]
-class DailyQuoteRoute extends _i3.PageRouteInfo<void> {
-  const DailyQuoteRoute({List<_i3.PageRouteInfo>? children})
+/// [_i2.QuotePage]
+class QuoteRoute extends _i3.PageRouteInfo<void> {
+  const QuoteRoute({List<_i3.PageRouteInfo>? children})
       : super(
-          DailyQuoteRoute.name,
+          QuoteRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'DailyQuoteRoute';
+  static const String name = 'QuoteRoute';
 
   static _i3.PageInfo page = _i3.PageInfo(
     name,
     builder: (data) {
-      return const _i2.DailyQuotePage();
+      return const _i2.QuotePage();
     },
   );
 }
