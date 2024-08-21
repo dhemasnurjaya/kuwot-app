@@ -74,21 +74,6 @@ class _QuotePageState extends State<QuotePage> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(
-                onPressed: () async {
-                  final result = await showAdaptiveDialog<TranslationTarget?>(
-                    context: context,
-                    builder: (context) => const TranslateTargetDialog(),
-                  );
-
-                  if (result != null) {
-                    _dailyQuoteBloc.add(
-                      GetTranslatedQuoteEvent(result),
-                    );
-                  }
-                },
-                icon: const FaIcon(FontAwesomeIcons.language),
-              ),
-              IconButton(
                 onPressed: () {
                   context.router.push(const AppSettingsRoute());
                 },
@@ -180,8 +165,19 @@ class _QuotePageState extends State<QuotePage> {
               ),
               Expanded(
                 child: _buildQuoteActionButton(
-                  onPressed: () {},
-                  icon: const FaIcon(FontAwesomeIcons.download),
+                  onPressed: () async {
+                    final result = await showAdaptiveDialog<TranslationTarget?>(
+                      context: context,
+                      builder: (context) => const TranslateTargetDialog(),
+                    );
+
+                    if (result != null) {
+                      _dailyQuoteBloc.add(
+                        GetTranslatedQuoteEvent(result),
+                      );
+                    }
+                  },
+                  icon: const FaIcon(FontAwesomeIcons.language),
                 ),
               ),
               Expanded(
