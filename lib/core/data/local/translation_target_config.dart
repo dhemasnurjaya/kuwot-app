@@ -2,39 +2,39 @@ import 'package:kuwot/core/data/local/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const translationTargetConfigKey = 'translationTarget';
-const defaultTranslationTarget = TranslationTarget('en', 'English');
 const translationTargets = [
-  defaultTranslationTarget,
   TranslationTarget('ar', 'Arabic'),
   TranslationTarget('bg', 'Bulgarian'),
+  TranslationTarget('zh', 'Chinese'),
   TranslationTarget('cs', 'Czech'),
   TranslationTarget('da', 'Danish'),
-  TranslationTarget('de', 'German'),
-  TranslationTarget('el', 'Greek'),
-  TranslationTarget('es', 'Spanish'),
+  TranslationTarget('nl', 'Dutch'),
+  TranslationTarget('en', 'English'),
   TranslationTarget('et', 'Estonian'),
   TranslationTarget('fi', 'Finnish'),
   TranslationTarget('fr', 'French'),
+  TranslationTarget('de', 'German'),
+  TranslationTarget('el', 'Greek'),
   TranslationTarget('hu', 'Hungarian'),
   TranslationTarget('id', 'Indonesian'),
   TranslationTarget('it', 'Italian'),
   TranslationTarget('ja', 'Japanese'),
   TranslationTarget('ko', 'Korean'),
-  TranslationTarget('lt', 'Lithuanian'),
   TranslationTarget('lv', 'Latvian'),
+  TranslationTarget('lt', 'Lithuanian'),
   TranslationTarget('nb', 'Norwegian Bokmål'),
-  TranslationTarget('nl', 'Dutch'),
   TranslationTarget('pl', 'Polish'),
   TranslationTarget('pt', 'Portuguese'),
   TranslationTarget('ro', 'Romanian'),
   TranslationTarget('ru', 'Russian'),
   TranslationTarget('sk', 'Slovak'),
   TranslationTarget('sl', 'Slovenian'),
+  TranslationTarget('es', 'Spanish'),
   TranslationTarget('sv', 'Swedish'),
   TranslationTarget('tr', 'Turkish'),
   TranslationTarget('uk', 'Ukrainian'),
-  TranslationTarget('zh', 'Chinese'),
 ];
+const defaultTranslationTarget = TranslationTarget('en', 'English');
 
 class TranslationTarget {
   final String id;
