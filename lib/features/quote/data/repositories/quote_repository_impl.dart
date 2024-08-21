@@ -2,7 +2,6 @@ import 'package:fpdart/fpdart.dart';
 import 'package:kuwot/core/data/local/translation_target_config.dart';
 import 'package:kuwot/core/error/failure.dart';
 import 'package:kuwot/core/error/unknown_failure.dart';
-import 'package:kuwot/features/quote/data/data_sources/remote/libretranslate_api_remote_data_source.dart';
 import 'package:kuwot/features/quote/data/data_sources/remote/quote_api_remote_data_source.dart';
 import 'package:kuwot/features/quote/data/data_sources/remote/pexels_api_remote_data_source.dart';
 import 'package:kuwot/features/quote/domain/entities/background_photos.dart';
@@ -12,12 +11,10 @@ import 'package:kuwot/features/quote/domain/repositories/quote_repository.dart';
 class QuoteRepositoryImpl implements QuoteRepository {
   final QuoteApiRemoteDataSource quoteDataSource;
   final PexelsApiRemoteDataSource pexelsDataSource;
-  final LibretranslateApiRemoteDataSource libretranslateDataSource;
 
   QuoteRepositoryImpl({
     required this.quoteDataSource,
     required this.pexelsDataSource,
-    required this.libretranslateDataSource,
   });
 
   @override
@@ -63,27 +60,6 @@ class QuoteRepositoryImpl implements QuoteRepository {
     try {
       final photos = await pexelsDataSource.getCuratedPhotos();
       return right(BackgroundPhotos.fromModel(photos));
-    } on Exception catch (e) {
-      return left(
-        UnknownFailure(
-          message: e.toString(),
-          cause: e,
-        ),
-      );
-    }
-  }
-
-  @override
-  Future<Either<Failure, String>> translate(
-    TranslationTarget target,
-    String text,
-  ) async {
-    try {
-      final translation = await libretranslateDataSource.translateText(
-        text,
-        target.id,
-      );
-      return right(translation);
     } on Exception catch (e) {
       return left(
         UnknownFailure(
