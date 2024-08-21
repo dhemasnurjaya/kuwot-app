@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:kuwot/core/presentation/bloc/config/theme_mode_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 @RoutePage()
 class AppSettingsPage extends StatefulWidget {
@@ -40,6 +41,18 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
         ),
       ],
     );
+    final appVersion = Center(
+      child: FutureBuilder<PackageInfo>(
+        future: PackageInfo.fromPlatform(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Text(
+                'v${snapshot.data!.version} (${snapshot.data!.buildNumber})');
+          }
+          return const Text('...');
+        },
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -49,6 +62,8 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
           themeSetting,
+          const SizedBox(height: 20),
+          appVersion,
         ],
       ),
     );
