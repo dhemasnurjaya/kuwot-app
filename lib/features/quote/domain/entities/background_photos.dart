@@ -13,14 +13,14 @@ class BackgroundPhotos with _$BackgroundPhotos {
         photos: model.photos.map<Photo>(
           (e) {
             return Photo(
-              url: _buildPortraitImageUrl(e.src.original),
+              url: buildPortraitImageUrl(e.src.original),
               avgColor: e.avgColor,
             );
           },
         ).toList(),
       );
 
-  static String _buildPortraitImageUrl(String originalUrl) =>
+  static String buildPortraitImageUrl(String originalUrl) =>
       '$originalUrl?auto=compress&cs=tinysrgb&fit=crop&h=2400&w=1200';
 }
 

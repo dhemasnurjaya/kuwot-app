@@ -160,7 +160,7 @@ class __$$PhotoListModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$PhotoListModelImpl implements _PhotoListModel {
-  _$PhotoListModelImpl(
+  const _$PhotoListModelImpl(
       {required this.page,
       required this.perPage,
       required final List<PhotoModel> photos,
@@ -230,7 +230,7 @@ class _$PhotoListModelImpl implements _PhotoListModel {
 }
 
 abstract class _PhotoListModel implements PhotoListModel {
-  factory _PhotoListModel(
+  const factory _PhotoListModel(
       {required final int page,
       required final int perPage,
       required final List<PhotoModel> photos,
@@ -498,7 +498,7 @@ class __$$PhotoModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$PhotoModelImpl implements _PhotoModel {
-  _$PhotoModelImpl(
+  const _$PhotoModelImpl(
       {required this.id,
       required this.width,
       required this.height,
@@ -586,7 +586,7 @@ class _$PhotoModelImpl implements _PhotoModel {
 }
 
 abstract class _PhotoModel implements PhotoModel {
-  factory _PhotoModel(
+  const factory _PhotoModel(
       {required final int id,
       required final int width,
       required final int height,
@@ -817,7 +817,7 @@ class __$$SrcModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$SrcModelImpl implements _SrcModel {
-  _$SrcModelImpl(
+  const _$SrcModelImpl(
       {required this.original,
       required this.large2x,
       required this.large,
@@ -892,7 +892,7 @@ class _$SrcModelImpl implements _SrcModel {
 }
 
 abstract class _SrcModel implements SrcModel {
-  factory _SrcModel(
+  const factory _SrcModel(
       {required final String original,
       required final String large2x,
       required final String large,

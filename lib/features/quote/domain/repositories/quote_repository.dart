@@ -15,9 +15,4 @@ abstract class QuoteRepository {
     int id,
     TranslationTarget translationTarget,
   );
-
-  Future<Either<Failure, String>> translate(
-    TranslationTarget target,
-    String text,
-  );
 }

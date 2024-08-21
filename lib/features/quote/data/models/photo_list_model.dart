@@ -8,7 +8,7 @@ class PhotoListModel with _$PhotoListModel {
   @JsonSerializable(
     fieldRename: FieldRename.snake,
   )
-  factory PhotoListModel({
+  const factory PhotoListModel({
     required int page,
     required int perPage,
     required List<PhotoModel> photos,
@@ -25,7 +25,7 @@ class PhotoModel with _$PhotoModel {
   @JsonSerializable(
     fieldRename: FieldRename.snake,
   )
-  factory PhotoModel({
+  const factory PhotoModel({
     required int id,
     required int width,
     required int height,
@@ -48,7 +48,7 @@ class SrcModel with _$SrcModel {
   @JsonSerializable(
     fieldRename: FieldRename.snake,
   )
-  factory SrcModel({
+  const factory SrcModel({
     required String original,
     required String large2x,
     required String large,
