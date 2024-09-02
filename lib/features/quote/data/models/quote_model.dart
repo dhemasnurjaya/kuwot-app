@@ -10,8 +10,8 @@ class QuoteModel with _$QuoteModel {
   )
   const factory QuoteModel({
     required int id,
-    required String q,
-    required String a,
+    required String text,
+    required String author,
   }) = _QuoteModel;
 
   factory QuoteModel.fromJson(Map<String, dynamic> json) =>

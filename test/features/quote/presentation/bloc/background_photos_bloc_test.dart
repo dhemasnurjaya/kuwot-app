@@ -2,87 +2,88 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:kuwot/core/error/failure.dart';
 import 'package:kuwot/core/error/unknown_failure.dart';
-import 'package:kuwot/features/quote/domain/entities/background_photos.dart';
-import 'package:kuwot/features/quote/domain/use_cases/get_background_photos.dart';
-import 'package:kuwot/features/quote/presentation/bloc/background_photos_bloc.dart';
+import 'package:kuwot/features/quote/domain/entities/background_image.dart';
+import 'package:kuwot/features/quote/domain/use_cases/get_background_images.dart';
+import 'package:kuwot/features/quote/presentation/bloc/background_images_bloc.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'background_photos_bloc_test.mocks.dart';
 
-@GenerateMocks([GetBackgroundPhotos])
+@GenerateMocks([GetBackgroundImages])
 void main() {
-  late MockGetBackgroundPhotos mockGetBackgroundPhotos;
-  late BackgroundPhotosBloc backgroundPhotosBloc;
+  late MockGetBackgroundImages mockGetBackgroundImages;
+  late BackgroundImagesBloc backgroundImagesBloc;
 
   setUp(() {
-    mockGetBackgroundPhotos = MockGetBackgroundPhotos();
-    backgroundPhotosBloc = BackgroundPhotosBloc(
-      getBackgroundPhotos: mockGetBackgroundPhotos,
+    mockGetBackgroundImages = MockGetBackgroundImages();
+    backgroundImagesBloc = BackgroundImagesBloc(
+      getBackgroundImages: mockGetBackgroundImages,
     );
   });
 
-  test('initial state is BackgroundPhotosInitial', () {
+  test('initial state is BackgroundImagesInitial', () {
     // assert
-    expect(backgroundPhotosBloc.state, const BackgroundPhotosInitialState());
+    expect(backgroundImagesBloc.state, const BackgroundImagesInitialState());
   });
 
-  group('GetBackgroundPhotos', () {
-    test('should get background photos from GetBackgroundPhotos use case',
+  group('GetBackgroundImages', () {
+    test('should get background photos from GetBackgroundImages use case',
         () async {
       // arrange
-      provideDummy<Either<Failure, BackgroundPhotos>>(
-          right(const BackgroundPhotos(photos: [])));
-      when(mockGetBackgroundPhotos.execute(any))
-          .thenAnswer((_) async => right(const BackgroundPhotos(photos: [])));
+      provideDummy<Either<Failure, List<BackgroundImage>>>(
+          right(const <BackgroundImage>[]));
+      when(mockGetBackgroundImages.execute(any))
+          .thenAnswer((_) async => right(const <BackgroundImage>[]));
 
       // act
-      backgroundPhotosBloc.add(const GetBackgroundPhotosEvent());
-      await untilCalled(mockGetBackgroundPhotos.execute(any));
+      backgroundImagesBloc.add(const GetBackgroundImagesEvent());
+      await untilCalled(mockGetBackgroundImages.execute(any));
 
       // assert
-      verify(mockGetBackgroundPhotos.execute(any));
-      verifyNoMoreInteractions(mockGetBackgroundPhotos);
+      verify(mockGetBackgroundImages.execute(any));
+      verifyNoMoreInteractions(mockGetBackgroundImages);
     });
 
     test(
-        'should emit [BackgroundPhotosLoading, BackgroundPhotosLoaded] when data is gotten successfully',
+        'should emit [BackgroundImagesLoading, BackgroundImagesLoaded] when data is gotten successfully',
         () async {
       // arrange
-      const tBackgroundPhotos = BackgroundPhotos(photos: []);
-      provideDummy<Either<Failure, BackgroundPhotos>>(right(tBackgroundPhotos));
-      when(mockGetBackgroundPhotos.execute(any))
-          .thenAnswer((_) async => right(tBackgroundPhotos));
+      const tBackgroundImages = <BackgroundImage>[];
+      provideDummy<Either<Failure, List<BackgroundImage>>>(
+          right(tBackgroundImages));
+      when(mockGetBackgroundImages.execute(any))
+          .thenAnswer((_) async => right(tBackgroundImages));
 
       // assert later
       final expected = [
-        const BackgroundPhotosLoadingState(),
-        const BackgroundPhotosLoadedState(tBackgroundPhotos),
+        const BackgroundImagesLoadingState(),
+        const BackgroundImagesLoadedState(tBackgroundImages),
       ];
-      expectLater(backgroundPhotosBloc.stream, emitsInOrder(expected));
+      expectLater(backgroundImagesBloc.stream, emitsInOrder(expected));
 
       // act
-      backgroundPhotosBloc.add(const GetBackgroundPhotosEvent());
+      backgroundImagesBloc.add(const GetBackgroundImagesEvent());
     });
 
     test(
-        'should emit [BackgroundPhotosLoading, BackgroundPhotosError] when getting data fails',
+        'should emit [BackgroundImagesLoading, BackgroundImagesError] when getting data fails',
         () async {
       // arrange
       const tFailure = UnknownFailure(message: 'Unknown Failure');
-      provideDummy<Either<Failure, BackgroundPhotos>>(left(tFailure));
-      when(mockGetBackgroundPhotos.execute(any))
+      provideDummy<Either<Failure, List<BackgroundImage>>>(left(tFailure));
+      when(mockGetBackgroundImages.execute(any))
           .thenAnswer((_) async => left(tFailure));
 
       // assert later
       final expected = [
-        const BackgroundPhotosLoadingState(),
-        BackgroundPhotosErrorState(message: tFailure.message),
+        const BackgroundImagesLoadingState(),
+        BackgroundImagesErrorState(message: tFailure.message),
       ];
-      expectLater(backgroundPhotosBloc.stream, emitsInOrder(expected));
+      expectLater(backgroundImagesBloc.stream, emitsInOrder(expected));
 
       // act
-      backgroundPhotosBloc.add(const GetBackgroundPhotosEvent());
+      backgroundImagesBloc.add(const GetBackgroundImagesEvent());
     });
   });
 }

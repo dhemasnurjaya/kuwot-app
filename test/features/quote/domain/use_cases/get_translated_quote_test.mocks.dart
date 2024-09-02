@@ -8,7 +8,7 @@ import 'dart:async' as _i3;
 import 'package:fpdart/fpdart.dart' as _i4;
 import 'package:kuwot/core/data/local/translation_target_config.dart' as _i9;
 import 'package:kuwot/core/error/failure.dart' as _i5;
-import 'package:kuwot/features/quote/domain/entities/background_photos.dart'
+import 'package:kuwot/features/quote/domain/entities/background_image.dart'
     as _i6;
 import 'package:kuwot/features/quote/domain/entities/quote.dart' as _i8;
 import 'package:kuwot/features/quote/domain/repositories/quote_repository.dart'
@@ -38,22 +38,24 @@ class MockQuoteRepository extends _i1.Mock implements _i2.QuoteRepository {
   }
 
   @override
-  _i3.Future<_i4.Either<_i5.Failure, _i6.BackgroundPhotos>>
-      getBackgroundPhotos() => (super.noSuchMethod(
-            Invocation.method(
-              #getBackgroundPhotos,
-              [],
-            ),
-            returnValue: _i3
-                .Future<_i4.Either<_i5.Failure, _i6.BackgroundPhotos>>.value(
-                _i7.dummyValue<_i4.Either<_i5.Failure, _i6.BackgroundPhotos>>(
-              this,
-              Invocation.method(
-                #getBackgroundPhotos,
-                [],
-              ),
-            )),
-          ) as _i3.Future<_i4.Either<_i5.Failure, _i6.BackgroundPhotos>>);
+  _i3.Future<
+      _i4.Either<_i5.Failure,
+          List<_i6.BackgroundImage>>> getBackgroundImages() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getBackgroundImages,
+          [],
+        ),
+        returnValue: _i3
+            .Future<_i4.Either<_i5.Failure, List<_i6.BackgroundImage>>>.value(
+            _i7.dummyValue<_i4.Either<_i5.Failure, List<_i6.BackgroundImage>>>(
+          this,
+          Invocation.method(
+            #getBackgroundImages,
+            [],
+          ),
+        )),
+      ) as _i3.Future<_i4.Either<_i5.Failure, List<_i6.BackgroundImage>>>);
 
   @override
   _i3.Future<_i4.Either<_i5.Failure, _i8.Quote>> getQuote(

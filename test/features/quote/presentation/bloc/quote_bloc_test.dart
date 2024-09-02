@@ -5,7 +5,7 @@ import 'package:kuwot/core/data/local/translation_target_config.dart';
 import 'package:kuwot/core/error/failure.dart';
 import 'package:kuwot/core/error/unknown_failure.dart';
 import 'package:kuwot/features/quote/domain/entities/quote.dart';
-import 'package:kuwot/features/quote/domain/use_cases/get_background_photos.dart';
+import 'package:kuwot/features/quote/domain/use_cases/get_background_images.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_quote.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_translated_quote.dart';
 import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
@@ -17,7 +17,7 @@ import 'quote_bloc_test.mocks.dart';
 @GenerateMocks([
   GetQuote,
   GetTranslatedQuote,
-  GetBackgroundPhotos,
+  GetBackgroundImages,
 ], customMocks: [
   MockSpec<Config<TranslationTarget>>(as: #MockTranslationTargetConfig),
 ])

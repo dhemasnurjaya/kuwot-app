@@ -2,6 +2,9 @@ part of 'quote_bloc.dart';
 
 abstract class QuoteState extends Equatable {
   const QuoteState();
+
+  @override
+  String toString() => runtimeType.toString();
 }
 
 class QuoteInitialState extends QuoteState {

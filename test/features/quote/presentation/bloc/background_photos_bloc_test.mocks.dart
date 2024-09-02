@@ -8,9 +8,9 @@ import 'dart:async' as _i3;
 import 'package:fpdart/fpdart.dart' as _i4;
 import 'package:kuwot/core/domain/no_params.dart' as _i7;
 import 'package:kuwot/core/error/failure.dart' as _i5;
-import 'package:kuwot/features/quote/domain/entities/background_photos.dart'
+import 'package:kuwot/features/quote/domain/entities/background_image.dart'
     as _i6;
-import 'package:kuwot/features/quote/domain/use_cases/get_background_photos.dart'
+import 'package:kuwot/features/quote/domain/use_cases/get_background_images.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i8;
@@ -28,31 +28,31 @@ import 'package:mockito/src/dummies.dart' as _i8;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [GetBackgroundPhotos].
+/// A class which mocks [GetBackgroundImages].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetBackgroundPhotos extends _i1.Mock
-    implements _i2.GetBackgroundPhotos {
-  MockGetBackgroundPhotos() {
+class MockGetBackgroundImages extends _i1.Mock
+    implements _i2.GetBackgroundImages {
+  MockGetBackgroundImages() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i4.Either<_i5.Failure, _i6.BackgroundPhotos>> execute(
+  _i3.Future<_i4.Either<_i5.Failure, List<_i6.BackgroundImage>>> execute(
           _i7.NoParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [params],
         ),
-        returnValue:
-            _i3.Future<_i4.Either<_i5.Failure, _i6.BackgroundPhotos>>.value(
-                _i8.dummyValue<_i4.Either<_i5.Failure, _i6.BackgroundPhotos>>(
+        returnValue: _i3
+            .Future<_i4.Either<_i5.Failure, List<_i6.BackgroundImage>>>.value(
+            _i8.dummyValue<_i4.Either<_i5.Failure, List<_i6.BackgroundImage>>>(
           this,
           Invocation.method(
             #execute,
             [params],
           ),
         )),
-      ) as _i3.Future<_i4.Either<_i5.Failure, _i6.BackgroundPhotos>>);
+      ) as _i3.Future<_i4.Either<_i5.Failure, List<_i6.BackgroundImage>>>);
 }

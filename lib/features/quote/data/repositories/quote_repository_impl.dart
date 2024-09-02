@@ -2,19 +2,16 @@ import 'package:fpdart/fpdart.dart';
 import 'package:kuwot/core/data/local/translation_target_config.dart';
 import 'package:kuwot/core/error/failure.dart';
 import 'package:kuwot/core/error/unknown_failure.dart';
-import 'package:kuwot/features/quote/data/data_sources/remote/quote_api_remote_data_source.dart';
-import 'package:kuwot/features/quote/data/data_sources/remote/pexels_api_remote_data_source.dart';
-import 'package:kuwot/features/quote/domain/entities/background_photos.dart';
+import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_data_source.dart';
+import 'package:kuwot/features/quote/domain/entities/background_image.dart';
 import 'package:kuwot/features/quote/domain/entities/quote.dart';
 import 'package:kuwot/features/quote/domain/repositories/quote_repository.dart';
 
 class QuoteRepositoryImpl implements QuoteRepository {
-  final QuoteApiRemoteDataSource quoteDataSource;
-  final PexelsApiRemoteDataSource pexelsDataSource;
+  final KuwotApiRemoteDataSource quoteDataSource;
 
   QuoteRepositoryImpl({
     required this.quoteDataSource,
-    required this.pexelsDataSource,
   });
 
   @override
@@ -56,10 +53,10 @@ class QuoteRepositoryImpl implements QuoteRepository {
   }
 
   @override
-  Future<Either<Failure, BackgroundPhotos>> getBackgroundPhotos() async {
+  Future<Either<Failure, List<BackgroundImage>>> getBackgroundImages() async {
     try {
-      final photos = await pexelsDataSource.getCuratedPhotos();
-      return right(BackgroundPhotos.fromModel(photos));
+      final images = await quoteDataSource.getRandomImages();
+      return right(BackgroundImage.fromModels(images));
     } on Exception catch (e) {
       return left(
         UnknownFailure(
