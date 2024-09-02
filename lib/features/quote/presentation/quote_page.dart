@@ -7,14 +7,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kuwot/core/data/local/translation_target_config.dart';
 import 'package:kuwot/core/router/app_router.gr.dart';
-import 'package:kuwot/features/quote/presentation/bloc/background_photos_bloc.dart';
-import 'package:kuwot/features/quote/presentation/widgets/background_photo_widget.dart';
+import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_data_source.dart';
+import 'package:kuwot/features/quote/presentation/bloc/background_images_bloc.dart';
+import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
+import 'package:kuwot/features/quote/presentation/widgets/background_image_widget.dart';
 import 'package:kuwot/features/quote/presentation/widgets/quote_widget.dart';
 import 'package:kuwot/features/quote/presentation/widgets/translate_target_dialog.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:kuwot/features/quote/data/data_sources/remote/pexels_api_remote_data_source.dart';
-import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
@@ -28,20 +28,21 @@ class QuotePage extends StatefulWidget {
 class _QuotePageState extends State<QuotePage> {
   final _screenshotController = ScreenshotController();
   int _backgroundIndex = 0;
+  bool _isSharingQuote = false;
 
   late QuoteBloc _dailyQuoteBloc;
-  late BackgroundPhotosBloc _backgroundPhotosBloc;
+  late BackgroundImagesBloc _backgroundImagesBloc;
 
   @override
   void initState() {
     super.initState();
 
     _dailyQuoteBloc = context.read<QuoteBloc>();
-    _backgroundPhotosBloc = context.read<BackgroundPhotosBloc>();
+    _backgroundImagesBloc = context.read<BackgroundImagesBloc>();
 
     // get daily quote & background photos
     _dailyQuoteBloc.add(const GetQuoteEvent());
-    _backgroundPhotosBloc.add(const GetBackgroundPhotosEvent());
+    _backgroundImagesBloc.add(const GetBackgroundImagesEvent());
   }
 
   @override
@@ -88,7 +89,7 @@ class _QuotePageState extends State<QuotePage> {
     final footer = Padding(
       padding: const EdgeInsets.all(8),
       child: Linkify(
-        text: 'Photos by https://pexels.com',
+        text: 'Images by https://unsplash.com',
         style: Theme.of(context).textTheme.bodySmall,
         linkStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
               fontWeight: FontWeight.bold,
@@ -103,26 +104,28 @@ class _QuotePageState extends State<QuotePage> {
       ),
     );
 
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: header,
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(24, 70, 24, 42),
-              child: _buildQuote(),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: footer,
-            ),
-          ],
-        ),
+    final body = SafeArea(
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: header,
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 70, 24, 42),
+            child: _buildQuote(),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: footer,
+          ),
+        ],
       ),
+    );
+
+    return Scaffold(
+      body: body,
     );
   }
 
@@ -132,7 +135,10 @@ class _QuotePageState extends State<QuotePage> {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          BackgroundPhotoWidget(backgroundIndex: _backgroundIndex),
+          BackgroundPhotoWidget(
+            backgroundIndex: _backgroundIndex,
+            hideImageInfoButton: _isSharingQuote,
+          ),
           const Align(alignment: Alignment.center, child: QuoteWidget()),
         ],
       ),
@@ -211,12 +217,14 @@ class _QuotePageState extends State<QuotePage> {
 
   void _cycleBackground() {
     setState(() {
-      _backgroundIndex = ++_backgroundIndex % photosPerPage;
+      _backgroundIndex = ++_backgroundIndex % imagesPerPage;
     });
   }
 
   Future<void> _shareQuote() async {
+    setState(() => _isSharingQuote = true);
     final image = await _screenshotController.capture();
+    setState(() => _isSharingQuote = false);
     if (image == null) return;
     await Share.shareXFiles(
       [

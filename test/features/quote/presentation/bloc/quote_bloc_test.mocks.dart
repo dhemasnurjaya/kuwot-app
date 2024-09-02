@@ -10,10 +10,10 @@ import 'package:kuwot/core/data/local/config.dart' as _i12;
 import 'package:kuwot/core/data/local/translation_target_config.dart' as _i13;
 import 'package:kuwot/core/domain/no_params.dart' as _i11;
 import 'package:kuwot/core/error/failure.dart' as _i5;
-import 'package:kuwot/features/quote/domain/entities/background_photos.dart'
+import 'package:kuwot/features/quote/domain/entities/background_image.dart'
     as _i10;
 import 'package:kuwot/features/quote/domain/entities/quote.dart' as _i6;
-import 'package:kuwot/features/quote/domain/use_cases/get_background_photos.dart'
+import 'package:kuwot/features/quote/domain/use_cases/get_background_images.dart'
     as _i9;
 import 'package:kuwot/features/quote/domain/use_cases/get_quote.dart' as _i2;
 import 'package:kuwot/features/quote/domain/use_cases/get_translated_quote.dart'
@@ -89,33 +89,33 @@ class MockGetTranslatedQuote extends _i1.Mock
       ) as _i3.Future<_i4.Either<_i5.Failure, _i6.Quote>>);
 }
 
-/// A class which mocks [GetBackgroundPhotos].
+/// A class which mocks [GetBackgroundImages].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetBackgroundPhotos extends _i1.Mock
-    implements _i9.GetBackgroundPhotos {
-  MockGetBackgroundPhotos() {
+class MockGetBackgroundImages extends _i1.Mock
+    implements _i9.GetBackgroundImages {
+  MockGetBackgroundImages() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i4.Either<_i5.Failure, _i10.BackgroundPhotos>> execute(
+  _i3.Future<_i4.Either<_i5.Failure, List<_i10.BackgroundImage>>> execute(
           _i11.NoParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [params],
         ),
-        returnValue:
-            _i3.Future<_i4.Either<_i5.Failure, _i10.BackgroundPhotos>>.value(
-                _i7.dummyValue<_i4.Either<_i5.Failure, _i10.BackgroundPhotos>>(
+        returnValue: _i3
+            .Future<_i4.Either<_i5.Failure, List<_i10.BackgroundImage>>>.value(
+            _i7.dummyValue<_i4.Either<_i5.Failure, List<_i10.BackgroundImage>>>(
           this,
           Invocation.method(
             #execute,
             [params],
           ),
         )),
-      ) as _i3.Future<_i4.Either<_i5.Failure, _i10.BackgroundPhotos>>);
+      ) as _i3.Future<_i4.Either<_i5.Failure, List<_i10.BackgroundImage>>>);
 }
 
 /// A class which mocks [Config].

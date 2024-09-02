@@ -13,7 +13,7 @@ class Quote with _$Quote {
 
   static Quote fromModel(QuoteModel model) => Quote(
         id: model.id,
-        author: model.a,
-        body: model.q,
+        author: model.author,
+        body: model.text,
       );
 }

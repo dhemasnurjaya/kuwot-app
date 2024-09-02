@@ -9,13 +9,13 @@ part of 'quote_model.dart';
 _$QuoteModelImpl _$$QuoteModelImplFromJson(Map<String, dynamic> json) =>
     _$QuoteModelImpl(
       id: (json['id'] as num).toInt(),
-      q: json['q'] as String,
-      a: json['a'] as String,
+      text: json['text'] as String,
+      author: json['author'] as String,
     );
 
 Map<String, dynamic> _$$QuoteModelImplToJson(_$QuoteModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'q': instance.q,
-      'a': instance.a,
+      'text': instance.text,
+      'author': instance.author,
     };

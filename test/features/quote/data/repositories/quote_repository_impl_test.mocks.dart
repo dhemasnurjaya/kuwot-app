@@ -3,13 +3,11 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i4;
 
-import 'package:kuwot/features/quote/data/data_sources/remote/pexels_api_remote_data_source.dart'
-    as _i6;
-import 'package:kuwot/features/quote/data/data_sources/remote/quote_api_remote_data_source.dart'
-    as _i4;
-import 'package:kuwot/features/quote/data/models/photo_list_model.dart' as _i3;
+import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_data_source.dart'
+    as _i3;
+import 'package:kuwot/features/quote/data/models/image_model.dart' as _i5;
 import 'package:kuwot/features/quote/data/models/quote_model.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -36,34 +34,23 @@ class _FakeQuoteModel_0 extends _i1.SmartFake implements _i2.QuoteModel {
         );
 }
 
-class _FakePhotoListModel_1 extends _i1.SmartFake
-    implements _i3.PhotoListModel {
-  _FakePhotoListModel_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-/// A class which mocks [QuoteApiRemoteDataSource].
+/// A class which mocks [KuwotApiRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockQuoteApiRemoteDataSource extends _i1.Mock
-    implements _i4.QuoteApiRemoteDataSource {
-  MockQuoteApiRemoteDataSource() {
+class MockKuwotApiRemoteDataSource extends _i1.Mock
+    implements _i3.KuwotApiRemoteDataSource {
+  MockKuwotApiRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i2.QuoteModel> getQuote({String? query}) => (super.noSuchMethod(
+  _i4.Future<_i2.QuoteModel> getQuote({String? query}) => (super.noSuchMethod(
         Invocation.method(
           #getQuote,
           [],
           {#query: query},
         ),
-        returnValue: _i5.Future<_i2.QuoteModel>.value(_FakeQuoteModel_0(
+        returnValue: _i4.Future<_i2.QuoteModel>.value(_FakeQuoteModel_0(
           this,
           Invocation.method(
             #getQuote,
@@ -71,10 +58,10 @@ class MockQuoteApiRemoteDataSource extends _i1.Mock
             {#query: query},
           ),
         )),
-      ) as _i5.Future<_i2.QuoteModel>);
+      ) as _i4.Future<_i2.QuoteModel>);
 
   @override
-  _i5.Future<_i2.QuoteModel> getTranslatedQuote(
+  _i4.Future<_i2.QuoteModel> getTranslatedQuote(
     int? id, {
     String? query,
   }) =>
@@ -84,7 +71,7 @@ class MockQuoteApiRemoteDataSource extends _i1.Mock
           [id],
           {#query: query},
         ),
-        returnValue: _i5.Future<_i2.QuoteModel>.value(_FakeQuoteModel_0(
+        returnValue: _i4.Future<_i2.QuoteModel>.value(_FakeQuoteModel_0(
           this,
           Invocation.method(
             #getTranslatedQuote,
@@ -92,30 +79,14 @@ class MockQuoteApiRemoteDataSource extends _i1.Mock
             {#query: query},
           ),
         )),
-      ) as _i5.Future<_i2.QuoteModel>);
-}
-
-/// A class which mocks [PexelsApiRemoteDataSource].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockPexelsApiRemoteDataSource extends _i1.Mock
-    implements _i6.PexelsApiRemoteDataSource {
-  MockPexelsApiRemoteDataSource() {
-    _i1.throwOnMissingStub(this);
-  }
+      ) as _i4.Future<_i2.QuoteModel>);
 
   @override
-  _i5.Future<_i3.PhotoListModel> getCuratedPhotos() => (super.noSuchMethod(
+  _i4.Future<List<_i5.ImageModel>> getRandomImages() => (super.noSuchMethod(
         Invocation.method(
-          #getCuratedPhotos,
+          #getRandomImages,
           [],
         ),
-        returnValue: _i5.Future<_i3.PhotoListModel>.value(_FakePhotoListModel_1(
-          this,
-          Invocation.method(
-            #getCuratedPhotos,
-            [],
-          ),
-        )),
-      ) as _i5.Future<_i3.PhotoListModel>);
+        returnValue: _i4.Future<List<_i5.ImageModel>>.value(<_i5.ImageModel>[]),
+      ) as _i4.Future<List<_i5.ImageModel>>);
 }

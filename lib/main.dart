@@ -1,21 +1,20 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kuwot/core/presentation/bloc/app_bloc_observer.dart';
+import 'package:kuwot/core/presentation/bloc/config/theme_mode_cubit.dart';
 import 'package:kuwot/core/presentation/bloc/config/translation_target_cubit.dart';
 import 'package:kuwot/core/presentation/theme/app_theme.dart';
-import 'package:kuwot/core/presentation/bloc/config/theme_mode_cubit.dart';
+import 'package:kuwot/core/presentation/widgets/responsive_body_widget.dart';
 import 'package:kuwot/core/router/app_router.dart';
-import 'package:kuwot/features/quote/presentation/bloc/background_photos_bloc.dart';
+import 'package:kuwot/features/quote/presentation/bloc/background_images_bloc.dart';
 import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'injection_container.dart' as ic;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // load environment variables
-  await dotenv.load(fileName: '.env');
 
   // lock screen orientation to portrait
   await setPortraitMode();
@@ -31,6 +30,8 @@ Future<void> main() async {
 }
 
 Future<void> setPortraitMode() async {
+  if (kIsWeb) return;
+
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -55,11 +56,12 @@ class KuwotApp extends StatelessWidget {
         BlocProvider<QuoteBloc>(
           create: (context) => ic.getIt(),
         ),
-        BlocProvider<BackgroundPhotosBloc>(
+        BlocProvider<BackgroundImagesBloc>(
           create: (context) => ic.getIt(),
         ),
       ],
       child: BlocBuilder<ThemeModeCubit, ThemeMode>(
+        bloc: ic.getIt(),
         builder: (context, state) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
@@ -68,6 +70,11 @@ class KuwotApp extends StatelessWidget {
             darkTheme: darkTheme,
             themeMode: state,
             routerConfig: _appRouter.config(),
+            builder: (context, child) {
+              return ResponsiveBodyWidget(
+                child: child ?? const SizedBox(),
+              );
+            },
           );
         },
       ),

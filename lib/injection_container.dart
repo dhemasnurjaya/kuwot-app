@@ -1,20 +1,21 @@
+import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:kuwot/core/auth.dart';
 import 'package:kuwot/core/data/local/config.dart';
 import 'package:kuwot/core/data/local/theme_mode_config.dart';
 import 'package:kuwot/core/data/local/translation_target_config.dart';
+import 'package:kuwot/core/env.dart';
 import 'package:kuwot/core/network/network.dart';
 import 'package:kuwot/core/presentation/bloc/config/theme_mode_cubit.dart';
 import 'package:kuwot/core/presentation/bloc/config/translation_target_cubit.dart';
-import 'package:kuwot/features/quote/data/data_sources/remote/quote_api_remote_data_source.dart';
-import 'package:kuwot/features/quote/data/data_sources/remote/pexels_api_remote_data_source.dart';
+import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_data_source.dart';
 import 'package:kuwot/features/quote/data/repositories/quote_repository_impl.dart';
 import 'package:kuwot/features/quote/domain/repositories/quote_repository.dart';
-import 'package:kuwot/features/quote/domain/use_cases/get_background_photos.dart';
+import 'package:kuwot/features/quote/domain/use_cases/get_background_images.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_quote.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_translated_quote.dart';
-import 'package:kuwot/features/quote/presentation/bloc/background_photos_bloc.dart';
+import 'package:kuwot/features/quote/presentation/bloc/background_images_bloc.dart';
 import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;
@@ -31,6 +32,12 @@ void setup() {
     },
   );
 
+  // env
+  getIt.registerLazySingleton<Env>(() => EnvImpl());
+
+  // auth
+  getIt.registerLazySingleton<Auth>(() => AuthImpl(env: getIt()));
+
   // configs
   getIt.registerSingletonWithDependencies<Config<ThemeMode>>(
     () => ThemeModeConfig(sharedPreferences: getIt()),
@@ -42,13 +49,9 @@ void setup() {
   );
 
   // data sources
-  getIt.registerLazySingleton<QuoteApiRemoteDataSource>(
-    () => QuoteApiRemoteApiImpl(
-      network: getIt(),
-    ),
-  );
-  getIt.registerLazySingleton<PexelsApiRemoteDataSource>(
-    () => PexelsApiRemoteDataSourceImpl(
+  getIt.registerLazySingleton<KuwotApiRemoteDataSource>(
+    () => KuwotApiRemoteApiImpl(
+      auth: getIt(),
       network: getIt(),
     ),
   );
@@ -57,7 +60,6 @@ void setup() {
   getIt.registerLazySingleton<QuoteRepository>(
     () => QuoteRepositoryImpl(
       quoteDataSource: getIt(),
-      pexelsDataSource: getIt(),
     ),
   );
 
@@ -72,8 +74,8 @@ void setup() {
       getIt(),
     ),
   );
-  getIt.registerLazySingleton<GetBackgroundPhotos>(
-    () => GetBackgroundPhotos(
+  getIt.registerLazySingleton<GetBackgroundImages>(
+    () => GetBackgroundImages(
       getIt(),
     ),
   );
@@ -108,9 +110,9 @@ void setup() {
       translationTargetConfig: getIt(),
     ),
   );
-  getIt.registerFactory<BackgroundPhotosBloc>(
-    () => BackgroundPhotosBloc(
-      getBackgroundPhotos: getIt(),
+  getIt.registerFactory<BackgroundImagesBloc>(
+    () => BackgroundImagesBloc(
+      getBackgroundImages: getIt(),
     ),
   );
 

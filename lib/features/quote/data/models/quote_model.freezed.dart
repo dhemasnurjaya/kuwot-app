@@ -21,8 +21,8 @@ QuoteModel _$QuoteModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$QuoteModel {
   int get id => throw _privateConstructorUsedError;
-  String get q => throw _privateConstructorUsedError;
-  String get a => throw _privateConstructorUsedError;
+  String get text => throw _privateConstructorUsedError;
+  String get author => throw _privateConstructorUsedError;
 
   /// Serializes this QuoteModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $QuoteModelCopyWith<$Res> {
           QuoteModel value, $Res Function(QuoteModel) then) =
       _$QuoteModelCopyWithImpl<$Res, QuoteModel>;
   @useResult
-  $Res call({int id, String q, String a});
+  $Res call({int id, String text, String author});
 }
 
 /// @nodoc
@@ -59,21 +59,21 @@ class _$QuoteModelCopyWithImpl<$Res, $Val extends QuoteModel>
   @override
   $Res call({
     Object? id = null,
-    Object? q = null,
-    Object? a = null,
+    Object? text = null,
+    Object? author = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      q: null == q
-          ? _value.q
-          : q // ignore: cast_nullable_to_non_nullable
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
               as String,
-      a: null == a
-          ? _value.a
-          : a // ignore: cast_nullable_to_non_nullable
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -87,7 +87,7 @@ abstract class _$$QuoteModelImplCopyWith<$Res>
       __$$QuoteModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String q, String a});
+  $Res call({int id, String text, String author});
 }
 
 /// @nodoc
@@ -104,21 +104,21 @@ class __$$QuoteModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? q = null,
-    Object? a = null,
+    Object? text = null,
+    Object? author = null,
   }) {
     return _then(_$QuoteModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      q: null == q
-          ? _value.q
-          : q // ignore: cast_nullable_to_non_nullable
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
               as String,
-      a: null == a
-          ? _value.a
-          : a // ignore: cast_nullable_to_non_nullable
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -128,7 +128,8 @@ class __$$QuoteModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$QuoteModelImpl implements _QuoteModel {
-  const _$QuoteModelImpl({required this.id, required this.q, required this.a});
+  const _$QuoteModelImpl(
+      {required this.id, required this.text, required this.author});
 
   factory _$QuoteModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuoteModelImplFromJson(json);
@@ -136,13 +137,13 @@ class _$QuoteModelImpl implements _QuoteModel {
   @override
   final int id;
   @override
-  final String q;
+  final String text;
   @override
-  final String a;
+  final String author;
 
   @override
   String toString() {
-    return 'QuoteModel(id: $id, q: $q, a: $a)';
+    return 'QuoteModel(id: $id, text: $text, author: $author)';
   }
 
   @override
@@ -151,13 +152,13 @@ class _$QuoteModelImpl implements _QuoteModel {
         (other.runtimeType == runtimeType &&
             other is _$QuoteModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.q, q) || other.q == q) &&
-            (identical(other.a, a) || other.a == a));
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.author, author) || other.author == author));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, q, a);
+  int get hashCode => Object.hash(runtimeType, id, text, author);
 
   /// Create a copy of QuoteModel
   /// with the given fields replaced by the non-null parameter values.
@@ -178,8 +179,8 @@ class _$QuoteModelImpl implements _QuoteModel {
 abstract class _QuoteModel implements QuoteModel {
   const factory _QuoteModel(
       {required final int id,
-      required final String q,
-      required final String a}) = _$QuoteModelImpl;
+      required final String text,
+      required final String author}) = _$QuoteModelImpl;
 
   factory _QuoteModel.fromJson(Map<String, dynamic> json) =
       _$QuoteModelImpl.fromJson;
@@ -187,9 +188,9 @@ abstract class _QuoteModel implements QuoteModel {
   @override
   int get id;
   @override
-  String get q;
+  String get text;
   @override
-  String get a;
+  String get author;
 
   /// Create a copy of QuoteModel
   /// with the given fields replaced by the non-null parameter values.
