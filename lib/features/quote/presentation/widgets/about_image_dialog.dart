@@ -36,14 +36,20 @@ class AboutImageDialog extends StatelessWidget {
     );
 
     final info = Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           CircleAvatar(
             radius: 40,
-            backgroundImage:
-                CachedNetworkImageProvider(image.authorProfileImageUrl),
+            child: ClipOval(
+              child: CachedNetworkImage(
+                imageUrl: image.authorProfileImageUrl,
+                placeholder: (context, url) => CircularProgressIndicator(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ),
           ),
           const SizedBox(height: 8),
           Text(
@@ -51,10 +57,40 @@ class AboutImageDialog extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 8),
+          Text(
+            image.authorBio,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 4),
+          Wrap(
+            alignment: WrapAlignment.center,
+            children: [
+              _buildUserInfoChip(
+                icon: FontAwesomeIcons.locationDot,
+                text: image.authorLocation,
+              ),
+              _buildUserInfoChip(
+                icon: FontAwesomeIcons.cameraRetro,
+                text: '${image.authorTotalPhotos} photos',
+              ),
+              _buildUserInfoChip(
+                icon: FontAwesomeIcons.thumbsUp,
+                text: '${image.authorTotalLikes} likes',
+              ),
+              image.authorIsForHire
+                  ? _buildUserInfoChip(
+                      icon: FontAwesomeIcons.handshake,
+                      text: 'For hire',
+                    )
+                  : const SizedBox.shrink(),
+            ],
+          ),
+          const SizedBox(height: 16),
           Text(
             image.description,
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontStyle: FontStyle.italic,
+                ),
           ),
         ],
       ),
@@ -67,13 +103,13 @@ class AboutImageDialog extends StatelessWidget {
         children: [
           TextButton(
             onPressed: () {
-              launchUrlString(image.utmAuthorUrl);
+              launchUrlString(image.authorUrl);
             },
             child: const Text('Author profile'),
           ),
           TextButton(
             onPressed: () {
-              launchUrlString(image.utmOriginUrl);
+              launchUrlString(image.originUrl);
             },
             child: const Text('Original image'),
           ),
@@ -91,6 +127,25 @@ class AboutImageDialog extends StatelessWidget {
           const Divider(height: 1),
           info,
           footer,
+        ],
+      ),
+    );
+  }
+
+  Widget _buildUserInfoChip({
+    required IconData icon,
+    required String text,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FaIcon(icon, size: 16),
+          const SizedBox(width: 4),
+          Flexible(
+            child: Text(text),
+          ),
         ],
       ),
     );

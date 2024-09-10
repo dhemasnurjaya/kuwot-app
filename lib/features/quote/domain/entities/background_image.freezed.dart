@@ -25,6 +25,11 @@ mixin _$BackgroundImage {
   String get authorName => throw _privateConstructorUsedError;
   String get authorProfileImageUrl => throw _privateConstructorUsedError;
   String get authorUrl => throw _privateConstructorUsedError;
+  String get authorBio => throw _privateConstructorUsedError;
+  String get authorLocation => throw _privateConstructorUsedError;
+  int get authorTotalLikes => throw _privateConstructorUsedError;
+  int get authorTotalPhotos => throw _privateConstructorUsedError;
+  bool get authorIsForHire => throw _privateConstructorUsedError;
 
   /// Create a copy of BackgroundImage
   /// with the given fields replaced by the non-null parameter values.
@@ -48,7 +53,12 @@ abstract class $BackgroundImageCopyWith<$Res> {
       String originUrl,
       String authorName,
       String authorProfileImageUrl,
-      String authorUrl});
+      String authorUrl,
+      String authorBio,
+      String authorLocation,
+      int authorTotalLikes,
+      int authorTotalPhotos,
+      bool authorIsForHire});
 }
 
 /// @nodoc
@@ -75,6 +85,11 @@ class _$BackgroundImageCopyWithImpl<$Res, $Val extends BackgroundImage>
     Object? authorName = null,
     Object? authorProfileImageUrl = null,
     Object? authorUrl = null,
+    Object? authorBio = null,
+    Object? authorLocation = null,
+    Object? authorTotalLikes = null,
+    Object? authorTotalPhotos = null,
+    Object? authorIsForHire = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -113,6 +128,26 @@ class _$BackgroundImageCopyWithImpl<$Res, $Val extends BackgroundImage>
           ? _value.authorUrl
           : authorUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      authorBio: null == authorBio
+          ? _value.authorBio
+          : authorBio // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorLocation: null == authorLocation
+          ? _value.authorLocation
+          : authorLocation // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorTotalLikes: null == authorTotalLikes
+          ? _value.authorTotalLikes
+          : authorTotalLikes // ignore: cast_nullable_to_non_nullable
+              as int,
+      authorTotalPhotos: null == authorTotalPhotos
+          ? _value.authorTotalPhotos
+          : authorTotalPhotos // ignore: cast_nullable_to_non_nullable
+              as int,
+      authorIsForHire: null == authorIsForHire
+          ? _value.authorIsForHire
+          : authorIsForHire // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -134,7 +169,12 @@ abstract class _$$BackgroundImageImplCopyWith<$Res>
       String originUrl,
       String authorName,
       String authorProfileImageUrl,
-      String authorUrl});
+      String authorUrl,
+      String authorBio,
+      String authorLocation,
+      int authorTotalLikes,
+      int authorTotalPhotos,
+      bool authorIsForHire});
 }
 
 /// @nodoc
@@ -159,6 +199,11 @@ class __$$BackgroundImageImplCopyWithImpl<$Res>
     Object? authorName = null,
     Object? authorProfileImageUrl = null,
     Object? authorUrl = null,
+    Object? authorBio = null,
+    Object? authorLocation = null,
+    Object? authorTotalLikes = null,
+    Object? authorTotalPhotos = null,
+    Object? authorIsForHire = null,
   }) {
     return _then(_$BackgroundImageImpl(
       id: null == id
@@ -197,6 +242,26 @@ class __$$BackgroundImageImplCopyWithImpl<$Res>
           ? _value.authorUrl
           : authorUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      authorBio: null == authorBio
+          ? _value.authorBio
+          : authorBio // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorLocation: null == authorLocation
+          ? _value.authorLocation
+          : authorLocation // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorTotalLikes: null == authorTotalLikes
+          ? _value.authorTotalLikes
+          : authorTotalLikes // ignore: cast_nullable_to_non_nullable
+              as int,
+      authorTotalPhotos: null == authorTotalPhotos
+          ? _value.authorTotalPhotos
+          : authorTotalPhotos // ignore: cast_nullable_to_non_nullable
+              as int,
+      authorIsForHire: null == authorIsForHire
+          ? _value.authorIsForHire
+          : authorIsForHire // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -213,7 +278,12 @@ class _$BackgroundImageImpl extends _BackgroundImage {
       required this.originUrl,
       required this.authorName,
       required this.authorProfileImageUrl,
-      required this.authorUrl})
+      required this.authorUrl,
+      required this.authorBio,
+      required this.authorLocation,
+      required this.authorTotalLikes,
+      required this.authorTotalPhotos,
+      required this.authorIsForHire})
       : super._();
 
   @override
@@ -234,10 +304,20 @@ class _$BackgroundImageImpl extends _BackgroundImage {
   final String authorProfileImageUrl;
   @override
   final String authorUrl;
+  @override
+  final String authorBio;
+  @override
+  final String authorLocation;
+  @override
+  final int authorTotalLikes;
+  @override
+  final int authorTotalPhotos;
+  @override
+  final bool authorIsForHire;
 
   @override
   String toString() {
-    return 'BackgroundImage(id: $id, description: $description, color: $color, blurHash: $blurHash, url: $url, originUrl: $originUrl, authorName: $authorName, authorProfileImageUrl: $authorProfileImageUrl, authorUrl: $authorUrl)';
+    return 'BackgroundImage(id: $id, description: $description, color: $color, blurHash: $blurHash, url: $url, originUrl: $originUrl, authorName: $authorName, authorProfileImageUrl: $authorProfileImageUrl, authorUrl: $authorUrl, authorBio: $authorBio, authorLocation: $authorLocation, authorTotalLikes: $authorTotalLikes, authorTotalPhotos: $authorTotalPhotos, authorIsForHire: $authorIsForHire)';
   }
 
   @override
@@ -259,12 +339,36 @@ class _$BackgroundImageImpl extends _BackgroundImage {
             (identical(other.authorProfileImageUrl, authorProfileImageUrl) ||
                 other.authorProfileImageUrl == authorProfileImageUrl) &&
             (identical(other.authorUrl, authorUrl) ||
-                other.authorUrl == authorUrl));
+                other.authorUrl == authorUrl) &&
+            (identical(other.authorBio, authorBio) ||
+                other.authorBio == authorBio) &&
+            (identical(other.authorLocation, authorLocation) ||
+                other.authorLocation == authorLocation) &&
+            (identical(other.authorTotalLikes, authorTotalLikes) ||
+                other.authorTotalLikes == authorTotalLikes) &&
+            (identical(other.authorTotalPhotos, authorTotalPhotos) ||
+                other.authorTotalPhotos == authorTotalPhotos) &&
+            (identical(other.authorIsForHire, authorIsForHire) ||
+                other.authorIsForHire == authorIsForHire));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, description, color, blurHash,
-      url, originUrl, authorName, authorProfileImageUrl, authorUrl);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      description,
+      color,
+      blurHash,
+      url,
+      originUrl,
+      authorName,
+      authorProfileImageUrl,
+      authorUrl,
+      authorBio,
+      authorLocation,
+      authorTotalLikes,
+      authorTotalPhotos,
+      authorIsForHire);
 
   /// Create a copy of BackgroundImage
   /// with the given fields replaced by the non-null parameter values.
@@ -286,7 +390,12 @@ abstract class _BackgroundImage extends BackgroundImage {
       required final String originUrl,
       required final String authorName,
       required final String authorProfileImageUrl,
-      required final String authorUrl}) = _$BackgroundImageImpl;
+      required final String authorUrl,
+      required final String authorBio,
+      required final String authorLocation,
+      required final int authorTotalLikes,
+      required final int authorTotalPhotos,
+      required final bool authorIsForHire}) = _$BackgroundImageImpl;
   const _BackgroundImage._() : super._();
 
   @override
@@ -307,6 +416,16 @@ abstract class _BackgroundImage extends BackgroundImage {
   String get authorProfileImageUrl;
   @override
   String get authorUrl;
+  @override
+  String get authorBio;
+  @override
+  String get authorLocation;
+  @override
+  int get authorTotalLikes;
+  @override
+  int get authorTotalPhotos;
+  @override
+  bool get authorIsForHire;
 
   /// Create a copy of BackgroundImage
   /// with the given fields replaced by the non-null parameter values.

@@ -17,6 +17,11 @@ class BackgroundImage with _$BackgroundImage {
     required String authorName,
     required String authorProfileImageUrl,
     required String authorUrl,
+    required String authorBio,
+    required String authorLocation,
+    required int authorTotalLikes,
+    required int authorTotalPhotos,
+    required bool authorIsForHire,
   }) = _BackgroundImage;
 
   static List<BackgroundImage> fromModels(List<ImageModel> images) {
@@ -27,15 +32,16 @@ class BackgroundImage with _$BackgroundImage {
               color: e.color,
               blurHash: e.blurHash,
               url: e.url,
-              originUrl: e.originUrl,
+              originUrl: '${e.originUrl}?utm_source=kuwot&utm_medium=referral',
+              authorUrl: '${e.authorUrl}?utm_source=kuwot&utm_medium=referral',
               authorName: e.authorName,
               authorProfileImageUrl: e.authorProfileImageUrl,
-              authorUrl: e.authorUrl,
+              authorBio: e.authorBio ?? 'No bio',
+              authorLocation: e.authorLocation ?? 'Unknown location',
+              authorTotalLikes: e.authorTotalLikes,
+              authorTotalPhotos: e.authorTotalPhotos,
+              authorIsForHire: e.authorIsForHire,
             ))
         .toList();
   }
-
-  String get utmOriginUrl => '$originUrl?utm_source=kuwot&utm_medium=referral';
-
-  String get utmAuthorUrl => '$authorUrl?utm_source=kuwot&utm_medium=referral';
 }

@@ -145,10 +145,15 @@ void main() {
             color: e.color,
             blurHash: e.blurHash,
             url: e.url,
-            originUrl: e.originUrl,
+            originUrl: '${e.originUrl}?utm_source=kuwot&utm_medium=referral',
             authorName: e.authorName,
             authorProfileImageUrl: e.authorProfileImageUrl,
-            authorUrl: e.authorUrl,
+            authorUrl: '${e.authorUrl}?utm_source=kuwot&utm_medium=referral',
+            authorBio: e.authorBio ?? 'No bio',
+            authorLocation: e.authorLocation ?? 'Unknown location',
+            authorTotalLikes: e.authorTotalLikes,
+            authorTotalPhotos: e.authorTotalPhotos,
+            authorIsForHire: e.authorIsForHire,
           ));
       when(mockKuwotApiRemoteDataSource.getRandomImages())
           .thenAnswer((_) async => tImageListModel);

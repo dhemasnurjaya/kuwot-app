@@ -13,6 +13,11 @@ class ImageModel with _$ImageModel {
     required String url,
     required String originUrl,
     required String authorName,
+    required String? authorBio,
+    required String? authorLocation,
+    required int authorTotalLikes,
+    required int authorTotalPhotos,
+    required bool authorIsForHire,
     required String authorProfileImageUrl,
     required String authorUrl,
   }) = _ImageModel;

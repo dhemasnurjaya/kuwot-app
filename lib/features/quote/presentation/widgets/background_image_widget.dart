@@ -92,7 +92,7 @@ class BackgroundPhotoWidget extends StatelessWidget {
                     ),
                     onTap: () async {
                       await launchUrlString(
-                          state.backgroundImages[backgroundIndex].utmAuthorUrl);
+                          state.backgroundImages[backgroundIndex].authorUrl);
                     },
                   ),
                   const Text(
