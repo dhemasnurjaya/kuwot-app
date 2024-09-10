@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,12 +38,20 @@ class AboutImageDialog extends StatelessWidget {
     final info = Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          CircleAvatar(
+            radius: 40,
+            backgroundImage:
+                CachedNetworkImageProvider(image.authorProfileImageUrl),
+          ),
+          const SizedBox(height: 8),
           Text(
             image.authorName,
             style: Theme.of(context).textTheme.titleLarge,
+            textAlign: TextAlign.center,
           ),
+          const SizedBox(height: 8),
           Text(
             image.description,
             style: Theme.of(context).textTheme.bodyLarge,
@@ -58,13 +67,13 @@ class AboutImageDialog extends StatelessWidget {
         children: [
           TextButton(
             onPressed: () {
-              launchUrlString(image.authorUrl);
+              launchUrlString(image.utmAuthorUrl);
             },
             child: const Text('Author profile'),
           ),
           TextButton(
             onPressed: () {
-              launchUrlString(image.originUrl);
+              launchUrlString(image.utmOriginUrl);
             },
             child: const Text('Original image'),
           ),

@@ -7,6 +7,7 @@ import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_d
 import 'package:kuwot/features/quote/presentation/bloc/background_images_bloc.dart';
 import 'package:kuwot/features/quote/presentation/widgets/about_image_dialog.dart';
 import 'package:kuwot/utilities.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class BackgroundPhotoWidget extends StatelessWidget {
   final int backgroundIndex;
@@ -69,6 +70,53 @@ class BackgroundPhotoWidget extends StatelessWidget {
               ),
             ),
           );
+          final imageAttribution = ColoredBox(
+            color: Colors.black38,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 2),
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                children: [
+                  const Text(
+                    'Photo by ',
+                    style: TextStyle(color: Colors.white54),
+                  ),
+                  GestureDetector(
+                    child: Text(
+                      state.backgroundImages[backgroundIndex].authorName,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            decoration: TextDecoration.underline,
+                            color: Colors.white.withOpacity(0.85),
+                            decorationColor: Colors.white.withOpacity(0.85),
+                          ),
+                    ),
+                    onTap: () async {
+                      await launchUrlString(
+                          state.backgroundImages[backgroundIndex].utmAuthorUrl);
+                    },
+                  ),
+                  const Text(
+                    ' on ',
+                    style: TextStyle(color: Colors.white54),
+                  ),
+                  GestureDetector(
+                    child: Text(
+                      'Unsplash',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            decoration: TextDecoration.underline,
+                            color: Colors.white.withOpacity(0.85),
+                            decorationColor: Colors.white.withOpacity(0.85),
+                          ),
+                    ),
+                    onTap: () async {
+                      await launchUrlString(
+                          "https://unsplash.com?utm_source=kuwot&utm_medium=referral");
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
 
           return Stack(
             fit: StackFit.expand,
@@ -94,6 +142,12 @@ class BackgroundPhotoWidget extends StatelessWidget {
                       right: 0,
                       child: imageInfoButton,
                     ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: imageAttribution,
+              ),
             ],
           );
         }

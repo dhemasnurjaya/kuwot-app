@@ -203,7 +203,7 @@ class __$$BackgroundImageImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BackgroundImageImpl implements _BackgroundImage {
+class _$BackgroundImageImpl extends _BackgroundImage {
   const _$BackgroundImageImpl(
       {required this.id,
       required this.description,
@@ -213,7 +213,8 @@ class _$BackgroundImageImpl implements _BackgroundImage {
       required this.originUrl,
       required this.authorName,
       required this.authorProfileImageUrl,
-      required this.authorUrl});
+      required this.authorUrl})
+      : super._();
 
   @override
   final String id;
@@ -275,7 +276,7 @@ class _$BackgroundImageImpl implements _BackgroundImage {
           this, _$identity);
 }
 
-abstract class _BackgroundImage implements BackgroundImage {
+abstract class _BackgroundImage extends BackgroundImage {
   const factory _BackgroundImage(
       {required final String id,
       required final String description,
@@ -286,6 +287,7 @@ abstract class _BackgroundImage implements BackgroundImage {
       required final String authorName,
       required final String authorProfileImageUrl,
       required final String authorUrl}) = _$BackgroundImageImpl;
+  const _BackgroundImage._() : super._();
 
   @override
   String get id;

@@ -5,6 +5,8 @@ part 'background_image.freezed.dart';
 
 @freezed
 class BackgroundImage with _$BackgroundImage {
+  const BackgroundImage._();
+
   const factory BackgroundImage({
     required String id,
     required String description,
@@ -32,4 +34,8 @@ class BackgroundImage with _$BackgroundImage {
             ))
         .toList();
   }
+
+  String get utmOriginUrl => '$originUrl?utm_source=kuwot&utm_medium=referral';
+
+  String get utmAuthorUrl => '$authorUrl?utm_source=kuwot&utm_medium=referral';
 }
