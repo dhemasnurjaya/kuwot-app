@@ -77,14 +77,17 @@ class BackgroundPhotoWidget extends StatelessWidget {
               child: Wrap(
                 alignment: WrapAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'Photo by ',
-                    style: TextStyle(color: Colors.white54),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(color: Colors.white54),
                   ),
                   GestureDetector(
                     child: Text(
                       state.backgroundImages[backgroundIndex].authorName,
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             decoration: TextDecoration.underline,
                             color: Colors.white.withOpacity(0.85),
                             decorationColor: Colors.white.withOpacity(0.85),
@@ -95,14 +98,17 @@ class BackgroundPhotoWidget extends StatelessWidget {
                           state.backgroundImages[backgroundIndex].authorUrl);
                     },
                   ),
-                  const Text(
+                  Text(
                     ' on ',
-                    style: TextStyle(color: Colors.white54),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(color: Colors.white54),
                   ),
                   GestureDetector(
                     child: Text(
                       'Unsplash',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             decoration: TextDecoration.underline,
                             color: Colors.white.withOpacity(0.85),
                             decorationColor: Colors.white.withOpacity(0.85),
