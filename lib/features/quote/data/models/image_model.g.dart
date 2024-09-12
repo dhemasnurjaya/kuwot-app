@@ -9,14 +9,14 @@ part of 'image_model.dart';
 _$ImageModelImpl _$$ImageModelImplFromJson(Map<String, dynamic> json) =>
     _$ImageModelImpl(
       id: json['id'] as String,
-      description: json['description'] as String?,
+      description: json['description'] as String,
       color: json['color'] as String,
       blurHash: json['blurHash'] as String,
       url: json['url'] as String,
       originUrl: json['originUrl'] as String,
       authorName: json['authorName'] as String,
-      authorBio: json['authorBio'] as String?,
-      authorLocation: json['authorLocation'] as String?,
+      authorBio: json['authorBio'] as String,
+      authorLocation: json['authorLocation'] as String,
       authorTotalLikes: (json['authorTotalLikes'] as num).toInt(),
       authorTotalPhotos: (json['authorTotalPhotos'] as num).toInt(),
       authorIsForHire: json['authorIsForHire'] as bool,
