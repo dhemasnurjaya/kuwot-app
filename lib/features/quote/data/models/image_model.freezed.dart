@@ -21,12 +21,17 @@ ImageModel _$ImageModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ImageModel {
   String get id => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   String get color => throw _privateConstructorUsedError;
   String get blurHash => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   String get originUrl => throw _privateConstructorUsedError;
   String get authorName => throw _privateConstructorUsedError;
+  String get authorBio => throw _privateConstructorUsedError;
+  String get authorLocation => throw _privateConstructorUsedError;
+  int get authorTotalLikes => throw _privateConstructorUsedError;
+  int get authorTotalPhotos => throw _privateConstructorUsedError;
+  bool get authorIsForHire => throw _privateConstructorUsedError;
   String get authorProfileImageUrl => throw _privateConstructorUsedError;
   String get authorUrl => throw _privateConstructorUsedError;
 
@@ -48,12 +53,17 @@ abstract class $ImageModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String? description,
+      String description,
       String color,
       String blurHash,
       String url,
       String originUrl,
       String authorName,
+      String authorBio,
+      String authorLocation,
+      int authorTotalLikes,
+      int authorTotalPhotos,
+      bool authorIsForHire,
       String authorProfileImageUrl,
       String authorUrl});
 }
@@ -74,12 +84,17 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
   @override
   $Res call({
     Object? id = null,
-    Object? description = freezed,
+    Object? description = null,
     Object? color = null,
     Object? blurHash = null,
     Object? url = null,
     Object? originUrl = null,
     Object? authorName = null,
+    Object? authorBio = null,
+    Object? authorLocation = null,
+    Object? authorTotalLikes = null,
+    Object? authorTotalPhotos = null,
+    Object? authorIsForHire = null,
     Object? authorProfileImageUrl = null,
     Object? authorUrl = null,
   }) {
@@ -88,10 +103,10 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      description: freezed == description
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -112,6 +127,26 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
           ? _value.authorName
           : authorName // ignore: cast_nullable_to_non_nullable
               as String,
+      authorBio: null == authorBio
+          ? _value.authorBio
+          : authorBio // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorLocation: null == authorLocation
+          ? _value.authorLocation
+          : authorLocation // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorTotalLikes: null == authorTotalLikes
+          ? _value.authorTotalLikes
+          : authorTotalLikes // ignore: cast_nullable_to_non_nullable
+              as int,
+      authorTotalPhotos: null == authorTotalPhotos
+          ? _value.authorTotalPhotos
+          : authorTotalPhotos // ignore: cast_nullable_to_non_nullable
+              as int,
+      authorIsForHire: null == authorIsForHire
+          ? _value.authorIsForHire
+          : authorIsForHire // ignore: cast_nullable_to_non_nullable
+              as bool,
       authorProfileImageUrl: null == authorProfileImageUrl
           ? _value.authorProfileImageUrl
           : authorProfileImageUrl // ignore: cast_nullable_to_non_nullable
@@ -134,12 +169,17 @@ abstract class _$$ImageModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String? description,
+      String description,
       String color,
       String blurHash,
       String url,
       String originUrl,
       String authorName,
+      String authorBio,
+      String authorLocation,
+      int authorTotalLikes,
+      int authorTotalPhotos,
+      bool authorIsForHire,
       String authorProfileImageUrl,
       String authorUrl});
 }
@@ -158,12 +198,17 @@ class __$$ImageModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? description = freezed,
+    Object? description = null,
     Object? color = null,
     Object? blurHash = null,
     Object? url = null,
     Object? originUrl = null,
     Object? authorName = null,
+    Object? authorBio = null,
+    Object? authorLocation = null,
+    Object? authorTotalLikes = null,
+    Object? authorTotalPhotos = null,
+    Object? authorIsForHire = null,
     Object? authorProfileImageUrl = null,
     Object? authorUrl = null,
   }) {
@@ -172,10 +217,10 @@ class __$$ImageModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      description: freezed == description
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -196,6 +241,26 @@ class __$$ImageModelImplCopyWithImpl<$Res>
           ? _value.authorName
           : authorName // ignore: cast_nullable_to_non_nullable
               as String,
+      authorBio: null == authorBio
+          ? _value.authorBio
+          : authorBio // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorLocation: null == authorLocation
+          ? _value.authorLocation
+          : authorLocation // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorTotalLikes: null == authorTotalLikes
+          ? _value.authorTotalLikes
+          : authorTotalLikes // ignore: cast_nullable_to_non_nullable
+              as int,
+      authorTotalPhotos: null == authorTotalPhotos
+          ? _value.authorTotalPhotos
+          : authorTotalPhotos // ignore: cast_nullable_to_non_nullable
+              as int,
+      authorIsForHire: null == authorIsForHire
+          ? _value.authorIsForHire
+          : authorIsForHire // ignore: cast_nullable_to_non_nullable
+              as bool,
       authorProfileImageUrl: null == authorProfileImageUrl
           ? _value.authorProfileImageUrl
           : authorProfileImageUrl // ignore: cast_nullable_to_non_nullable
@@ -219,6 +284,11 @@ class _$ImageModelImpl implements _ImageModel {
       required this.url,
       required this.originUrl,
       required this.authorName,
+      required this.authorBio,
+      required this.authorLocation,
+      required this.authorTotalLikes,
+      required this.authorTotalPhotos,
+      required this.authorIsForHire,
       required this.authorProfileImageUrl,
       required this.authorUrl});
 
@@ -228,7 +298,7 @@ class _$ImageModelImpl implements _ImageModel {
   @override
   final String id;
   @override
-  final String? description;
+  final String description;
   @override
   final String color;
   @override
@@ -240,13 +310,23 @@ class _$ImageModelImpl implements _ImageModel {
   @override
   final String authorName;
   @override
+  final String authorBio;
+  @override
+  final String authorLocation;
+  @override
+  final int authorTotalLikes;
+  @override
+  final int authorTotalPhotos;
+  @override
+  final bool authorIsForHire;
+  @override
   final String authorProfileImageUrl;
   @override
   final String authorUrl;
 
   @override
   String toString() {
-    return 'ImageModel(id: $id, description: $description, color: $color, blurHash: $blurHash, url: $url, originUrl: $originUrl, authorName: $authorName, authorProfileImageUrl: $authorProfileImageUrl, authorUrl: $authorUrl)';
+    return 'ImageModel(id: $id, description: $description, color: $color, blurHash: $blurHash, url: $url, originUrl: $originUrl, authorName: $authorName, authorBio: $authorBio, authorLocation: $authorLocation, authorTotalLikes: $authorTotalLikes, authorTotalPhotos: $authorTotalPhotos, authorIsForHire: $authorIsForHire, authorProfileImageUrl: $authorProfileImageUrl, authorUrl: $authorUrl)';
   }
 
   @override
@@ -265,6 +345,16 @@ class _$ImageModelImpl implements _ImageModel {
                 other.originUrl == originUrl) &&
             (identical(other.authorName, authorName) ||
                 other.authorName == authorName) &&
+            (identical(other.authorBio, authorBio) ||
+                other.authorBio == authorBio) &&
+            (identical(other.authorLocation, authorLocation) ||
+                other.authorLocation == authorLocation) &&
+            (identical(other.authorTotalLikes, authorTotalLikes) ||
+                other.authorTotalLikes == authorTotalLikes) &&
+            (identical(other.authorTotalPhotos, authorTotalPhotos) ||
+                other.authorTotalPhotos == authorTotalPhotos) &&
+            (identical(other.authorIsForHire, authorIsForHire) ||
+                other.authorIsForHire == authorIsForHire) &&
             (identical(other.authorProfileImageUrl, authorProfileImageUrl) ||
                 other.authorProfileImageUrl == authorProfileImageUrl) &&
             (identical(other.authorUrl, authorUrl) ||
@@ -273,8 +363,22 @@ class _$ImageModelImpl implements _ImageModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, description, color, blurHash,
-      url, originUrl, authorName, authorProfileImageUrl, authorUrl);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      description,
+      color,
+      blurHash,
+      url,
+      originUrl,
+      authorName,
+      authorBio,
+      authorLocation,
+      authorTotalLikes,
+      authorTotalPhotos,
+      authorIsForHire,
+      authorProfileImageUrl,
+      authorUrl);
 
   /// Create a copy of ImageModel
   /// with the given fields replaced by the non-null parameter values.
@@ -295,12 +399,17 @@ class _$ImageModelImpl implements _ImageModel {
 abstract class _ImageModel implements ImageModel {
   const factory _ImageModel(
       {required final String id,
-      required final String? description,
+      required final String description,
       required final String color,
       required final String blurHash,
       required final String url,
       required final String originUrl,
       required final String authorName,
+      required final String authorBio,
+      required final String authorLocation,
+      required final int authorTotalLikes,
+      required final int authorTotalPhotos,
+      required final bool authorIsForHire,
       required final String authorProfileImageUrl,
       required final String authorUrl}) = _$ImageModelImpl;
 
@@ -310,7 +419,7 @@ abstract class _ImageModel implements ImageModel {
   @override
   String get id;
   @override
-  String? get description;
+  String get description;
   @override
   String get color;
   @override
@@ -321,6 +430,16 @@ abstract class _ImageModel implements ImageModel {
   String get originUrl;
   @override
   String get authorName;
+  @override
+  String get authorBio;
+  @override
+  String get authorLocation;
+  @override
+  int get authorTotalLikes;
+  @override
+  int get authorTotalPhotos;
+  @override
+  bool get authorIsForHire;
   @override
   String get authorProfileImageUrl;
   @override

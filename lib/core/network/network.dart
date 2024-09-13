@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 /// Network interface
@@ -26,6 +27,9 @@ class NetworkImpl implements Network {
     Uri uri, {
     Map<String, String>? headers,
   }) async {
+    if (kDebugMode) {
+      print('GET: $uri, headers: $headers');
+    }
     final response = await _client.get(
       uri,
       headers: headers,
@@ -39,6 +43,9 @@ class NetworkImpl implements Network {
     Map<String, String>? headers,
     Object? body,
   }) async {
+    if (kDebugMode) {
+      print('POST: $uri, headers: $headers, body: $body');
+    }
     final response = await _client.post(
       uri,
       headers: headers,

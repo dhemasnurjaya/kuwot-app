@@ -141,7 +141,7 @@ void main() {
               .toList();
       final tExpectedImages = tImageListModel.map((e) => BackgroundImage(
             id: e.id,
-            description: e.description ?? 'no description',
+            description: e.description,
             color: e.color,
             blurHash: e.blurHash,
             url: e.url,
@@ -149,6 +149,11 @@ void main() {
             authorName: e.authorName,
             authorProfileImageUrl: e.authorProfileImageUrl,
             authorUrl: e.authorUrl,
+            authorBio: e.authorBio,
+            authorLocation: e.authorLocation,
+            authorTotalLikes: e.authorTotalLikes,
+            authorTotalPhotos: e.authorTotalPhotos,
+            authorIsForHire: e.authorIsForHire,
           ));
       when(mockKuwotApiRemoteDataSource.getRandomImages())
           .thenAnswer((_) async => tImageListModel);

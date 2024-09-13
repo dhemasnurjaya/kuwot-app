@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,7 +14,6 @@ import 'package:kuwot/features/quote/presentation/widgets/quote_widget.dart';
 import 'package:kuwot/features/quote/presentation/widgets/translate_target_dialog.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
 class QuotePage extends StatefulWidget {
@@ -86,24 +84,6 @@ class _QuotePageState extends State<QuotePage> {
       ),
     );
 
-    final footer = Padding(
-      padding: const EdgeInsets.all(8),
-      child: Linkify(
-        text: 'Images by https://unsplash.com',
-        style: Theme.of(context).textTheme.bodySmall,
-        linkStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.underline,
-              color: Theme.of(context).colorScheme.onSurface,
-            ),
-        onOpen: (link) async {
-          if (!await launchUrl(Uri.parse(link.url))) {
-            throw Exception('Could not launch ${link.url}');
-          }
-        },
-      ),
-    );
-
     final body = SafeArea(
       child: Stack(
         fit: StackFit.expand,
@@ -113,12 +93,8 @@ class _QuotePageState extends State<QuotePage> {
             child: header,
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(24, 70, 24, 42),
+            padding: const EdgeInsets.fromLTRB(24, 70, 24, 24),
             child: _buildQuote(),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: footer,
           ),
         ],
       ),
