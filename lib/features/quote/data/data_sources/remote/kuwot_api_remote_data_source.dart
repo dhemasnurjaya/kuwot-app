@@ -5,6 +5,7 @@ import 'package:kuwot/core/data/remote/hosts.dart';
 import 'package:kuwot/core/network/network.dart';
 import 'package:kuwot/features/quote/data/models/image_model.dart';
 import 'package:kuwot/features/quote/data/models/quote_model.dart';
+import 'package:kuwot/features/quote/data/models/translation_model.dart';
 
 const imagesPerPage = 10;
 
@@ -14,6 +15,8 @@ abstract class KuwotApiRemoteDataSource {
   Future<QuoteModel> getTranslatedQuote(int id, {String? query});
 
   Future<List<ImageModel>> getRandomImages();
+
+  Future<List<TranslationModel>> getTranslations();
 }
 
 class KuwotApiRemoteApiImpl implements KuwotApiRemoteDataSource {
@@ -71,6 +74,23 @@ class KuwotApiRemoteApiImpl implements KuwotApiRemoteDataSource {
     final jsonResponse = jsonDecode(response) as List;
     return jsonResponse
         .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  @override
+  Future<List<TranslationModel>> getTranslations() async {
+    final uri = Uri(
+      scheme: 'https',
+      host: quoteApiHost,
+      path: 'quotes/translations',
+    );
+    final headers = {
+      'Authorization': 'Bearer ${auth.getAccessToken}',
+    };
+    final response = await network.get(uri, headers: headers);
+    final jsonResponse = jsonDecode(response) as List;
+    return jsonResponse
+        .map((e) => TranslationModel.fromJson(e as Map<String, dynamic>))
         .toList();
   }
 }

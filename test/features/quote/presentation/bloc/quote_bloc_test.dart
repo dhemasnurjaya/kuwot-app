@@ -39,7 +39,7 @@ void main() {
     );
   });
 
-  const tTranslationTarget = TranslationTarget('en', 'English');
+  const tTranslationTarget = TranslationTarget(id: 'en', name: 'English');
   const tQuote = Quote(id: 1, author: 'author', body: 'text');
   const tFailure = UnknownFailure(message: 'Unknown Failure');
 

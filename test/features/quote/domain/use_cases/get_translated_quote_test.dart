@@ -35,7 +35,7 @@ void main() {
     final result = await useCase.execute(
       const GetTranslatedQuoteParams(
         id: 1,
-        translationTarget: TranslationTarget('en', 'English'),
+        translationTarget: TranslationTarget(id: 'en', name: 'English'),
       ),
     );
 

@@ -1,46 +1,24 @@
+import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kuwot/core/data/local/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+part 'translation_target_config.freezed.dart';
+part 'translation_target_config.g.dart';
+
 const translationTargetConfigKey = 'translationTarget';
-const translationTargets = [
-  TranslationTarget('ar', 'Arabic'),
-  TranslationTarget('bg', 'Bulgarian'),
-  TranslationTarget('zh', 'Chinese'),
-  TranslationTarget('cs', 'Czech'),
-  TranslationTarget('da', 'Danish'),
-  TranslationTarget('nl', 'Dutch'),
-  TranslationTarget('en', 'English'),
-  TranslationTarget('et', 'Estonian'),
-  TranslationTarget('fi', 'Finnish'),
-  TranslationTarget('fr', 'French'),
-  TranslationTarget('de', 'German'),
-  TranslationTarget('el', 'Greek'),
-  TranslationTarget('hu', 'Hungarian'),
-  TranslationTarget('id', 'Indonesian'),
-  TranslationTarget('it', 'Italian'),
-  TranslationTarget('ja', 'Japanese'),
-  TranslationTarget('ko', 'Korean'),
-  TranslationTarget('lv', 'Latvian'),
-  TranslationTarget('lt', 'Lithuanian'),
-  TranslationTarget('nb', 'Norwegian Bokmål'),
-  TranslationTarget('pl', 'Polish'),
-  TranslationTarget('pt', 'Portuguese'),
-  TranslationTarget('ro', 'Romanian'),
-  TranslationTarget('ru', 'Russian'),
-  TranslationTarget('sk', 'Slovak'),
-  TranslationTarget('sl', 'Slovenian'),
-  TranslationTarget('es', 'Spanish'),
-  TranslationTarget('sv', 'Swedish'),
-  TranslationTarget('tr', 'Turkish'),
-  TranslationTarget('uk', 'Ukrainian'),
-];
-const defaultTranslationTarget = TranslationTarget('en', 'English');
+const defaultTranslationTarget = TranslationTarget(id: 'en', name: 'English');
 
-class TranslationTarget {
-  final String id;
-  final String name;
+@freezed
+class TranslationTarget with _$TranslationTarget {
+  const factory TranslationTarget({
+    required String id,
+    required String name,
+  }) = _TranslationTarget;
 
-  const TranslationTarget(this.id, this.name);
+  factory TranslationTarget.fromJson(Map<String, dynamic> json) =>
+      _$TranslationTargetFromJson(json);
 }
 
 class TranslationTargetConfig extends Config<TranslationTarget> {
@@ -50,13 +28,16 @@ class TranslationTargetConfig extends Config<TranslationTarget> {
 
   @override
   Future<TranslationTarget?> get() async {
-    final id = sharedPreferences.getString(translationTargetConfigKey);
-    return translationTargets.where((element) => element.id == id).firstOrNull;
+    final data = sharedPreferences.getString(translationTargetConfigKey);
+    return data != null ? TranslationTarget.fromJson(jsonDecode(data)) : null;
   }
 
   @override
   Future<void> set(TranslationTarget value) async {
-    await sharedPreferences.setString(translationTargetConfigKey, value.id);
+    await sharedPreferences.setString(
+      translationTargetConfigKey,
+      jsonEncode(value.toJson()),
+    );
   }
 
   @override

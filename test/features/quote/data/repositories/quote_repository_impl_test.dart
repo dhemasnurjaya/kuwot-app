@@ -6,9 +6,11 @@ import 'package:kuwot/core/error/unknown_failure.dart';
 import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_data_source.dart';
 import 'package:kuwot/features/quote/data/models/image_model.dart';
 import 'package:kuwot/features/quote/data/models/quote_model.dart';
+import 'package:kuwot/features/quote/data/models/translation_model.dart';
 import 'package:kuwot/features/quote/data/repositories/quote_repository_impl.dart';
 import 'package:kuwot/features/quote/domain/entities/background_image.dart';
 import 'package:kuwot/features/quote/domain/entities/quote.dart';
+import 'package:kuwot/features/quote/domain/entities/translation.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
@@ -40,7 +42,7 @@ void main() {
     author: 'author',
     body: 'text',
   );
-  const tTranslationTarget = TranslationTarget('en', 'English');
+  const tTranslationTarget = TranslationTarget(id: 'en', name: 'English');
 
   group('getQuote', () {
     test('should return a Quote entity', () async {
@@ -127,6 +129,53 @@ void main() {
       result.fold(
         (failure) => expect(failure, isA<UnknownFailure>()),
         (quote) => fail('Expected UnknownFailure, but got $quote'),
+      );
+      verifyNoMoreInteractions(mockKuwotApiRemoteDataSource);
+    });
+  });
+
+  group('getTranslations', () {
+    test('should return a List of Translation entity', () async {
+      // arrange
+      final tTranslationListModel =
+          (jsonDecode(readResponse('translations')) as List)
+              .map((e) => TranslationModel.fromJson(e as Map<String, dynamic>))
+              .toList();
+      final tExpectedTranslations = tTranslationListModel
+          .map((e) => Translation(
+                id: e.id,
+                language: e.lang,
+              ))
+          .toList();
+      when(mockKuwotApiRemoteDataSource.getTranslations())
+          .thenAnswer((_) async => tTranslationListModel);
+
+      // act
+      final result = await quoteRepository.getTranslations();
+
+      // assert
+      verify(mockKuwotApiRemoteDataSource.getTranslations());
+      result.fold(
+        (failure) => fail('Expected Translations, but got $failure'),
+        (translations) => expect(translations, tExpectedTranslations),
+      );
+      verifyNoMoreInteractions(mockKuwotApiRemoteDataSource);
+    });
+
+    test('should return UnknownFailure when an exception is thrown', () async {
+      // arrange
+      when(mockKuwotApiRemoteDataSource.getTranslations())
+          .thenThrow(Exception('test'));
+
+      // act
+      final result = await quoteRepository.getTranslations();
+
+      // assert
+      verify(mockKuwotApiRemoteDataSource.getTranslations());
+      result.fold(
+        (failure) => expect(failure, isA<UnknownFailure>()),
+        (translations) =>
+            fail('Expected UnknownFailure, but got $translations'),
       );
       verifyNoMoreInteractions(mockKuwotApiRemoteDataSource);
     });

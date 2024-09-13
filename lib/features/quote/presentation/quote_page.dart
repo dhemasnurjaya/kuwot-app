@@ -120,6 +120,47 @@ class _QuotePageState extends State<QuotePage> {
       ),
     );
 
+    final actionButtons = [
+      Expanded(
+        child: _buildQuoteActionButton(
+          onPressed: () {
+            _dailyQuoteBloc.add(const GetQuoteEvent());
+          },
+          icon: const FaIcon(FontAwesomeIcons.quoteRight),
+        ),
+      ),
+      Expanded(
+        child: _buildQuoteActionButton(
+          onPressed: _cycleBackground,
+          icon: const FaIcon(FontAwesomeIcons.image),
+        ),
+      ),
+      Expanded(
+        child: _buildQuoteActionButton(
+          onPressed: () async {
+            final result = await showAdaptiveDialog<TranslationTarget?>(
+              context: context,
+              barrierDismissible: true,
+              builder: (context) => const TranslateTargetDialog(),
+            );
+
+            if (result != null) {
+              _dailyQuoteBloc.add(
+                GetTranslatedQuoteEvent(result),
+              );
+            }
+          },
+          icon: const FaIcon(FontAwesomeIcons.language),
+        ),
+      ),
+      Expanded(
+        child: _buildQuoteActionButton(
+          onPressed: _shareQuote,
+          icon: const FaIcon(FontAwesomeIcons.shareNodes),
+        ),
+      ),
+    ];
+
     return Card(
       clipBehavior: Clip.antiAlias,
       margin: const EdgeInsets.all(0),
@@ -130,46 +171,7 @@ class _QuotePageState extends State<QuotePage> {
             child: screenshotEnabledQuote,
           ),
           Row(
-            children: [
-              Expanded(
-                child: _buildQuoteActionButton(
-                  onPressed: () {
-                    _dailyQuoteBloc.add(const GetQuoteEvent());
-                  },
-                  icon: const FaIcon(FontAwesomeIcons.quoteRight),
-                ),
-              ),
-              Expanded(
-                child: _buildQuoteActionButton(
-                  onPressed: _cycleBackground,
-                  icon: const FaIcon(FontAwesomeIcons.image),
-                ),
-              ),
-              Expanded(
-                child: _buildQuoteActionButton(
-                  onPressed: () async {
-                    final result = await showAdaptiveDialog<TranslationTarget?>(
-                      context: context,
-                      barrierDismissible: true,
-                      builder: (context) => const TranslateTargetDialog(),
-                    );
-
-                    if (result != null) {
-                      _dailyQuoteBloc.add(
-                        GetTranslatedQuoteEvent(result),
-                      );
-                    }
-                  },
-                  icon: const FaIcon(FontAwesomeIcons.language),
-                ),
-              ),
-              Expanded(
-                child: _buildQuoteActionButton(
-                  onPressed: _shareQuote,
-                  icon: const FaIcon(FontAwesomeIcons.shareNodes),
-                ),
-              ),
-            ],
+            children: actionButtons,
           )
         ],
       ),

@@ -9,6 +9,7 @@ import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_d
     as _i3;
 import 'package:kuwot/features/quote/data/models/image_model.dart' as _i5;
 import 'package:kuwot/features/quote/data/models/quote_model.dart' as _i2;
+import 'package:kuwot/features/quote/data/models/translation_model.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -89,4 +90,15 @@ class MockKuwotApiRemoteDataSource extends _i1.Mock
         ),
         returnValue: _i4.Future<List<_i5.ImageModel>>.value(<_i5.ImageModel>[]),
       ) as _i4.Future<List<_i5.ImageModel>>);
+
+  @override
+  _i4.Future<List<_i6.TranslationModel>> getTranslations() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTranslations,
+          [],
+        ),
+        returnValue: _i4.Future<List<_i6.TranslationModel>>.value(
+            <_i6.TranslationModel>[]),
+      ) as _i4.Future<List<_i6.TranslationModel>>);
 }
