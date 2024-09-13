@@ -11,6 +11,7 @@ import 'package:kuwot/core/error/failure.dart' as _i5;
 import 'package:kuwot/features/quote/domain/entities/background_image.dart'
     as _i6;
 import 'package:kuwot/features/quote/domain/entities/quote.dart' as _i8;
+import 'package:kuwot/features/quote/domain/entities/translation.dart' as _i10;
 import 'package:kuwot/features/quote/domain/repositories/quote_repository.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -100,4 +101,22 @@ class MockQuoteRepository extends _i1.Mock implements _i2.QuoteRepository {
           ),
         )),
       ) as _i3.Future<_i4.Either<_i5.Failure, _i8.Quote>>);
+
+  @override
+  _i3.Future<_i4.Either<_i5.Failure, List<_i10.Translation>>>
+      getTranslations() => (super.noSuchMethod(
+            Invocation.method(
+              #getTranslations,
+              [],
+            ),
+            returnValue: _i3
+                .Future<_i4.Either<_i5.Failure, List<_i10.Translation>>>.value(
+                _i7.dummyValue<_i4.Either<_i5.Failure, List<_i10.Translation>>>(
+              this,
+              Invocation.method(
+                #getTranslations,
+                [],
+              ),
+            )),
+          ) as _i3.Future<_i4.Either<_i5.Failure, List<_i10.Translation>>>);
 }

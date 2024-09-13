@@ -14,8 +14,10 @@ import 'package:kuwot/features/quote/domain/repositories/quote_repository.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_background_images.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_quote.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_translated_quote.dart';
+import 'package:kuwot/features/quote/domain/use_cases/get_translations.dart';
 import 'package:kuwot/features/quote/presentation/bloc/background_images_bloc.dart';
 import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
+import 'package:kuwot/features/quote/presentation/bloc/translations_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;
@@ -79,6 +81,11 @@ void setup() {
       getIt(),
     ),
   );
+  getIt.registerLazySingleton<GetTranslations>(
+    () => GetTranslations(
+      getIt(),
+    ),
+  );
 
   // blocs
   getIt.registerSingletonAsync<ThemeModeCubit>(
@@ -113,6 +120,11 @@ void setup() {
   getIt.registerFactory<BackgroundImagesBloc>(
     () => BackgroundImagesBloc(
       getBackgroundImages: getIt(),
+    ),
+  );
+  getIt.registerFactory<TranslationsBloc>(
+    () => TranslationsBloc(
+      getTranslations: getIt(),
     ),
   );
 

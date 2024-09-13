@@ -4,11 +4,25 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kuwot/core/data/local/translation_target_config.dart';
 import 'package:kuwot/core/presentation/bloc/config/translation_target_cubit.dart';
+import 'package:kuwot/features/quote/presentation/bloc/translations_bloc.dart';
 
-class TranslateTargetDialog extends StatelessWidget {
+class TranslateTargetDialog extends StatefulWidget {
   const TranslateTargetDialog({
     super.key,
   });
+
+  @override
+  State<TranslateTargetDialog> createState() => _TranslateTargetDialogState();
+}
+
+class _TranslateTargetDialogState extends State<TranslateTargetDialog> {
+  @override
+  void initState() {
+    super.initState();
+
+    // load translations
+    context.read<TranslationsBloc>().add(const GetTranslationsEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,31 +50,48 @@ class TranslateTargetDialog extends StatelessWidget {
 
     final languageList = SizedBox(
       height: MediaQuery.of(context).size.height / 2,
-      child: ListView.builder(
-        padding: EdgeInsets.zero,
-        itemCount: translationTargets.length,
-        itemBuilder: (context, index) {
-          final isSelected =
-              currentTranslationTarget.name == translationTargets[index].name;
-          return ListTile(
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
-            title: Text(
-              translationTargets[index].name,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontWeight:
-                        isSelected ? FontWeight.bold : FontWeight.normal,
+      child: BlocBuilder<TranslationsBloc, TranslationsState>(
+        builder: (context, state) {
+          if (state is TranslationsLoadedState) {
+            final translations = state.translations;
+
+            return ListView.builder(
+              padding: EdgeInsets.zero,
+              itemCount: translations.length,
+              itemBuilder: (context, index) {
+                final isSelected =
+                    currentTranslationTarget.id == translations[index].id;
+                return ListTile(
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 20,
                   ),
-            ),
-            trailing: isSelected ? const FaIcon(FontAwesomeIcons.check) : null,
-            onTap: () {
-              context.read<TranslationTargetCubit>().set(
-                    translationTargets[index],
-                  );
-              Navigator.of(context)
-                  .pop<TranslationTarget?>(translationTargets[index]);
-            },
+                  title: Text(
+                    translations[index].language,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontWeight:
+                              isSelected ? FontWeight.bold : FontWeight.normal,
+                        ),
+                  ),
+                  trailing:
+                      isSelected ? const FaIcon(FontAwesomeIcons.check) : null,
+                  onTap: () {
+                    final translationTarget = TranslationTarget(
+                      id: translations[index].id,
+                      name: translations[index].language,
+                    );
+                    context
+                        .read<TranslationTargetCubit>()
+                        .set(translationTarget);
+                    Navigator.of(context)
+                        .pop<TranslationTarget?>(translationTarget);
+                  },
+                );
+              },
+            );
+          }
+
+          return const Center(
+            child: CircularProgressIndicator(),
           );
         },
       ),

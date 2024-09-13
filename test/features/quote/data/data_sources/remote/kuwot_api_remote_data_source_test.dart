@@ -5,6 +5,7 @@ import 'package:kuwot/core/network/network.dart';
 import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_data_source.dart';
 import 'package:kuwot/features/quote/data/models/image_model.dart';
 import 'package:kuwot/features/quote/data/models/quote_model.dart';
+import 'package:kuwot/features/quote/data/models/translation_model.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
@@ -67,6 +68,19 @@ void main() {
       final result = await dataSource.getRandomImages();
       // assert
       expect(result, isA<List<ImageModel>>());
+    });
+
+    test('should return translations when response is successful', () async {
+      // arrange
+      final tResponse = readResponse('translations');
+      when(auth.getAccessToken).thenReturn('test_token');
+      when(env.authPublicKey).thenReturn('test');
+      when(network.get(any, headers: anyNamed('headers')))
+          .thenAnswer((_) async => tResponse);
+      // act
+      final result = await dataSource.getTranslations();
+      // assert
+      expect(result, isA<List<TranslationModel>>());
     });
   });
 }

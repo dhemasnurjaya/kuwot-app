@@ -5,6 +5,7 @@ import 'package:kuwot/core/error/unknown_failure.dart';
 import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_data_source.dart';
 import 'package:kuwot/features/quote/domain/entities/background_image.dart';
 import 'package:kuwot/features/quote/domain/entities/quote.dart';
+import 'package:kuwot/features/quote/domain/entities/translation.dart';
 import 'package:kuwot/features/quote/domain/repositories/quote_repository.dart';
 
 class QuoteRepositoryImpl implements QuoteRepository {
@@ -13,6 +14,21 @@ class QuoteRepositoryImpl implements QuoteRepository {
   QuoteRepositoryImpl({
     required this.quoteDataSource,
   });
+
+  @override
+  Future<Either<Failure, List<BackgroundImage>>> getBackgroundImages() async {
+    try {
+      final images = await quoteDataSource.getRandomImages();
+      return right(BackgroundImage.fromModels(images));
+    } on Exception catch (e) {
+      return left(
+        UnknownFailure(
+          message: e.toString(),
+          cause: e,
+        ),
+      );
+    }
+  }
 
   @override
   Future<Either<Failure, Quote>> getQuote(
@@ -53,10 +69,10 @@ class QuoteRepositoryImpl implements QuoteRepository {
   }
 
   @override
-  Future<Either<Failure, List<BackgroundImage>>> getBackgroundImages() async {
+  Future<Either<Failure, List<Translation>>> getTranslations() async {
     try {
-      final images = await quoteDataSource.getRandomImages();
-      return right(BackgroundImage.fromModels(images));
+      final translations = await quoteDataSource.getTranslations();
+      return right(translations.map((e) => Translation.fromModel(e)).toList());
     } on Exception catch (e) {
       return left(
         UnknownFailure(

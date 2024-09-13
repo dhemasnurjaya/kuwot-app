@@ -10,6 +10,7 @@ import 'package:kuwot/core/presentation/widgets/responsive_body_widget.dart';
 import 'package:kuwot/core/router/app_router.dart';
 import 'package:kuwot/features/quote/presentation/bloc/background_images_bloc.dart';
 import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
+import 'package:kuwot/features/quote/presentation/bloc/translations_bloc.dart';
 
 import 'injection_container.dart' as ic;
 
@@ -57,6 +58,9 @@ class KuwotApp extends StatelessWidget {
           create: (context) => ic.getIt(),
         ),
         BlocProvider<BackgroundImagesBloc>(
+          create: (context) => ic.getIt(),
+        ),
+        BlocProvider<TranslationsBloc>(
           create: (context) => ic.getIt(),
         ),
       ],
