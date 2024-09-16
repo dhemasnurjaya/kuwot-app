@@ -3,7 +3,6 @@ import 'package:fpdart/fpdart.dart';
 import 'package:kuwot/core/data/local/config.dart';
 import 'package:kuwot/core/data/local/translation_target_config.dart';
 import 'package:kuwot/core/error/failure.dart';
-import 'package:kuwot/core/error/unknown_failure.dart';
 import 'package:kuwot/features/quote/domain/entities/quote.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_background_images.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_quote.dart';

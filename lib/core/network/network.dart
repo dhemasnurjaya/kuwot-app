@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:kuwot/core/error/exception.dart';
 
 /// Network interface
 abstract class Network {
@@ -34,7 +36,11 @@ class NetworkImpl implements Network {
       uri,
       headers: headers,
     );
-    return utf8.decode(response.bodyBytes);
+    final stringResponse = utf8.decode(response.bodyBytes);
+    if (response.statusCode != HttpStatus.ok) {
+      throw ServerException(stringResponse);
+    }
+    return stringResponse;
   }
 
   @override

@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:kuwot/core/error/failure.dart';
-import 'package:kuwot/core/error/unknown_failure.dart';
 import 'package:kuwot/features/quote/domain/entities/translation.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_translations.dart';
 import 'package:kuwot/features/quote/presentation/bloc/translations_bloc.dart';
