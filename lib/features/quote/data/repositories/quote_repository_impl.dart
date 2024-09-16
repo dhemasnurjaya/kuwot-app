@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:kuwot/core/data/local/translation_target_config.dart';
+import 'package:kuwot/core/error/exception.dart';
 import 'package:kuwot/core/error/failure.dart';
-import 'package:kuwot/core/error/unknown_failure.dart';
+import 'package:kuwot/core/error/server_error_model.dart';
 import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_data_source.dart';
 import 'package:kuwot/features/quote/domain/entities/background_image.dart';
 import 'package:kuwot/features/quote/domain/entities/quote.dart';
@@ -39,6 +42,14 @@ class QuoteRepositoryImpl implements QuoteRepository {
           translationTarget != null ? "lang=${translationTarget.id}" : null;
       final quote = await quoteDataSource.getQuote(query: query);
       return right(Quote.fromModel(quote));
+    } on ServerException catch (e) {
+      final error = ServerErrorModel.fromJson(jsonDecode(e.message));
+      return left(
+        ServerFailure(
+          message: '${error.message} (${error.code})',
+          cause: e,
+        ),
+      );
     } on Exception catch (e) {
       return left(
         UnknownFailure(
