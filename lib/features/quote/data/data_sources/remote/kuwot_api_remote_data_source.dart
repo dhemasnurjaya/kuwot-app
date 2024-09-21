@@ -82,7 +82,7 @@ class KuwotApiRemoteApiImpl implements KuwotApiRemoteDataSource {
     final uri = Uri(
       scheme: 'https',
       host: quoteApiHost,
-      path: 'quotes/translations',
+      path: 'translations',
     );
     final headers = {
       'Authorization': 'Bearer ${auth.getAccessToken}',
