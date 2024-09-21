@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kuwot/core/env.dart';
 import 'package:kuwot/core/presentation/bloc/app_bloc_observer.dart';
 import 'package:kuwot/core/presentation/bloc/config/theme_mode_cubit.dart';
 import 'package:kuwot/core/presentation/bloc/config/translation_target_cubit.dart';
@@ -11,6 +12,7 @@ import 'package:kuwot/core/router/app_router.dart';
 import 'package:kuwot/features/quote/presentation/bloc/background_images_bloc.dart';
 import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
 import 'package:kuwot/features/quote/presentation/bloc/translations_bloc.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'injection_container.dart' as ic;
 
@@ -27,7 +29,20 @@ Future<void> main() async {
   // register bloc observer
   Bloc.observer = AppBlocObserver();
 
-  runApp(KuwotApp());
+  // sentry setup
+  final sentryDsn = EnvImpl().sentryDsn;
+  if (sentryDsn.isNotEmpty) {
+    await SentryFlutter.init(
+      (options) {
+        options.dsn = sentryDsn;
+        options.tracesSampleRate = 1.0;
+        options.profilesSampleRate = 1.0;
+      },
+      appRunner: () => runApp(KuwotApp()),
+    );
+  } else {
+    runApp(KuwotApp());
+  }
 }
 
 Future<void> setPortraitMode() async {
