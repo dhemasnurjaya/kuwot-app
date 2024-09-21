@@ -40,6 +40,15 @@ class MockEnv extends _i1.Mock implements _i2.Env {
           Invocation.getter(#authPublicKey),
         ),
       ) as String);
+
+  @override
+  String get sentryDsn => (super.noSuchMethod(
+        Invocation.getter(#sentryDsn),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#sentryDsn),
+        ),
+      ) as String);
 }
 
 /// A class which mocks [Auth].
