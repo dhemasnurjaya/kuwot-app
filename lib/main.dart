@@ -9,6 +9,7 @@ import 'package:kuwot/core/presentation/bloc/config/translation_target_cubit.dar
 import 'package:kuwot/core/presentation/theme/app_theme.dart';
 import 'package:kuwot/core/presentation/widgets/responsive_body_widget.dart';
 import 'package:kuwot/core/router/app_router.dart';
+import 'package:kuwot/features/in_app_update/presentation/bloc/in_app_update_bloc.dart';
 import 'package:kuwot/features/quote/presentation/bloc/background_images_bloc.dart';
 import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
 import 'package:kuwot/features/quote/presentation/bloc/translations_bloc.dart';
@@ -31,7 +32,7 @@ Future<void> main() async {
 
   // sentry setup
   final sentryDsn = EnvImpl().sentryDsn;
-  if (sentryDsn.isNotEmpty) {
+  if (!kDebugMode && sentryDsn.isNotEmpty) {
     await SentryFlutter.init(
       (options) {
         options.dsn = sentryDsn;
@@ -64,6 +65,9 @@ class KuwotApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<ThemeModeCubit>(
+          create: (context) => ic.getIt(),
+        ),
+        BlocProvider<InAppUpdateBloc>(
           create: (context) => ic.getIt(),
         ),
         BlocProvider<TranslationTargetCubit>(

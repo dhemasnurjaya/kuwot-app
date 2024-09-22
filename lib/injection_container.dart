@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:kuwot/core/app_updater.dart';
 import 'package:kuwot/core/auth.dart';
 import 'package:kuwot/core/data/local/config.dart';
 import 'package:kuwot/core/data/local/theme_mode_config.dart';
@@ -8,6 +9,7 @@ import 'package:kuwot/core/env.dart';
 import 'package:kuwot/core/network/network.dart';
 import 'package:kuwot/core/presentation/bloc/config/theme_mode_cubit.dart';
 import 'package:kuwot/core/presentation/bloc/config/translation_target_cubit.dart';
+import 'package:kuwot/features/in_app_update/presentation/bloc/in_app_update_bloc.dart';
 import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_data_source.dart';
 import 'package:kuwot/features/quote/data/repositories/quote_repository_impl.dart';
 import 'package:kuwot/features/quote/domain/repositories/quote_repository.dart';
@@ -98,6 +100,9 @@ void setup() {
     },
     dependsOn: [SharedPreferences, Config<ThemeMode>],
   );
+  getIt.registerLazySingleton<InAppUpdateBloc>(
+    () => InAppUpdateBloc(appUpdater: getIt()),
+  );
   getIt.registerSingletonAsync<TranslationTargetCubit>(
     () async {
       final initialTranslationTarget =
@@ -129,4 +134,7 @@ void setup() {
   );
 
   // others
+  getIt.registerLazySingleton<AppUpdater>(
+    () => AppUpdaterImpl(),
+  );
 }
