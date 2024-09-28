@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fpdart/fpdart.dart';
+import 'package:http/http.dart';
 import 'package:kuwot/core/data/local/translation_target_config.dart';
 import 'package:kuwot/core/error/exception.dart';
 import 'package:kuwot/core/error/failure.dart';
@@ -23,6 +24,13 @@ class QuoteRepositoryImpl implements QuoteRepository {
     try {
       final images = await quoteDataSource.getRandomImages();
       return right(BackgroundImage.fromModels(images));
+    } on ClientException catch (e) {
+      return left(
+        ClientFailure(
+          message: "Failed to connect to the server",
+          cause: e,
+        ),
+      );
     } on Exception catch (e) {
       return left(
         UnknownFailure(
@@ -42,6 +50,13 @@ class QuoteRepositoryImpl implements QuoteRepository {
           translationTarget != null ? "lang=${translationTarget.id}" : null;
       final quote = await quoteDataSource.getQuote(query: query);
       return right(Quote.fromModel(quote));
+    } on ClientException catch (e) {
+      return left(
+        ClientFailure(
+          message: "Failed to connect to the server",
+          cause: e,
+        ),
+      );
     } on ServerException catch (e) {
       final error = ServerErrorModel.fromJson(jsonDecode(e.message));
       return left(
@@ -69,6 +84,13 @@ class QuoteRepositoryImpl implements QuoteRepository {
       final query = "lang=${translationTarget.id}";
       final quote = await quoteDataSource.getTranslatedQuote(id, query: query);
       return right(Quote.fromModel(quote));
+    } on ClientException catch (e) {
+      return left(
+        ClientFailure(
+          message: "Failed to connect to the server",
+          cause: e,
+        ),
+      );
     } on Exception catch (e) {
       return left(
         UnknownFailure(
@@ -84,6 +106,13 @@ class QuoteRepositoryImpl implements QuoteRepository {
     try {
       final translations = await quoteDataSource.getTranslations();
       return right(translations.map((e) => Translation.fromModel(e)).toList());
+    } on ClientException catch (e) {
+      return left(
+        ClientFailure(
+          message: "Failed to connect to the server",
+          cause: e,
+        ),
+      );
     } on Exception catch (e) {
       return left(
         UnknownFailure(
