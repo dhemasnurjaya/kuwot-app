@@ -31,7 +31,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace "com.dhemasnurjaya.kuwot"
     compileSdk flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    ndkVersion "25.1.8937393"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -102,4 +102,8 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    def billing_version = "7.0.0"
+
+    implementation "com.android.billingclient:billing:$billing_version"
+}
