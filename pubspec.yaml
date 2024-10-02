@@ -23,6 +23,7 @@ dependencies:
   get_it: ^7.7.0
   google_fonts: ^6.2.1
   http: ^1.2.1
+  in_app_purchase: ^3.2.0
   in_app_update: ^4.2.3
   json_annotation: ^4.9.0
   package_info_plus: ^8.0.2
