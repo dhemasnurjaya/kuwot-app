@@ -37,9 +37,15 @@ class NetworkImpl implements Network {
       headers: headers,
     );
     final stringResponse = utf8.decode(response.bodyBytes);
+
+    if (response.statusCode == HttpStatus.unauthorized) {
+      throw UnauthorizedException(stringResponse);
+    }
+
     if (response.statusCode != HttpStatus.ok) {
       throw ServerException(stringResponse);
     }
+
     return stringResponse;
   }
 
