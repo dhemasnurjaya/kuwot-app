@@ -36,7 +36,7 @@ class MockGetTranslations extends _i1.Mock implements _i2.GetTranslations {
   }
 
   @override
-  _i3.Future<_i4.Either<_i5.Failure, List<_i6.Translation>>> execute(
+  _i3.Future<_i4.Either<_i5.Failure, List<_i6.Translation>>> call(
           _i7.NoParams? params) =>
       (super.noSuchMethod(
         Invocation.method(

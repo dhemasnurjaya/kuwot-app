@@ -38,7 +38,7 @@ class MockGetBackgroundImages extends _i1.Mock
   }
 
   @override
-  _i3.Future<_i4.Either<_i5.Failure, List<_i6.BackgroundImage>>> execute(
+  _i3.Future<_i4.Either<_i5.Failure, List<_i6.BackgroundImage>>> call(
           _i7.NoParams? params) =>
       (super.noSuchMethod(
         Invocation.method(

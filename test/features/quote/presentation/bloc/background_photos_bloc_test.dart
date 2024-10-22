@@ -32,15 +32,15 @@ void main() {
       // arrange
       provideDummy<Either<Failure, List<BackgroundImage>>>(
           right(const <BackgroundImage>[]));
-      when(mockGetBackgroundImages.execute(any))
+      when(mockGetBackgroundImages(any))
           .thenAnswer((_) async => right(const <BackgroundImage>[]));
 
       // act
       backgroundImagesBloc.add(const GetBackgroundImagesEvent());
-      await untilCalled(mockGetBackgroundImages.execute(any));
+      await untilCalled(mockGetBackgroundImages(any));
 
       // assert
-      verify(mockGetBackgroundImages.execute(any));
+      verify(mockGetBackgroundImages(any));
       verifyNoMoreInteractions(mockGetBackgroundImages);
     });
 
@@ -51,7 +51,7 @@ void main() {
       const tBackgroundImages = <BackgroundImage>[];
       provideDummy<Either<Failure, List<BackgroundImage>>>(
           right(tBackgroundImages));
-      when(mockGetBackgroundImages.execute(any))
+      when(mockGetBackgroundImages(any))
           .thenAnswer((_) async => right(tBackgroundImages));
 
       // assert later
@@ -71,7 +71,7 @@ void main() {
       // arrange
       const tFailure = UnknownFailure(message: 'Unknown Failure');
       provideDummy<Either<Failure, List<BackgroundImage>>>(left(tFailure));
-      when(mockGetBackgroundImages.execute(any))
+      when(mockGetBackgroundImages(any))
           .thenAnswer((_) async => left(tFailure));
 
       // assert later

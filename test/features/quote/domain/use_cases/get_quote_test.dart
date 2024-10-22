@@ -31,7 +31,7 @@ void main() {
         .thenAnswer((_) async => right(tQuote));
 
     // act
-    final result = await useCase.execute(const GetQuoteParams(null));
+    final result = await useCase(const GetQuoteParams(null));
 
     // assert
     expect(result, right(tQuote));

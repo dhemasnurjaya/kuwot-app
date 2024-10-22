@@ -30,7 +30,7 @@ void main() {
         .thenAnswer((_) async => right(tExpected));
 
     // act
-    final result = await useCase.execute(const NoParams());
+    final result = await useCase(const NoParams());
 
     // assert
     expect(result, right(tExpected));

@@ -22,7 +22,7 @@ class TranslationsBloc extends Bloc<TranslationsEvent, TranslationsState> {
     Emitter<TranslationsState> emit,
   ) async {
     emit(const TranslationsLoadingState());
-    final translations = await getTranslations.execute(const NoParams());
+    final translations = await getTranslations(const NoParams());
     translations.fold(
       (failure) => emit(TranslationsErrorState(message: failure.message)),
       (translations) =>

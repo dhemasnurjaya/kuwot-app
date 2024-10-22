@@ -23,7 +23,7 @@ class BackgroundImagesBloc
   ) async {
     emit(const BackgroundImagesLoadingState());
 
-    final result = await getBackgroundImages.execute(const NoParams());
+    final result = await getBackgroundImages(const NoParams());
     result.fold(
       (failure) => emit(
         BackgroundImagesErrorState(

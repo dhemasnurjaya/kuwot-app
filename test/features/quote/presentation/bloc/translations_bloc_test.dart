@@ -27,21 +27,21 @@ void main() {
     test('should get translations from GetTranslations use case', () async {
       // arrange
       provideDummy<Either<Failure, List<Translation>>>(right([]));
-      when(mockGetTranslations.execute(any)).thenAnswer((_) async => right([]));
+      when(mockGetTranslations(any)).thenAnswer((_) async => right([]));
 
       // act
       translationsBloc.add(const GetTranslationsEvent());
-      await untilCalled(mockGetTranslations.execute(any));
+      await untilCalled(mockGetTranslations(any));
 
       // assert
-      verify(mockGetTranslations.execute(any));
+      verify(mockGetTranslations(any));
       verifyNoMoreInteractions(mockGetTranslations);
     });
 
     test('should emit [Loading, Loaded] when successful', () async {
       // arrange
       provideDummy<Either<Failure, List<Translation>>>(right([]));
-      when(mockGetTranslations.execute(any)).thenAnswer((_) async => right([]));
+      when(mockGetTranslations(any)).thenAnswer((_) async => right([]));
 
       // assert later
       final expected = [
@@ -58,7 +58,7 @@ void main() {
       // arrange
       provideDummy<Either<Failure, List<Translation>>>(
           left(const UnknownFailure(message: 'Unknown Failure')));
-      when(mockGetTranslations.execute(any)).thenAnswer(
+      when(mockGetTranslations(any)).thenAnswer(
           (_) async => left(const UnknownFailure(message: 'Unknown Failure')));
 
       // assert later

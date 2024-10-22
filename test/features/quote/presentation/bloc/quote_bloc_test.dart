@@ -51,17 +51,17 @@ void main() {
     test('should get quote from GetQuote use case', () async {
       // arrange
       provideDummy<Either<Failure, Quote>>(right(tQuote));
-      when(mockGetQuote.execute(any)).thenAnswer((_) async => right(tQuote));
+      when(mockGetQuote(any)).thenAnswer((_) async => right(tQuote));
       when(mockTranslationTargetConfig.get())
           .thenAnswer((_) async => tTranslationTarget);
 
       // act
       quoteBloc.add(const GetQuoteEvent());
       await untilCalled(mockTranslationTargetConfig.get());
-      await untilCalled(mockGetQuote.execute(any));
+      await untilCalled(mockGetQuote(any));
 
       // assert
-      verify(mockGetQuote.execute(any));
+      verify(mockGetQuote(any));
       verifyNoMoreInteractions(mockGetQuote);
     });
 
@@ -70,7 +70,7 @@ void main() {
         () async {
       // arrange
       provideDummy<Either<Failure, Quote>>(right(tQuote));
-      when(mockGetQuote.execute(any)).thenAnswer((_) async => right(tQuote));
+      when(mockGetQuote(any)).thenAnswer((_) async => right(tQuote));
       when(mockTranslationTargetConfig.get())
           .thenAnswer((_) async => tTranslationTarget);
 
@@ -89,7 +89,7 @@ void main() {
         () async {
       // arrange
       provideDummy<Either<Failure, Quote>>(left(tFailure));
-      when(mockGetQuote.execute(any)).thenAnswer((_) async => left(tFailure));
+      when(mockGetQuote(any)).thenAnswer((_) async => left(tFailure));
       when(mockTranslationTargetConfig.get())
           .thenAnswer((_) async => tTranslationTarget);
 
@@ -110,18 +110,17 @@ void main() {
         () async {
       // arrange
       provideDummy<Either<Failure, Quote>>(right(tQuote));
-      when(mockGetTranslatedQuote.execute(any))
-          .thenAnswer((_) async => right(tQuote));
+      when(mockGetTranslatedQuote(any)).thenAnswer((_) async => right(tQuote));
       when(mockTranslationTargetConfig.get())
           .thenAnswer((_) async => tTranslationTarget);
 
       // act
       quoteBloc.add(const GetTranslatedQuoteEvent(tTranslationTarget));
       await untilCalled(mockTranslationTargetConfig.get());
-      await untilCalled(mockGetTranslatedQuote.execute(any));
+      await untilCalled(mockGetTranslatedQuote(any));
 
       // assert
-      verify(mockGetTranslatedQuote.execute(any));
+      verify(mockGetTranslatedQuote(any));
       verifyNoMoreInteractions(mockGetTranslatedQuote);
     });
 
@@ -130,8 +129,7 @@ void main() {
         () async {
       // arrange
       provideDummy<Either<Failure, Quote>>(right(tQuote));
-      when(mockGetTranslatedQuote.execute(any))
-          .thenAnswer((_) async => right(tQuote));
+      when(mockGetTranslatedQuote(any)).thenAnswer((_) async => right(tQuote));
       when(mockTranslationTargetConfig.get())
           .thenAnswer((_) async => tTranslationTarget);
 
@@ -150,8 +148,7 @@ void main() {
         () async {
       // arrange
       provideDummy<Either<Failure, Quote>>(left(tFailure));
-      when(mockGetTranslatedQuote.execute(any))
-          .thenAnswer((_) async => left(tFailure));
+      when(mockGetTranslatedQuote(any)).thenAnswer((_) async => left(tFailure));
       when(mockTranslationTargetConfig.get())
           .thenAnswer((_) async => tTranslationTarget);
 

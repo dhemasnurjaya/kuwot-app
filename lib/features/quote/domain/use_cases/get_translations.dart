@@ -11,7 +11,7 @@ class GetTranslations extends UseCase<List<Translation>, NoParams> {
   GetTranslations(QuoteRepository repository) : _repository = repository;
 
   @override
-  Future<Either<Failure, List<Translation>>> execute(NoParams params) {
+  Future<Either<Failure, List<Translation>>> call(NoParams params) {
     return _repository.getTranslations();
   }
 }
