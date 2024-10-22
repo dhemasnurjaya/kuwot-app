@@ -12,7 +12,7 @@ class GetQuote extends UseCase<Quote, GetQuoteParams> {
   GetQuote(QuoteRepository repository) : _repository = repository;
 
   @override
-  Future<Either<Failure, Quote>> execute(GetQuoteParams params) {
+  Future<Either<Failure, Quote>> call(GetQuoteParams params) {
     return _repository.getQuote(params.translationTarget);
   }
 }

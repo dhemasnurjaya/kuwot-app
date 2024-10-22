@@ -12,8 +12,7 @@ class GetTranslatedQuote extends UseCase<Quote, GetTranslatedQuoteParams> {
   GetTranslatedQuote(QuoteRepository repository) : _repository = repository;
 
   @override
-  Future<Either<Failure, Quote>> execute(
-      GetTranslatedQuoteParams params) async {
+  Future<Either<Failure, Quote>> call(GetTranslatedQuoteParams params) async {
     return await _repository.getTranslatedQuote(
       params.id,
       params.translationTarget,

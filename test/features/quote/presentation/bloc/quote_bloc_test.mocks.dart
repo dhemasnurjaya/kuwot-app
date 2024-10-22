@@ -43,7 +43,7 @@ class MockGetQuote extends _i1.Mock implements _i2.GetQuote {
   }
 
   @override
-  _i3.Future<_i4.Either<_i5.Failure, _i6.Quote>> execute(
+  _i3.Future<_i4.Either<_i5.Failure, _i6.Quote>> call(
           _i2.GetQuoteParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -71,7 +71,7 @@ class MockGetTranslatedQuote extends _i1.Mock
   }
 
   @override
-  _i3.Future<_i4.Either<_i5.Failure, _i6.Quote>> execute(
+  _i3.Future<_i4.Either<_i5.Failure, _i6.Quote>> call(
           _i8.GetTranslatedQuoteParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -99,7 +99,7 @@ class MockGetBackgroundImages extends _i1.Mock
   }
 
   @override
-  _i3.Future<_i4.Either<_i5.Failure, List<_i10.BackgroundImage>>> execute(
+  _i3.Future<_i4.Either<_i5.Failure, List<_i10.BackgroundImage>>> call(
           _i11.NoParams? params) =>
       (super.noSuchMethod(
         Invocation.method(

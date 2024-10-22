@@ -32,7 +32,7 @@ void main() {
         .thenAnswer((_) async => right(tQuote));
 
     // act
-    final result = await useCase.execute(
+    final result = await useCase(
       const GetTranslatedQuoteParams(
         id: 1,
         translationTarget: TranslationTarget(id: 'en', name: 'English'),

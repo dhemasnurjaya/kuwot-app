@@ -46,7 +46,7 @@ class QuoteBloc extends Bloc<QuoteEvent, QuoteState> {
     final translationTarget = await translationTargetConfig.get();
 
     // get quote
-    final result = await getQuote.execute(GetQuoteParams(translationTarget));
+    final result = await getQuote(GetQuoteParams(translationTarget));
     result.fold(
       (failure) => emit(QuoteErrorState(message: failure.message)),
       (quote) {
@@ -73,7 +73,7 @@ class QuoteBloc extends Bloc<QuoteEvent, QuoteState> {
     }
 
     // get translated quote
-    final result = await getTranslatedQuote.execute(
+    final result = await getTranslatedQuote(
       GetTranslatedQuoteParams(
         id: _originalQuoteId,
         translationTarget: translationTarget,

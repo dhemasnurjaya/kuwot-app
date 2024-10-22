@@ -11,8 +11,7 @@ class GetBackgroundImages extends UseCase<List<BackgroundImage>, NoParams> {
   GetBackgroundImages(QuoteRepository repository) : _repository = repository;
 
   @override
-  Future<Either<Failure, List<BackgroundImage>>> execute(
-      NoParams params) async {
+  Future<Either<Failure, List<BackgroundImage>>> call(NoParams params) async {
     return await _repository.getBackgroundImages();
   }
 }
