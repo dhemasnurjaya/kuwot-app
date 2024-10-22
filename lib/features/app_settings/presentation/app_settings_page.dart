@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:kuwot/core/presentation/bloc/config/theme_mode_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kuwot/features/app_settings/presentation/widgets/about_widget.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 @RoutePage()
@@ -64,6 +65,8 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
           themeSetting,
           const SizedBox(height: 20),
           appVersion,
+          const SizedBox(height: 20),
+          const AboutWidget(),
         ],
       ),
     );
