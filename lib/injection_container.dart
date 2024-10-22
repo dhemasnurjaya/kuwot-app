@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:kuwot/core/app_updater.dart';
-import 'package:kuwot/core/auth.dart';
+import 'package:kuwot/core/auth/auth.dart';
 import 'package:kuwot/core/data/local/config.dart';
 import 'package:kuwot/core/data/local/theme_mode_config.dart';
 import 'package:kuwot/core/data/local/translation_target_config.dart';
@@ -9,6 +9,7 @@ import 'package:kuwot/core/env.dart';
 import 'package:kuwot/core/network/network.dart';
 import 'package:kuwot/core/presentation/bloc/config/theme_mode_cubit.dart';
 import 'package:kuwot/core/presentation/bloc/config/translation_target_cubit.dart';
+import 'package:kuwot/core/time.dart';
 import 'package:kuwot/features/in_app_update/presentation/bloc/in_app_update_bloc.dart';
 import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_data_source.dart';
 import 'package:kuwot/features/quote/data/repositories/quote_repository_impl.dart';
@@ -40,7 +41,10 @@ void setup() {
   getIt.registerLazySingleton<Env>(() => EnvImpl());
 
   // auth
-  getIt.registerLazySingleton<Auth>(() => AuthImpl(env: getIt()));
+  getIt.registerLazySingleton<Auth>(() => AuthImpl(
+        env: getIt(),
+        time: getIt(),
+      ));
 
   // configs
   getIt.registerSingletonWithDependencies<Config<ThemeMode>>(
@@ -55,6 +59,7 @@ void setup() {
   // data sources
   getIt.registerLazySingleton<KuwotApiRemoteDataSource>(
     () => KuwotApiRemoteApiImpl(
+      env: getIt(),
       auth: getIt(),
       network: getIt(),
     ),
@@ -137,4 +142,5 @@ void setup() {
   getIt.registerLazySingleton<AppUpdater>(
     () => AppUpdaterImpl(),
   );
+  getIt.registerLazySingleton<Time>(() => TimeImpl());
 }

@@ -5,7 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i6;
 
-import 'package:kuwot/core/auth.dart' as _i4;
+import 'package:kuwot/core/auth/auth.dart' as _i4;
 import 'package:kuwot/core/env.dart' as _i2;
 import 'package:kuwot/core/network/network.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
@@ -31,6 +31,24 @@ class MockEnv extends _i1.Mock implements _i2.Env {
   MockEnv() {
     _i1.throwOnMissingStub(this);
   }
+
+  @override
+  String get quoteApiScheme => (super.noSuchMethod(
+        Invocation.getter(#quoteApiScheme),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#quoteApiScheme),
+        ),
+      ) as String);
+
+  @override
+  String get quoteApiHost => (super.noSuchMethod(
+        Invocation.getter(#quoteApiHost),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#quoteApiHost),
+        ),
+      ) as String);
 
   @override
   String get authPublicKey => (super.noSuchMethod(

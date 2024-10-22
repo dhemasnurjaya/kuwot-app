@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:kuwot/core/auth.dart';
-import 'package:kuwot/core/data/remote/hosts.dart';
+import 'package:kuwot/core/auth/auth.dart';
+import 'package:kuwot/core/env.dart';
 import 'package:kuwot/core/network/network.dart';
 import 'package:kuwot/features/quote/data/models/image_model.dart';
 import 'package:kuwot/features/quote/data/models/quote_model.dart';
@@ -20,10 +20,12 @@ abstract class KuwotApiRemoteDataSource {
 }
 
 class KuwotApiRemoteApiImpl implements KuwotApiRemoteDataSource {
+  final Env env;
   final Auth auth;
   final Network network;
 
   KuwotApiRemoteApiImpl({
+    required this.env,
     required this.auth,
     required this.network,
   });
@@ -31,8 +33,9 @@ class KuwotApiRemoteApiImpl implements KuwotApiRemoteDataSource {
   @override
   Future<QuoteModel> getQuote({String? query}) async {
     final uri = Uri(
-      scheme: 'https',
-      host: quoteApiHost,
+      scheme: env.quoteApiScheme,
+      host: env.quoteApiHost,
+      port: env.quoteApiPort,
       path: 'quotes',
       query: query,
     );
@@ -47,8 +50,9 @@ class KuwotApiRemoteApiImpl implements KuwotApiRemoteDataSource {
   @override
   Future<QuoteModel> getTranslatedQuote(int id, {String? query}) async {
     final uri = Uri(
-      scheme: 'https',
-      host: quoteApiHost,
+      scheme: env.quoteApiScheme,
+      host: env.quoteApiHost,
+      port: env.quoteApiPort,
       path: 'quotes/$id',
       query: query,
     );
@@ -63,8 +67,9 @@ class KuwotApiRemoteApiImpl implements KuwotApiRemoteDataSource {
   @override
   Future<List<ImageModel>> getRandomImages() async {
     final uri = Uri(
-      scheme: 'https',
-      host: quoteApiHost,
+      scheme: env.quoteApiScheme,
+      host: env.quoteApiHost,
+      port: env.quoteApiPort,
       path: 'images',
     );
     final headers = {
@@ -80,8 +85,9 @@ class KuwotApiRemoteApiImpl implements KuwotApiRemoteDataSource {
   @override
   Future<List<TranslationModel>> getTranslations() async {
     final uri = Uri(
-      scheme: 'https',
-      host: quoteApiHost,
+      scheme: env.quoteApiScheme,
+      host: env.quoteApiHost,
+      port: env.quoteApiPort,
       path: 'translations',
     );
     final headers = {
