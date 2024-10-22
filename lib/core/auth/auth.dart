@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:encrypt/encrypt.dart';
+import 'package:kuwot/core/auth/auth_model.dart';
 import 'package:kuwot/core/env.dart';
+import 'package:kuwot/core/time.dart';
 import 'package:pointycastle/asymmetric/api.dart';
 import 'package:uuid/uuid.dart';
 
@@ -11,8 +13,12 @@ abstract class Auth {
 
 class AuthImpl implements Auth {
   final Env env;
+  final Time time;
 
-  AuthImpl({required this.env});
+  AuthImpl({
+    required this.env,
+    required this.time,
+  });
 
   @override
   String get getAccessToken {
@@ -22,7 +28,13 @@ class AuthImpl implements Auth {
     final encrypter = Encrypter(RSA(publicKey: publicKey));
 
     final uuid = const Uuid().v4();
-    final encryptedToken = encrypter.encrypt(uuid);
+    final issuedAt = time.getUnixTimestamp();
+    final authData = AuthModel(
+      token: uuid,
+      issuedAt: issuedAt,
+    );
+
+    final encryptedToken = encrypter.encrypt(jsonEncode(authData));
     return encryptedToken.base64;
   }
 }

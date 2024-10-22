@@ -38,6 +38,8 @@ workflows:
         script: |
           BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))      
           flutter build appbundle --release \
+            --dart-define=QUOTE_API_SCHEME=$QUOTE_API_SCHEME \
+            --dart-define=QUOTE_API_HOST=$QUOTE_API_HOST \
             --dart-define=AUTH_PUBLIC_KEY=$AUTH_PUBLIC_KEY \
             --dart-define=SENTRY_DSN=$SENTRY_DSN \
             --build-name=1.0.$BUILD_NUMBER \

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kuwot/core/auth.dart';
+import 'package:kuwot/core/auth/auth.dart';
 import 'package:kuwot/core/env.dart';
 import 'package:kuwot/core/network/network.dart';
 import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_data_source.dart';
@@ -14,28 +14,34 @@ import 'kuwot_api_remote_data_source_test.mocks.dart';
 
 @GenerateMocks([Env, Auth, Network])
 void main() {
-  late MockAuth auth;
-  late MockEnv env;
-  late MockNetwork network;
+  late MockAuth mockAuth;
+  late MockEnv mockEnv;
+  late MockNetwork mockNetwork;
   late KuwotApiRemoteDataSource dataSource;
 
   setUp(() {
-    auth = MockAuth();
-    env = MockEnv();
-    network = MockNetwork();
+    mockAuth = MockAuth();
+    mockEnv = MockEnv();
+    mockNetwork = MockNetwork();
     dataSource = KuwotApiRemoteApiImpl(
-      auth: auth,
-      network: network,
+      env: mockEnv,
+      auth: mockAuth,
+      network: mockNetwork,
     );
+
+    // global stubs
+    when(mockEnv.authPublicKey).thenReturn('test');
+    when(mockEnv.quoteApiScheme).thenReturn('http');
+    when(mockEnv.quoteApiHost).thenReturn('10.0.2.2');
+    when(mockEnv.quoteApiPort).thenReturn(8080);
+    when(mockAuth.getAccessToken).thenReturn('test_token');
   });
 
   group('getDailyQuote', () {
     test('should return random quote when response is successful', () async {
       // arrange
       final tResponse = readResponse('quote');
-      when(auth.getAccessToken).thenReturn('test_token');
-      when(env.authPublicKey).thenReturn('test');
-      when(network.get(any, headers: anyNamed('headers')))
+      when(mockNetwork.get(any, headers: anyNamed('headers')))
           .thenAnswer((_) async => tResponse);
       // act
       final result = await dataSource.getQuote();
@@ -47,9 +53,7 @@ void main() {
         () async {
       // arrange
       final tResponse = readResponse('quote');
-      when(auth.getAccessToken).thenReturn('test_token');
-      when(env.authPublicKey).thenReturn('test');
-      when(network.get(any, headers: anyNamed('headers')))
+      when(mockNetwork.get(any, headers: anyNamed('headers')))
           .thenAnswer((_) async => tResponse);
       // act
       final result = await dataSource.getTranslatedQuote(1);
@@ -60,9 +64,7 @@ void main() {
     test('should return random images when response is successful', () async {
       // arrange
       final tResponse = readResponse('random_images');
-      when(auth.getAccessToken).thenReturn('test_token');
-      when(env.authPublicKey).thenReturn('test');
-      when(network.get(any, headers: anyNamed('headers')))
+      when(mockNetwork.get(any, headers: anyNamed('headers')))
           .thenAnswer((_) async => tResponse);
       // act
       final result = await dataSource.getRandomImages();
@@ -73,9 +75,7 @@ void main() {
     test('should return translations when response is successful', () async {
       // arrange
       final tResponse = readResponse('translations');
-      when(auth.getAccessToken).thenReturn('test_token');
-      when(env.authPublicKey).thenReturn('test');
-      when(network.get(any, headers: anyNamed('headers')))
+      when(mockNetwork.get(any, headers: anyNamed('headers')))
           .thenAnswer((_) async => tResponse);
       // act
       final result = await dataSource.getTranslations();
