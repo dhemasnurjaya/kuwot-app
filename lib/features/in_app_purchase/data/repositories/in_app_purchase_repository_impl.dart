@@ -12,6 +12,10 @@ class InAppPurchaseRepositoryImpl implements InAppPurchaseRepository {
   final InAppPurchaseRemoteDataSource inAppPurchaseDataSource;
 
   @override
+  Stream<List<PurchaseDetails>> get purchaseStream =>
+      inAppPurchaseDataSource.purchaseStream;
+
+  @override
   Future<Either<Failure, List<ProductDetails>>> getConsumableProducts() async {
     try {
       final response = await inAppPurchaseDataSource.getConsumableProducts();
@@ -34,6 +38,14 @@ class InAppPurchaseRepositoryImpl implements InAppPurchaseRepository {
   }
 
   @override
-  Stream<List<PurchaseDetails>> get purchaseStream =>
-      inAppPurchaseDataSource.purchaseStream;
+  Future<Either<Failure, void>> completePurchase(
+    PurchaseDetails purchaseDetails,
+  ) async {
+    try {
+      await inAppPurchaseDataSource.completePurchase(purchaseDetails);
+      return right(null);
+    } on Exception catch (e) {
+      return left(UnknownFailure(message: e.toString()));
+    }
+  }
 }

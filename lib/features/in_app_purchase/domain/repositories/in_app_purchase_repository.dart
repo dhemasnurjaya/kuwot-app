@@ -10,4 +10,8 @@ abstract class InAppPurchaseRepository {
   Future<Either<Failure, bool>> purchaseConsumableProduct(
     ProductDetails product,
   );
+
+  Future<Either<Failure, void>> completePurchase(
+    PurchaseDetails purchaseDetails,
+  );
 }

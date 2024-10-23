@@ -12,6 +12,8 @@ abstract class InAppPurchaseRemoteDataSource {
   Future<List<ProductDetails>> getConsumableProducts();
 
   Future<bool> purchaseConsumableProduct(ProductDetails product);
+
+  Future<void> completePurchase(PurchaseDetails purchaseDetails);
 }
 
 class InAppPurchaseRemoteDataSourceImpl
@@ -38,5 +40,10 @@ class InAppPurchaseRemoteDataSourceImpl
     final response = await iap.buyConsumable(
         purchaseParam: PurchaseParam(productDetails: product));
     return response;
+  }
+
+  @override
+  Future<void> completePurchase(PurchaseDetails purchaseDetails) {
+    return iap.completePurchase(purchaseDetails);
   }
 }

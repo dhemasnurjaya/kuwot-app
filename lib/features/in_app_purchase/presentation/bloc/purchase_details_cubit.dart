@@ -17,6 +17,13 @@ class PurchaseDetailsCubit extends Cubit<List<PurchaseDetails>> {
     // and emit the event to the UI
     _purchaseDetailsSubscription = repository.purchaseStream.listen((event) {
       emit(event);
+
+      // complete the purchases
+      event
+          .where((element) => element.status == PurchaseStatus.purchased)
+          .forEach((element) {
+        unawaited(repository.completePurchase(element));
+      });
     });
   }
 
