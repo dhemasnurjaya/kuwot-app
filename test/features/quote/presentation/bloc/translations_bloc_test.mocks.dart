@@ -40,7 +40,7 @@ class MockGetTranslations extends _i1.Mock implements _i2.GetTranslations {
           _i7.NoParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
-          #execute,
+          #call,
           [params],
         ),
         returnValue:
@@ -48,7 +48,7 @@ class MockGetTranslations extends _i1.Mock implements _i2.GetTranslations {
                 _i8.dummyValue<_i4.Either<_i5.Failure, List<_i6.Translation>>>(
           this,
           Invocation.method(
-            #execute,
+            #call,
             [params],
           ),
         )),

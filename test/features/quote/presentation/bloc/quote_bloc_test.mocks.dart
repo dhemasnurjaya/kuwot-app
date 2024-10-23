@@ -47,14 +47,14 @@ class MockGetQuote extends _i1.Mock implements _i2.GetQuote {
           _i2.GetQuoteParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
-          #execute,
+          #call,
           [params],
         ),
         returnValue: _i3.Future<_i4.Either<_i5.Failure, _i6.Quote>>.value(
             _i7.dummyValue<_i4.Either<_i5.Failure, _i6.Quote>>(
           this,
           Invocation.method(
-            #execute,
+            #call,
             [params],
           ),
         )),
@@ -75,14 +75,14 @@ class MockGetTranslatedQuote extends _i1.Mock
           _i8.GetTranslatedQuoteParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
-          #execute,
+          #call,
           [params],
         ),
         returnValue: _i3.Future<_i4.Either<_i5.Failure, _i6.Quote>>.value(
             _i7.dummyValue<_i4.Either<_i5.Failure, _i6.Quote>>(
           this,
           Invocation.method(
-            #execute,
+            #call,
             [params],
           ),
         )),
@@ -103,7 +103,7 @@ class MockGetBackgroundImages extends _i1.Mock
           _i11.NoParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
-          #execute,
+          #call,
           [params],
         ),
         returnValue: _i3
@@ -111,7 +111,7 @@ class MockGetBackgroundImages extends _i1.Mock
             _i7.dummyValue<_i4.Either<_i5.Failure, List<_i10.BackgroundImage>>>(
           this,
           Invocation.method(
-            #execute,
+            #call,
             [params],
           ),
         )),

@@ -11,5 +11,6 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(page: QuoteRoute.page),
         AutoRoute(page: AppSettingsRoute.page),
+        AutoRoute(page: DonationRoute.page),
       ];
 }

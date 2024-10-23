@@ -42,7 +42,7 @@ class MockGetBackgroundImages extends _i1.Mock
           _i7.NoParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
-          #execute,
+          #call,
           [params],
         ),
         returnValue: _i3
@@ -50,7 +50,7 @@ class MockGetBackgroundImages extends _i1.Mock
             _i8.dummyValue<_i4.Either<_i5.Failure, List<_i6.BackgroundImage>>>(
           this,
           Invocation.method(
-            #execute,
+            #call,
             [params],
           ),
         )),
