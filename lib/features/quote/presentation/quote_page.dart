@@ -74,6 +74,12 @@ class _QuotePageState extends State<QuotePage> {
             children: [
               IconButton(
                 onPressed: () {
+                  context.router.push(const DonationRoute());
+                },
+                icon: const FaIcon(FontAwesomeIcons.circleDollarToSlot),
+              ),
+              IconButton(
+                onPressed: () {
                   context.router.push(const AppSettingsRoute());
                 },
                 icon: const FaIcon(FontAwesomeIcons.sliders),
