@@ -14,6 +14,9 @@ class DonationPage extends StatefulWidget {
 }
 
 class _DonationPageState extends State<DonationPage> {
+  final _donationMessage =
+      'I built this app with love and coffee. If you find it useful, please consider buying me a coffee. Your donation will help me keep the app running and updated. Thank you! ☕';
+
   final List<ProductDetails> _products = [];
 
   @override
@@ -28,7 +31,7 @@ class _DonationPageState extends State<DonationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Appreciate it!'),
+        title: const Text('Coffee time?'),
       ),
       body: MultiBlocListener(
         listeners: [
@@ -53,7 +56,14 @@ class _DonationPageState extends State<DonationPage> {
           ),
         ],
         child: ListView(
-          children: _buildProductList(),
+          padding: const EdgeInsets.all(16),
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
+              child: Text(_donationMessage),
+            ),
+            ..._buildProductList(),
+          ],
         ),
       ),
     );
@@ -61,16 +71,38 @@ class _DonationPageState extends State<DonationPage> {
 
   List<Widget> _buildProductList() {
     return _products.map((product) {
-      final title = product.title.replaceAll('(Kuwot)', '(${product.price})');
-      return ListTile(
-        title: Text(title),
-        subtitle: Text(product.description),
-        onTap: () {
-          context
+      final title = product.title.replaceAll('(Kuwot)', '');
+      final productCard = Card(
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: () => context
               .read<InAppPurchaseBloc>()
-              .add(PurchaseConsumableProductEvent(product));
-        },
+              .add(PurchaseConsumableProductEvent(product)),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                Text(product.description),
+                const SizedBox(height: 8),
+                Text(
+                  product.price,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+        ),
       );
+
+      return productCard;
     }).toList();
   }
 

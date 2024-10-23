@@ -76,7 +76,7 @@ class _QuotePageState extends State<QuotePage> {
                 onPressed: () {
                   context.router.push(const DonationRoute());
                 },
-                icon: const FaIcon(FontAwesomeIcons.circleDollarToSlot),
+                icon: const FaIcon(FontAwesomeIcons.mugHot),
               ),
               IconButton(
                 onPressed: () {
