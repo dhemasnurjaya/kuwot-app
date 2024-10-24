@@ -72,6 +72,8 @@ class _DonationPageState extends State<DonationPage> {
   List<Widget> _buildProductList() {
     return _products.map((product) {
       final title = product.title.replaceAll('(Kuwot)', '');
+      final description =
+          product.description.replaceAll('\n', '').replaceAll('\r', '');
       final productCard = Card(
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -87,7 +89,7 @@ class _DonationPageState extends State<DonationPage> {
                   title,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                Text(product.description),
+                Text(description),
                 const SizedBox(height: 8),
                 Text(
                   product.price,
