@@ -73,7 +73,7 @@ class _DonationPageState extends State<DonationPage> {
     return _products.map((product) {
       final title = product.title.replaceAll('(Kuwot)', '');
       final description =
-          product.description.replaceAll('\n', '').replaceAll('\r', '');
+          product.description.replaceAll(RegExp(r'[\r\n]+'), '');
       final productCard = Card(
         clipBehavior: Clip.antiAlias,
         child: InkWell(
