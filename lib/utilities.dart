@@ -1,4 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+
+void showSnackbar(String message) {
+  final scaffoldMessenger =
+      GetIt.I<GlobalKey<ScaffoldMessengerState>>().currentState;
+  scaffoldMessenger?.showSnackBar(
+    SnackBar(
+      content: Text(message),
+    ),
+  );
+}
 
 Color getColorFromHexString(String hexString) {
   if (hexString.startsWith('#')) {

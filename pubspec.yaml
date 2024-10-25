@@ -53,14 +53,6 @@ flutter:
 
 flutter_launcher_icons:
   android: true
-  ios: true
   image_path_android: 'assets/pngs/chat-quote.png'
-  image_path_ios: 'assets/pngs/web-icon.png'
   adaptive_icon_foreground: 'assets/pngs/chat-quote.png'
   adaptive_icon_background: '#ffffff'
-  remove_alpha_ios: true
-  web:
-    generate: true
-    image_path: 'assets/pngs/web-icon.png'
-    background_color: '#ffffff'
-    theme_color: '#ffffff'

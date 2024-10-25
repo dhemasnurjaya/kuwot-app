@@ -188,6 +188,9 @@ void setup() {
   );
   getIt.registerLazySingleton<Time>(() => TimeImpl());
   getIt.registerLazySingleton<InAppPurchase>(() => InAppPurchase.instance);
+  getIt.registerLazySingleton<GlobalKey<ScaffoldMessengerState>>(
+    () => GlobalKey<ScaffoldMessengerState>(),
+  );
 }
 
 MultiBlocProvider getMultiBlocProvider({required Widget child}) {
