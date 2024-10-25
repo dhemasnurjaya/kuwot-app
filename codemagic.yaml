@@ -18,8 +18,12 @@ workflows:
         - google_play_credentials
       vars:
         PACKAGE_NAME: "com.dhemasnurjaya.kuwot"
-        GOOGLE_PLAY_TRACK: "alpha"
+        GOOGLE_PLAY_TRACK: "beta"
       flutter: stable
+    cache:
+      cache_paths:
+        - $HOME/.gradle/caches
+        - $FLUTTER_ROOT/.pub-cache
     scripts:
       - name: Set up local.properties
         script: |

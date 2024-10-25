@@ -15,8 +15,7 @@ class PurchaseDetailsCubit extends Cubit<List<PurchaseDetails>> {
   StreamSubscription<List<PurchaseDetails>>? _purchaseDetailsSubscription;
 
   PurchaseDetailsCubit(this.repository) : super([]) {
-    // listen to purchase details stream
-    // and emit the event to the UI
+    // listen to purchase details stream and emit the event to the UI
     _purchaseDetailsSubscription = repository.purchaseStream.listen((event) {
       emit(event);
 

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:kuwot/features/in_app_purchase/presentation/bloc/in_app_purchase_bloc.dart';
-import 'package:kuwot/features/in_app_purchase/presentation/bloc/purchase_details_cubit.dart';
 
 @RoutePage()
 class DonationPage extends StatefulWidget {
@@ -33,28 +32,15 @@ class _DonationPageState extends State<DonationPage> {
       appBar: AppBar(
         title: const Text('Coffee time?'),
       ),
-      body: MultiBlocListener(
-        listeners: [
-          BlocListener<PurchaseDetailsCubit, List<PurchaseDetails>>(
-            listener: (context, state) {
-              final purchaseSuccess =
-                  state.last.status == PurchaseStatus.purchased;
-              if (purchaseSuccess) {
-                _showPurchaseSuccessDialog();
-              }
-            },
-          ),
-          BlocListener<InAppPurchaseBloc, InAppPurchaseState>(
-            listener: (context, state) {
-              if (state is ConsumableProductsLoadedState) {
-                setState(() {
-                  _products.clear();
-                  _products.addAll(state.products);
-                });
-              }
-            },
-          ),
-        ],
+      body: BlocListener<InAppPurchaseBloc, InAppPurchaseState>(
+        listener: (context, state) {
+          if (state is ConsumableProductsLoadedState) {
+            setState(() {
+              _products.clear();
+              _products.addAll(state.products);
+            });
+          }
+        },
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
@@ -106,26 +92,5 @@ class _DonationPageState extends State<DonationPage> {
 
       return productCard;
     }).toList();
-  }
-
-  void _showPurchaseSuccessDialog() {
-    showAdaptiveDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Thank you!'),
-          content: const Text('Your donation is highly appreciated!'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                context.router.maybePop();
-              },
-              child: const Text('Close'),
-            ),
-          ],
-        );
-      },
-    );
   }
 }
