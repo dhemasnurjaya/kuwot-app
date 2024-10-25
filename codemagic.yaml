@@ -18,7 +18,7 @@ workflows:
         - google_play_credentials
       vars:
         PACKAGE_NAME: "com.dhemasnurjaya.kuwot"
-        GOOGLE_PLAY_TRACK: "beta"
+        GOOGLE_PLAY_TRACK: "alpha"
       flutter: stable
     cache:
       cache_paths:
