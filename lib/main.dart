@@ -7,7 +7,6 @@ import 'package:kuwot/core/env.dart';
 import 'package:kuwot/core/presentation/bloc/app_bloc_observer.dart';
 import 'package:kuwot/core/presentation/bloc/config/theme_mode_cubit.dart';
 import 'package:kuwot/core/presentation/theme/app_theme.dart';
-import 'package:kuwot/core/presentation/widgets/responsive_body_widget.dart';
 import 'package:kuwot/core/router/app_router.dart';
 import 'package:kuwot/features/in_app_purchase/presentation/bloc/purchase_details_cubit.dart';
 import 'package:kuwot/utilities.dart';
@@ -91,11 +90,6 @@ class KuwotApp extends StatelessWidget {
               darkTheme: darkTheme,
               themeMode: state,
               routerConfig: _appRouter.config(),
-              builder: (context, child) {
-                return ResponsiveBodyWidget(
-                  child: child ?? const SizedBox(),
-                );
-              },
             );
           },
         ),
