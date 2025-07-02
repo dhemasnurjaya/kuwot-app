@@ -4,7 +4,7 @@ import 'package:kuwot/features/quote/data/models/translation_model.dart';
 part 'translation.freezed.dart';
 
 @freezed
-class Translation with _$Translation {
+abstract class Translation with _$Translation {
   const factory Translation({
     required String id,
     required String language,

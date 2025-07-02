@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,91 +10,62 @@ part of 'auth_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-AuthModel _$AuthModelFromJson(Map<String, dynamic> json) {
-  return _AuthModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$AuthModel {
   /// An UUID string, unique per request.
-  String get token => throw _privateConstructorUsedError;
+  String get token;
 
   /// Unix time in seconds. It is the time when the token was issued.
   /// Will expire after a time window.
-  int get issuedAt => throw _privateConstructorUsedError;
-
-  /// Serializes this AuthModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get issuedAt;
 
   /// Create a copy of AuthModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AuthModelCopyWith<AuthModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AuthModelCopyWith<$Res> {
-  factory $AuthModelCopyWith(AuthModel value, $Res Function(AuthModel) then) =
-      _$AuthModelCopyWithImpl<$Res, AuthModel>;
-  @useResult
-  $Res call({String token, int issuedAt});
-}
-
-/// @nodoc
-class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
-    implements $AuthModelCopyWith<$Res> {
-  _$AuthModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of AuthModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $AuthModelCopyWith<AuthModel> get copyWith =>
+      _$AuthModelCopyWithImpl<AuthModel>(this as AuthModel, _$identity);
+
+  /// Serializes this AuthModel to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? token = null,
-    Object? issuedAt = null,
-  }) {
-    return _then(_value.copyWith(
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-      issuedAt: null == issuedAt
-          ? _value.issuedAt
-          : issuedAt // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AuthModel &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.issuedAt, issuedAt) ||
+                other.issuedAt == issuedAt));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, token, issuedAt);
+
+  @override
+  String toString() {
+    return 'AuthModel(token: $token, issuedAt: $issuedAt)';
   }
 }
 
 /// @nodoc
-abstract class _$$AuthModelImplCopyWith<$Res>
-    implements $AuthModelCopyWith<$Res> {
-  factory _$$AuthModelImplCopyWith(
-          _$AuthModelImpl value, $Res Function(_$AuthModelImpl) then) =
-      __$$AuthModelImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $AuthModelCopyWith<$Res> {
+  factory $AuthModelCopyWith(AuthModel value, $Res Function(AuthModel) _then) =
+      _$AuthModelCopyWithImpl;
   @useResult
   $Res call({String token, int issuedAt});
 }
 
 /// @nodoc
-class __$$AuthModelImplCopyWithImpl<$Res>
-    extends _$AuthModelCopyWithImpl<$Res, _$AuthModelImpl>
-    implements _$$AuthModelImplCopyWith<$Res> {
-  __$$AuthModelImplCopyWithImpl(
-      _$AuthModelImpl _value, $Res Function(_$AuthModelImpl) _then)
-      : super(_value, _then);
+class _$AuthModelCopyWithImpl<$Res> implements $AuthModelCopyWith<$Res> {
+  _$AuthModelCopyWithImpl(this._self, this._then);
+
+  final AuthModel _self;
+  final $Res Function(AuthModel) _then;
 
   /// Create a copy of AuthModel
   /// with the given fields replaced by the non-null parameter values.
@@ -103,13 +75,13 @@ class __$$AuthModelImplCopyWithImpl<$Res>
     Object? token = null,
     Object? issuedAt = null,
   }) {
-    return _then(_$AuthModelImpl(
+    return _then(_self.copyWith(
       token: null == token
-          ? _value.token
+          ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
       issuedAt: null == issuedAt
-          ? _value.issuedAt
+          ? _self.issuedAt
           : issuedAt // ignore: cast_nullable_to_non_nullable
               as int,
     ));
@@ -118,11 +90,10 @@ class __$$AuthModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AuthModelImpl implements _AuthModel {
-  const _$AuthModelImpl({required this.token, required this.issuedAt});
-
-  factory _$AuthModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AuthModelImplFromJson(json);
+class _AuthModel implements AuthModel {
+  const _AuthModel({required this.token, required this.issuedAt});
+  factory _AuthModel.fromJson(Map<String, dynamic> json) =>
+      _$AuthModelFromJson(json);
 
   /// An UUID string, unique per request.
   @override
@@ -133,16 +104,26 @@ class _$AuthModelImpl implements _AuthModel {
   @override
   final int issuedAt;
 
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'AuthModel(token: $token, issuedAt: $issuedAt)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$AuthModelCopyWith<_AuthModel> get copyWith =>
+      __$AuthModelCopyWithImpl<_AuthModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$AuthModelToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthModelImpl &&
+            other is _AuthModel &&
             (identical(other.token, token) || other.token == token) &&
             (identical(other.issuedAt, issuedAt) ||
                 other.issuedAt == issuedAt));
@@ -152,43 +133,49 @@ class _$AuthModelImpl implements _AuthModel {
   @override
   int get hashCode => Object.hash(runtimeType, token, issuedAt);
 
-  /// Create a copy of AuthModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>
-      __$$AuthModelImplCopyWithImpl<_$AuthModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AuthModelImplToJson(
-      this,
-    );
+  String toString() {
+    return 'AuthModel(token: $token, issuedAt: $issuedAt)';
   }
 }
 
-abstract class _AuthModel implements AuthModel {
-  const factory _AuthModel(
-      {required final String token,
-      required final int issuedAt}) = _$AuthModelImpl;
-
-  factory _AuthModel.fromJson(Map<String, dynamic> json) =
-      _$AuthModelImpl.fromJson;
-
-  /// An UUID string, unique per request.
+/// @nodoc
+abstract mixin class _$AuthModelCopyWith<$Res>
+    implements $AuthModelCopyWith<$Res> {
+  factory _$AuthModelCopyWith(
+          _AuthModel value, $Res Function(_AuthModel) _then) =
+      __$AuthModelCopyWithImpl;
   @override
-  String get token;
+  @useResult
+  $Res call({String token, int issuedAt});
+}
 
-  /// Unix time in seconds. It is the time when the token was issued.
-  /// Will expire after a time window.
-  @override
-  int get issuedAt;
+/// @nodoc
+class __$AuthModelCopyWithImpl<$Res> implements _$AuthModelCopyWith<$Res> {
+  __$AuthModelCopyWithImpl(this._self, this._then);
+
+  final _AuthModel _self;
+  final $Res Function(_AuthModel) _then;
 
   /// Create a copy of AuthModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? token = null,
+    Object? issuedAt = null,
+  }) {
+    return _then(_AuthModel(
+      token: null == token
+          ? _self.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      issuedAt: null == issuedAt
+          ? _self.issuedAt
+          : issuedAt // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
+
+// dart format on

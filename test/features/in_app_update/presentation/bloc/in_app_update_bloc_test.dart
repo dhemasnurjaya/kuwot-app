@@ -2,14 +2,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:in_app_update/in_app_update.dart';
 import 'package:kuwot/core/app_updater.dart';
 import 'package:kuwot/features/in_app_update/presentation/bloc/in_app_update_bloc.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'in_app_update_bloc_test.mocks.dart';
+class MockAppUpdater extends Mock implements AppUpdater {}
 
-@GenerateMocks([
-  AppUpdater,
-])
 void main() {
   late MockAppUpdater mockAppUpdater;
   late InAppUpdateBloc bloc;
@@ -40,14 +36,16 @@ void main() {
         clientVersionStalenessDays: 1,
         updatePriority: 1,
       );
-      when(mockAppUpdater.checkForUpdate())
+      when(() => mockAppUpdater.checkForUpdate())
           .thenAnswer((_) async => tAppUpdateInfo);
-      // assert later
+
+      // expect later
       final expected = [
         const InAppUpdateCheckingState(),
         const InAppUpdateAvailableState(),
       ];
       expectLater(bloc.stream, emitsInOrder(expected));
+
       // act
       bloc.add(const InAppUpdateCheckEvent());
     });
@@ -67,14 +65,16 @@ void main() {
         clientVersionStalenessDays: 1,
         updatePriority: 1,
       );
-      when(mockAppUpdater.checkForUpdate())
+      when(() => mockAppUpdater.checkForUpdate())
           .thenAnswer((_) async => tAppUpdateInfo);
-      // assert later
+
+      // expect later
       final expected = [
         const InAppUpdateCheckingState(),
         const InAppUpdateUnavailableState(),
       ];
       expectLater(bloc.stream, emitsInOrder(expected));
+
       // act
       bloc.add(const InAppUpdateCheckEvent());
     });

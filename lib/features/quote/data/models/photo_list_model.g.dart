@@ -6,8 +6,8 @@ part of 'photo_list_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PhotoListModelImpl _$$PhotoListModelImplFromJson(Map<String, dynamic> json) =>
-    _$PhotoListModelImpl(
+_PhotoListModel _$PhotoListModelFromJson(Map<String, dynamic> json) =>
+    _PhotoListModel(
       page: (json['page'] as num).toInt(),
       perPage: (json['per_page'] as num).toInt(),
       photos: (json['photos'] as List<dynamic>)
@@ -17,8 +17,7 @@ _$PhotoListModelImpl _$$PhotoListModelImplFromJson(Map<String, dynamic> json) =>
       nextPage: json['next_page'] as String,
     );
 
-Map<String, dynamic> _$$PhotoListModelImplToJson(
-        _$PhotoListModelImpl instance) =>
+Map<String, dynamic> _$PhotoListModelToJson(_PhotoListModel instance) =>
     <String, dynamic>{
       'page': instance.page,
       'per_page': instance.perPage,
@@ -27,8 +26,7 @@ Map<String, dynamic> _$$PhotoListModelImplToJson(
       'next_page': instance.nextPage,
     };
 
-_$PhotoModelImpl _$$PhotoModelImplFromJson(Map<String, dynamic> json) =>
-    _$PhotoModelImpl(
+_PhotoModel _$PhotoModelFromJson(Map<String, dynamic> json) => _PhotoModel(
       id: (json['id'] as num).toInt(),
       width: (json['width'] as num).toInt(),
       height: (json['height'] as num).toInt(),
@@ -42,7 +40,7 @@ _$PhotoModelImpl _$$PhotoModelImplFromJson(Map<String, dynamic> json) =>
       alt: json['alt'] as String,
     );
 
-Map<String, dynamic> _$$PhotoModelImplToJson(_$PhotoModelImpl instance) =>
+Map<String, dynamic> _$PhotoModelToJson(_PhotoModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'width': instance.width,
@@ -57,8 +55,7 @@ Map<String, dynamic> _$$PhotoModelImplToJson(_$PhotoModelImpl instance) =>
       'alt': instance.alt,
     };
 
-_$SrcModelImpl _$$SrcModelImplFromJson(Map<String, dynamic> json) =>
-    _$SrcModelImpl(
+_SrcModel _$SrcModelFromJson(Map<String, dynamic> json) => _SrcModel(
       original: json['original'] as String,
       large2x: json['large2x'] as String,
       large: json['large'] as String,
@@ -69,8 +66,7 @@ _$SrcModelImpl _$$SrcModelImplFromJson(Map<String, dynamic> json) =>
       tiny: json['tiny'] as String,
     );
 
-Map<String, dynamic> _$$SrcModelImplToJson(_$SrcModelImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SrcModelToJson(_SrcModel instance) => <String, dynamic>{
       'original': instance.original,
       'large2x': instance.large2x,
       'large': instance.large,

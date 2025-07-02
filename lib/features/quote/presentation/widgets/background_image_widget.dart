@@ -89,8 +89,9 @@ class BackgroundPhotoWidget extends StatelessWidget {
                       state.backgroundImages[backgroundIndex].authorName,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             decoration: TextDecoration.underline,
-                            color: Colors.white.withOpacity(0.85),
-                            decorationColor: Colors.white.withOpacity(0.85),
+                            color: Colors.white.withValues(alpha: 0.85),
+                            decorationColor:
+                                Colors.white.withValues(alpha: 0.85),
                           ),
                     ),
                     onTap: () async {
@@ -110,8 +111,9 @@ class BackgroundPhotoWidget extends StatelessWidget {
                       'Unsplash',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             decoration: TextDecoration.underline,
-                            color: Colors.white.withOpacity(0.85),
-                            decorationColor: Colors.white.withOpacity(0.85),
+                            color: Colors.white.withValues(alpha: 0.85),
+                            decorationColor:
+                                Colors.white.withValues(alpha: 0.85),
                           ),
                     ),
                     onTap: () async {

@@ -1,16 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:kuwot/core/domain/no_params.dart';
-import 'package:kuwot/core/error/failure.dart';
 import 'package:kuwot/features/quote/domain/entities/background_image.dart';
 import 'package:kuwot/features/quote/domain/repositories/quote_repository.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_background_images.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'get_background_photos_test.mocks.dart';
+class MockQuoteRepository extends Mock implements QuoteRepository {}
 
-@GenerateMocks([QuoteRepository])
 void main() {
   late MockQuoteRepository mockQuoteRepository;
   late GetBackgroundImages useCase;
@@ -23,8 +20,7 @@ void main() {
   test('should get background photos', () async {
     // arrange
     const tImages = <BackgroundImage>[];
-    provideDummy<Either<Failure, List<BackgroundImage>>>(right(tImages));
-    when(mockQuoteRepository.getBackgroundImages())
+    when(() => mockQuoteRepository.getBackgroundImages())
         .thenAnswer((_) async => right(tImages));
 
     // act
@@ -32,7 +28,7 @@ void main() {
 
     // assert
     expect(result, right(tImages));
-    verify(mockQuoteRepository.getBackgroundImages());
+    verify(() => mockQuoteRepository.getBackgroundImages());
     verifyNoMoreInteractions(mockQuoteRepository);
   });
 }

@@ -5,7 +5,7 @@ part 'auth_model.g.dart';
 
 /// Represents the authentication token for each request.
 @freezed
-class AuthModel with _$AuthModel {
+abstract class AuthModel with _$AuthModel {
   /// Create a new [AuthModel].
   const factory AuthModel({
     /// An UUID string, unique per request.

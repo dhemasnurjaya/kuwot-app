@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,75 +10,55 @@ part of 'background_photos.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$BackgroundPhotos {
-  List<Photo> get photos => throw _privateConstructorUsedError;
+  List<Photo> get photos;
 
   /// Create a copy of BackgroundPhotos
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $BackgroundPhotosCopyWith<BackgroundPhotos> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $BackgroundPhotosCopyWith<$Res> {
-  factory $BackgroundPhotosCopyWith(
-          BackgroundPhotos value, $Res Function(BackgroundPhotos) then) =
-      _$BackgroundPhotosCopyWithImpl<$Res, BackgroundPhotos>;
-  @useResult
-  $Res call({List<Photo> photos});
-}
-
-/// @nodoc
-class _$BackgroundPhotosCopyWithImpl<$Res, $Val extends BackgroundPhotos>
-    implements $BackgroundPhotosCopyWith<$Res> {
-  _$BackgroundPhotosCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of BackgroundPhotos
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $BackgroundPhotosCopyWith<BackgroundPhotos> get copyWith =>
+      _$BackgroundPhotosCopyWithImpl<BackgroundPhotos>(
+          this as BackgroundPhotos, _$identity);
+
   @override
-  $Res call({
-    Object? photos = null,
-  }) {
-    return _then(_value.copyWith(
-      photos: null == photos
-          ? _value.photos
-          : photos // ignore: cast_nullable_to_non_nullable
-              as List<Photo>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is BackgroundPhotos &&
+            const DeepCollectionEquality().equals(other.photos, photos));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(photos));
+
+  @override
+  String toString() {
+    return 'BackgroundPhotos(photos: $photos)';
   }
 }
 
 /// @nodoc
-abstract class _$$BackgroundPhotosImplCopyWith<$Res>
-    implements $BackgroundPhotosCopyWith<$Res> {
-  factory _$$BackgroundPhotosImplCopyWith(_$BackgroundPhotosImpl value,
-          $Res Function(_$BackgroundPhotosImpl) then) =
-      __$$BackgroundPhotosImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $BackgroundPhotosCopyWith<$Res> {
+  factory $BackgroundPhotosCopyWith(
+          BackgroundPhotos value, $Res Function(BackgroundPhotos) _then) =
+      _$BackgroundPhotosCopyWithImpl;
   @useResult
   $Res call({List<Photo> photos});
 }
 
 /// @nodoc
-class __$$BackgroundPhotosImplCopyWithImpl<$Res>
-    extends _$BackgroundPhotosCopyWithImpl<$Res, _$BackgroundPhotosImpl>
-    implements _$$BackgroundPhotosImplCopyWith<$Res> {
-  __$$BackgroundPhotosImplCopyWithImpl(_$BackgroundPhotosImpl _value,
-      $Res Function(_$BackgroundPhotosImpl) _then)
-      : super(_value, _then);
+class _$BackgroundPhotosCopyWithImpl<$Res>
+    implements $BackgroundPhotosCopyWith<$Res> {
+  _$BackgroundPhotosCopyWithImpl(this._self, this._then);
+
+  final BackgroundPhotos _self;
+  final $Res Function(BackgroundPhotos) _then;
 
   /// Create a copy of BackgroundPhotos
   /// with the given fields replaced by the non-null parameter values.
@@ -86,9 +67,9 @@ class __$$BackgroundPhotosImplCopyWithImpl<$Res>
   $Res call({
     Object? photos = null,
   }) {
-    return _then(_$BackgroundPhotosImpl(
+    return _then(_self.copyWith(
       photos: null == photos
-          ? _value._photos
+          ? _self.photos
           : photos // ignore: cast_nullable_to_non_nullable
               as List<Photo>,
     ));
@@ -97,8 +78,8 @@ class __$$BackgroundPhotosImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BackgroundPhotosImpl implements _BackgroundPhotos {
-  const _$BackgroundPhotosImpl({required final List<Photo> photos})
+class _BackgroundPhotos implements BackgroundPhotos {
+  const _BackgroundPhotos({required final List<Photo> photos})
       : _photos = photos;
 
   final List<Photo> _photos;
@@ -109,16 +90,19 @@ class _$BackgroundPhotosImpl implements _BackgroundPhotos {
     return EqualUnmodifiableListView(_photos);
   }
 
+  /// Create a copy of BackgroundPhotos
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'BackgroundPhotos(photos: $photos)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BackgroundPhotosCopyWith<_BackgroundPhotos> get copyWith =>
+      __$BackgroundPhotosCopyWithImpl<_BackgroundPhotos>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BackgroundPhotosImpl &&
+            other is _BackgroundPhotos &&
             const DeepCollectionEquality().equals(other._photos, _photos));
   }
 
@@ -126,141 +110,64 @@ class _$BackgroundPhotosImpl implements _BackgroundPhotos {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_photos));
 
-  /// Create a copy of BackgroundPhotos
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$BackgroundPhotosImplCopyWith<_$BackgroundPhotosImpl> get copyWith =>
-      __$$BackgroundPhotosImplCopyWithImpl<_$BackgroundPhotosImpl>(
-          this, _$identity);
-}
-
-abstract class _BackgroundPhotos implements BackgroundPhotos {
-  const factory _BackgroundPhotos({required final List<Photo> photos}) =
-      _$BackgroundPhotosImpl;
-
-  @override
-  List<Photo> get photos;
-
-  /// Create a copy of BackgroundPhotos
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BackgroundPhotosImplCopyWith<_$BackgroundPhotosImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$Photo {
-  String get url => throw _privateConstructorUsedError;
-  String get avgColor => throw _privateConstructorUsedError;
-
-  /// Create a copy of Photo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PhotoCopyWith<Photo> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PhotoCopyWith<$Res> {
-  factory $PhotoCopyWith(Photo value, $Res Function(Photo) then) =
-      _$PhotoCopyWithImpl<$Res, Photo>;
-  @useResult
-  $Res call({String url, String avgColor});
-}
-
-/// @nodoc
-class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
-    implements $PhotoCopyWith<$Res> {
-  _$PhotoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Photo
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? url = null,
-    Object? avgColor = null,
-  }) {
-    return _then(_value.copyWith(
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      avgColor: null == avgColor
-          ? _value.avgColor
-          : avgColor // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'BackgroundPhotos(photos: $photos)';
   }
 }
 
 /// @nodoc
-abstract class _$$BackgroundImageImplCopyWith<$Res>
-    implements $PhotoCopyWith<$Res> {
-  factory _$$BackgroundImageImplCopyWith(_$BackgroundImageImpl value,
-          $Res Function(_$BackgroundImageImpl) then) =
-      __$$BackgroundImageImplCopyWithImpl<$Res>;
+abstract mixin class _$BackgroundPhotosCopyWith<$Res>
+    implements $BackgroundPhotosCopyWith<$Res> {
+  factory _$BackgroundPhotosCopyWith(
+          _BackgroundPhotos value, $Res Function(_BackgroundPhotos) _then) =
+      __$BackgroundPhotosCopyWithImpl;
   @override
   @useResult
-  $Res call({String url, String avgColor});
+  $Res call({List<Photo> photos});
 }
 
 /// @nodoc
-class __$$BackgroundImageImplCopyWithImpl<$Res>
-    extends _$PhotoCopyWithImpl<$Res, _$BackgroundImageImpl>
-    implements _$$BackgroundImageImplCopyWith<$Res> {
-  __$$BackgroundImageImplCopyWithImpl(
-      _$BackgroundImageImpl _value, $Res Function(_$BackgroundImageImpl) _then)
-      : super(_value, _then);
+class __$BackgroundPhotosCopyWithImpl<$Res>
+    implements _$BackgroundPhotosCopyWith<$Res> {
+  __$BackgroundPhotosCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of Photo
+  final _BackgroundPhotos _self;
+  final $Res Function(_BackgroundPhotos) _then;
+
+  /// Create a copy of BackgroundPhotos
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
-    Object? url = null,
-    Object? avgColor = null,
+    Object? photos = null,
   }) {
-    return _then(_$BackgroundImageImpl(
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      avgColor: null == avgColor
-          ? _value.avgColor
-          : avgColor // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_BackgroundPhotos(
+      photos: null == photos
+          ? _self._photos
+          : photos // ignore: cast_nullable_to_non_nullable
+              as List<Photo>,
     ));
   }
 }
 
 /// @nodoc
+mixin _$Photo {
+  String get url;
+  String get avgColor;
 
-class _$BackgroundImageImpl implements _BackgroundImage {
-  const _$BackgroundImageImpl({required this.url, required this.avgColor});
-
-  @override
-  final String url;
-  @override
-  final String avgColor;
-
-  @override
-  String toString() {
-    return 'Photo(url: $url, avgColor: $avgColor)';
-  }
+  /// Create a copy of Photo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PhotoCopyWith<Photo> get copyWith =>
+      _$PhotoCopyWithImpl<Photo>(this as Photo, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BackgroundImageImpl &&
+            other is Photo &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.avgColor, avgColor) ||
                 other.avgColor == avgColor));
@@ -269,30 +176,123 @@ class _$BackgroundImageImpl implements _BackgroundImage {
   @override
   int get hashCode => Object.hash(runtimeType, url, avgColor);
 
+  @override
+  String toString() {
+    return 'Photo(url: $url, avgColor: $avgColor)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $PhotoCopyWith<$Res> {
+  factory $PhotoCopyWith(Photo value, $Res Function(Photo) _then) =
+      _$PhotoCopyWithImpl;
+  @useResult
+  $Res call({String url, String avgColor});
+}
+
+/// @nodoc
+class _$PhotoCopyWithImpl<$Res> implements $PhotoCopyWith<$Res> {
+  _$PhotoCopyWithImpl(this._self, this._then);
+
+  final Photo _self;
+  final $Res Function(Photo) _then;
+
   /// Create a copy of Photo
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+    Object? avgColor = null,
+  }) {
+    return _then(_self.copyWith(
+      url: null == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      avgColor: null == avgColor
+          ? _self.avgColor
+          : avgColor // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _BackgroundImage implements Photo {
+  const _BackgroundImage({required this.url, required this.avgColor});
+
+  @override
+  final String url;
+  @override
+  final String avgColor;
+
+  /// Create a copy of Photo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BackgroundImageCopyWith<_BackgroundImage> get copyWith =>
+      __$BackgroundImageCopyWithImpl<_BackgroundImage>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _BackgroundImage &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.avgColor, avgColor) ||
+                other.avgColor == avgColor));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, url, avgColor);
+
+  @override
+  String toString() {
+    return 'Photo(url: $url, avgColor: $avgColor)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$BackgroundImageCopyWith<$Res>
+    implements $PhotoCopyWith<$Res> {
+  factory _$BackgroundImageCopyWith(
+          _BackgroundImage value, $Res Function(_BackgroundImage) _then) =
+      __$BackgroundImageCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String url, String avgColor});
+}
+
+/// @nodoc
+class __$BackgroundImageCopyWithImpl<$Res>
+    implements _$BackgroundImageCopyWith<$Res> {
+  __$BackgroundImageCopyWithImpl(this._self, this._then);
+
+  final _BackgroundImage _self;
+  final $Res Function(_BackgroundImage) _then;
+
+  /// Create a copy of Photo
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  _$$BackgroundImageImplCopyWith<_$BackgroundImageImpl> get copyWith =>
-      __$$BackgroundImageImplCopyWithImpl<_$BackgroundImageImpl>(
-          this, _$identity);
+  $Res call({
+    Object? url = null,
+    Object? avgColor = null,
+  }) {
+    return _then(_BackgroundImage(
+      url: null == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      avgColor: null == avgColor
+          ? _self.avgColor
+          : avgColor // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
-abstract class _BackgroundImage implements Photo {
-  const factory _BackgroundImage(
-      {required final String url,
-      required final String avgColor}) = _$BackgroundImageImpl;
-
-  @override
-  String get url;
-  @override
-  String get avgColor;
-
-  /// Create a copy of Photo
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BackgroundImageImplCopyWith<_$BackgroundImageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

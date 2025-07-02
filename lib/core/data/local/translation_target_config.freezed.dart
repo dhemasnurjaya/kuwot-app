@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,133 +10,30 @@ part of 'translation_target_config.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-TranslationTarget _$TranslationTargetFromJson(Map<String, dynamic> json) {
-  return _TranslationTarget.fromJson(json);
-}
 
 /// @nodoc
 mixin _$TranslationTarget {
-  String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-
-  /// Serializes this TranslationTarget to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get id;
+  String get name;
 
   /// Create a copy of TranslationTarget
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $TranslationTargetCopyWith<TranslationTarget> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$TranslationTargetCopyWithImpl<TranslationTarget>(
+          this as TranslationTarget, _$identity);
 
-/// @nodoc
-abstract class $TranslationTargetCopyWith<$Res> {
-  factory $TranslationTargetCopyWith(
-          TranslationTarget value, $Res Function(TranslationTarget) then) =
-      _$TranslationTargetCopyWithImpl<$Res, TranslationTarget>;
-  @useResult
-  $Res call({String id, String name});
-}
-
-/// @nodoc
-class _$TranslationTargetCopyWithImpl<$Res, $Val extends TranslationTarget>
-    implements $TranslationTargetCopyWith<$Res> {
-  _$TranslationTargetCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of TranslationTarget
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$TranslationTargetImplCopyWith<$Res>
-    implements $TranslationTargetCopyWith<$Res> {
-  factory _$$TranslationTargetImplCopyWith(_$TranslationTargetImpl value,
-          $Res Function(_$TranslationTargetImpl) then) =
-      __$$TranslationTargetImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String id, String name});
-}
-
-/// @nodoc
-class __$$TranslationTargetImplCopyWithImpl<$Res>
-    extends _$TranslationTargetCopyWithImpl<$Res, _$TranslationTargetImpl>
-    implements _$$TranslationTargetImplCopyWith<$Res> {
-  __$$TranslationTargetImplCopyWithImpl(_$TranslationTargetImpl _value,
-      $Res Function(_$TranslationTargetImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TranslationTarget
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_$TranslationTargetImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$TranslationTargetImpl implements _TranslationTarget {
-  const _$TranslationTargetImpl({required this.id, required this.name});
-
-  factory _$TranslationTargetImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TranslationTargetImplFromJson(json);
-
-  @override
-  final String id;
-  @override
-  final String name;
-
-  @override
-  String toString() {
-    return 'TranslationTarget(id: $id, name: $name)';
-  }
+  /// Serializes this TranslationTarget to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TranslationTargetImpl &&
+            other is TranslationTarget &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -144,40 +42,134 @@ class _$TranslationTargetImpl implements _TranslationTarget {
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  /// Create a copy of TranslationTarget
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TranslationTargetImplCopyWith<_$TranslationTargetImpl> get copyWith =>
-      __$$TranslationTargetImplCopyWithImpl<_$TranslationTargetImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TranslationTargetImplToJson(
-      this,
-    );
+  String toString() {
+    return 'TranslationTarget(id: $id, name: $name)';
   }
 }
 
-abstract class _TranslationTarget implements TranslationTarget {
-  const factory _TranslationTarget(
-      {required final String id,
-      required final String name}) = _$TranslationTargetImpl;
+/// @nodoc
+abstract mixin class $TranslationTargetCopyWith<$Res> {
+  factory $TranslationTargetCopyWith(
+          TranslationTarget value, $Res Function(TranslationTarget) _then) =
+      _$TranslationTargetCopyWithImpl;
+  @useResult
+  $Res call({String id, String name});
+}
 
-  factory _TranslationTarget.fromJson(Map<String, dynamic> json) =
-      _$TranslationTargetImpl.fromJson;
+/// @nodoc
+class _$TranslationTargetCopyWithImpl<$Res>
+    implements $TranslationTargetCopyWith<$Res> {
+  _$TranslationTargetCopyWithImpl(this._self, this._then);
+
+  final TranslationTarget _self;
+  final $Res Function(TranslationTarget) _then;
+
+  /// Create a copy of TranslationTarget
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _TranslationTarget implements TranslationTarget {
+  const _TranslationTarget({required this.id, required this.name});
+  factory _TranslationTarget.fromJson(Map<String, dynamic> json) =>
+      _$TranslationTargetFromJson(json);
 
   @override
-  String get id;
+  final String id;
   @override
-  String get name;
+  final String name;
 
   /// Create a copy of TranslationTarget
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TranslationTargetImplCopyWith<_$TranslationTargetImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$TranslationTargetCopyWith<_TranslationTarget> get copyWith =>
+      __$TranslationTargetCopyWithImpl<_TranslationTarget>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TranslationTargetToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _TranslationTarget &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name);
+
+  @override
+  String toString() {
+    return 'TranslationTarget(id: $id, name: $name)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$TranslationTargetCopyWith<$Res>
+    implements $TranslationTargetCopyWith<$Res> {
+  factory _$TranslationTargetCopyWith(
+          _TranslationTarget value, $Res Function(_TranslationTarget) _then) =
+      __$TranslationTargetCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String id, String name});
+}
+
+/// @nodoc
+class __$TranslationTargetCopyWithImpl<$Res>
+    implements _$TranslationTargetCopyWith<$Res> {
+  __$TranslationTargetCopyWithImpl(this._self, this._then);
+
+  final _TranslationTarget _self;
+  final $Res Function(_TranslationTarget) _then;
+
+  /// Create a copy of TranslationTarget
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_TranslationTarget(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+// dart format on

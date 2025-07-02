@@ -1,18 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:kuwot/core/domain/no_params.dart';
-import 'package:kuwot/core/error/failure.dart';
 import 'package:kuwot/features/quote/domain/entities/translation.dart';
 import 'package:kuwot/features/quote/domain/repositories/quote_repository.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_translations.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'get_translations_test.mocks.dart';
+class MockQuoteRepository extends Mock implements QuoteRepository {}
 
-@GenerateMocks([
-  QuoteRepository,
-])
 void main() {
   late MockQuoteRepository mockQuoteRepository;
   late GetTranslations useCase;
@@ -25,8 +20,7 @@ void main() {
   test('should get translations', () async {
     // arrange
     final tExpected = <Translation>[];
-    provideDummy<Either<Failure, List<Translation>>>(right(tExpected));
-    when(mockQuoteRepository.getTranslations())
+    when(() => mockQuoteRepository.getTranslations())
         .thenAnswer((_) async => right(tExpected));
 
     // act
@@ -34,7 +28,7 @@ void main() {
 
     // assert
     expect(result, right(tExpected));
-    verify(mockQuoteRepository.getTranslations());
+    verify(() => mockQuoteRepository.getTranslations());
     verifyNoMoreInteractions(mockQuoteRepository);
   });
 }

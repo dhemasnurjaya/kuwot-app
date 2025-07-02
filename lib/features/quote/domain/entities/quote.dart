@@ -4,7 +4,7 @@ import 'package:kuwot/features/quote/data/models/quote_model.dart';
 part 'quote.freezed.dart';
 
 @freezed
-class Quote with _$Quote {
+abstract class Quote with _$Quote {
   const factory Quote({
     required int id,
     required String author,

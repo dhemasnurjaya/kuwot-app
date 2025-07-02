@@ -4,7 +4,7 @@ part 'server_error_model.freezed.dart';
 part 'server_error_model.g.dart';
 
 @freezed
-class ServerErrorModel with _$ServerErrorModel {
+abstract class ServerErrorModel with _$ServerErrorModel {
   const factory ServerErrorModel({
     required String message,
     required int code,

@@ -6,15 +6,13 @@ part of 'translation_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TranslationModelImpl _$$TranslationModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TranslationModelImpl(
+_TranslationModel _$TranslationModelFromJson(Map<String, dynamic> json) =>
+    _TranslationModel(
       id: json['id'] as String,
       lang: json['lang'] as String,
     );
 
-Map<String, dynamic> _$$TranslationModelImplToJson(
-        _$TranslationModelImpl instance) =>
+Map<String, dynamic> _$TranslationModelToJson(_TranslationModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'lang': instance.lang,

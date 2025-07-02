@@ -4,7 +4,7 @@ part 'translation_model.freezed.dart';
 part 'translation_model.g.dart';
 
 @freezed
-class TranslationModel with _$TranslationModel {
+abstract class TranslationModel with _$TranslationModel {
   const factory TranslationModel({
     required String id,
     required String lang,

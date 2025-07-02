@@ -4,7 +4,7 @@ part 'quote_model.freezed.dart';
 part 'quote_model.g.dart';
 
 @freezed
-class QuoteModel with _$QuoteModel {
+abstract class QuoteModel with _$QuoteModel {
   @JsonSerializable(
     fieldRename: FieldRename.snake,
   )
