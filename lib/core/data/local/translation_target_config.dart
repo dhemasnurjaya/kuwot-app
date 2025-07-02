@@ -11,7 +11,7 @@ const translationTargetConfigKey = 'translationTarget';
 const defaultTranslationTarget = TranslationTarget(id: 'en', name: 'English');
 
 @freezed
-class TranslationTarget with _$TranslationTarget {
+abstract class TranslationTarget with _$TranslationTarget {
   const factory TranslationTarget({
     required String id,
     required String name,

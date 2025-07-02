@@ -12,15 +12,13 @@ import 'package:kuwot/features/quote/data/repositories/quote_repository_impl.dar
 import 'package:kuwot/features/quote/domain/entities/background_image.dart';
 import 'package:kuwot/features/quote/domain/entities/quote.dart';
 import 'package:kuwot/features/quote/domain/entities/translation.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../../../_responses/_response.dart';
-import 'quote_repository_impl_test.mocks.dart';
 
-@GenerateMocks([
-  KuwotApiRemoteDataSource,
-])
+class MockKuwotApiRemoteDataSource extends Mock
+    implements KuwotApiRemoteDataSource {}
+
 void main() {
   late QuoteRepositoryImpl quoteRepository;
   late MockKuwotApiRemoteDataSource mockKuwotApiRemoteDataSource;
@@ -48,14 +46,16 @@ void main() {
   group('getQuote', () {
     test('should return a Quote entity', () async {
       // arrange
-      when(mockKuwotApiRemoteDataSource.getQuote(query: anyNamed('query')))
+      when(() =>
+              mockKuwotApiRemoteDataSource.getQuote(query: any(named: 'query')))
           .thenAnswer((_) async => tQuoteModel);
 
       // act
       final result = await quoteRepository.getQuote(tTranslationTarget);
 
       // assert
-      verify(mockKuwotApiRemoteDataSource.getQuote(query: anyNamed('query')));
+      verify(() =>
+          mockKuwotApiRemoteDataSource.getQuote(query: any(named: 'query')));
       result.fold(
         (failure) => fail('Expected Quote, but got $failure'),
         (quote) => expect(quote, tExpectedQuote),
@@ -66,14 +66,16 @@ void main() {
     test('should return ClientFailure when a client exception is thrown',
         () async {
       // arrange
-      when(mockKuwotApiRemoteDataSource.getQuote(query: anyNamed('query')))
+      when(() =>
+              mockKuwotApiRemoteDataSource.getQuote(query: any(named: 'query')))
           .thenThrow(ClientException('test'));
 
       // act
       final result = await quoteRepository.getQuote(null);
 
       // assert
-      verify(mockKuwotApiRemoteDataSource.getQuote(query: anyNamed('query')));
+      verify(() =>
+          mockKuwotApiRemoteDataSource.getQuote(query: any(named: 'query')));
       result.fold(
         (failure) => expect(failure, isA<ClientFailure>()),
         (quote) => fail('Expected ClientFailure, but got $quote'),
@@ -83,14 +85,16 @@ void main() {
 
     test('should return UnknownFailure when an exception is thrown', () async {
       // arrange
-      when(mockKuwotApiRemoteDataSource.getQuote(query: anyNamed('query')))
+      when(() =>
+              mockKuwotApiRemoteDataSource.getQuote(query: any(named: 'query')))
           .thenThrow(Exception('test'));
 
       // act
       final result = await quoteRepository.getQuote(null);
 
       // assert
-      verify(mockKuwotApiRemoteDataSource.getQuote(query: anyNamed('query')));
+      verify(() =>
+          mockKuwotApiRemoteDataSource.getQuote(query: any(named: 'query')));
       result.fold(
         (failure) => expect(failure, isA<UnknownFailure>()),
         (quote) => fail('Expected UnknownFailure, but got $quote'),
@@ -104,10 +108,10 @@ void main() {
 
     test('should return a Quote entity', () async {
       // arrange
-      when(mockKuwotApiRemoteDataSource.getTranslatedQuote(
-        any,
-        query: anyNamed('query'),
-      )).thenAnswer((_) async => tQuoteModel);
+      when(() => mockKuwotApiRemoteDataSource.getTranslatedQuote(
+            any(),
+            query: any(named: 'query'),
+          )).thenAnswer((_) async => tQuoteModel);
 
       // act
       final result = await quoteRepository.getTranslatedQuote(
@@ -116,10 +120,10 @@ void main() {
       );
 
       // assert
-      verify(mockKuwotApiRemoteDataSource.getTranslatedQuote(
-        any,
-        query: anyNamed('query'),
-      ));
+      verify(() => mockKuwotApiRemoteDataSource.getTranslatedQuote(
+            any(),
+            query: any(named: 'query'),
+          ));
       result.fold(
         (failure) => fail('Expected Quote, but got $failure'),
         (quote) => expect(quote, tExpectedQuote),
@@ -130,10 +134,10 @@ void main() {
     test('should return ClientFailure when a client exception is thrown',
         () async {
       // arrange
-      when(mockKuwotApiRemoteDataSource.getTranslatedQuote(
-        any,
-        query: anyNamed('query'),
-      )).thenThrow(ClientException('test'));
+      when(() => mockKuwotApiRemoteDataSource.getTranslatedQuote(
+            any(),
+            query: any(named: 'query'),
+          )).thenThrow(ClientException('test'));
 
       // act
       final result = await quoteRepository.getTranslatedQuote(
@@ -142,10 +146,10 @@ void main() {
       );
 
       // assert
-      verify(mockKuwotApiRemoteDataSource.getTranslatedQuote(
-        any,
-        query: anyNamed('query'),
-      ));
+      verify(() => mockKuwotApiRemoteDataSource.getTranslatedQuote(
+            any(),
+            query: any(named: 'query'),
+          ));
       result.fold(
         (failure) => expect(failure, isA<ClientFailure>()),
         (quote) => fail('Expected ClientFailure, but got $quote'),
@@ -155,10 +159,10 @@ void main() {
 
     test('should return UnknownFailure when an exception is thrown', () async {
       // arrange
-      when(mockKuwotApiRemoteDataSource.getTranslatedQuote(
-        any,
-        query: anyNamed('query'),
-      )).thenThrow(Exception('test'));
+      when(() => mockKuwotApiRemoteDataSource.getTranslatedQuote(
+            any(),
+            query: any(named: 'query'),
+          )).thenThrow(Exception('test'));
 
       // act
       final result = await quoteRepository.getTranslatedQuote(
@@ -167,10 +171,10 @@ void main() {
       );
 
       // assert
-      verify(mockKuwotApiRemoteDataSource.getTranslatedQuote(
-        any,
-        query: anyNamed('query'),
-      ));
+      verify(() => mockKuwotApiRemoteDataSource.getTranslatedQuote(
+            any(),
+            query: any(named: 'query'),
+          ));
       result.fold(
         (failure) => expect(failure, isA<UnknownFailure>()),
         (quote) => fail('Expected UnknownFailure, but got $quote'),
@@ -192,14 +196,14 @@ void main() {
                 language: e.lang,
               ))
           .toList();
-      when(mockKuwotApiRemoteDataSource.getTranslations())
+      when(() => mockKuwotApiRemoteDataSource.getTranslations())
           .thenAnswer((_) async => tTranslationListModel);
 
       // act
       final result = await quoteRepository.getTranslations();
 
       // assert
-      verify(mockKuwotApiRemoteDataSource.getTranslations());
+      verify(() => mockKuwotApiRemoteDataSource.getTranslations());
       result.fold(
         (failure) => fail('Expected Translations, but got $failure'),
         (translations) => expect(translations, tExpectedTranslations),
@@ -210,14 +214,14 @@ void main() {
     test('should return ClientFailure when a client exception is thrown',
         () async {
       // arrange
-      when(mockKuwotApiRemoteDataSource.getTranslations())
+      when(() => mockKuwotApiRemoteDataSource.getTranslations())
           .thenThrow(ClientException('test'));
 
       // act
       final result = await quoteRepository.getTranslations();
 
       // assert
-      verify(mockKuwotApiRemoteDataSource.getTranslations());
+      verify(() => mockKuwotApiRemoteDataSource.getTranslations());
       result.fold(
         (failure) => expect(failure, isA<ClientFailure>()),
         (translations) => fail('Expected ClientFailure, but got $translations'),
@@ -227,14 +231,14 @@ void main() {
 
     test('should return UnknownFailure when an exception is thrown', () async {
       // arrange
-      when(mockKuwotApiRemoteDataSource.getTranslations())
+      when(() => mockKuwotApiRemoteDataSource.getTranslations())
           .thenThrow(Exception('test'));
 
       // act
       final result = await quoteRepository.getTranslations();
 
       // assert
-      verify(mockKuwotApiRemoteDataSource.getTranslations());
+      verify(() => mockKuwotApiRemoteDataSource.getTranslations());
       result.fold(
         (failure) => expect(failure, isA<UnknownFailure>()),
         (translations) =>
@@ -267,14 +271,14 @@ void main() {
             authorTotalPhotos: e.authorTotalPhotos,
             authorIsForHire: e.authorIsForHire,
           ));
-      when(mockKuwotApiRemoteDataSource.getRandomImages())
+      when(() => mockKuwotApiRemoteDataSource.getRandomImages())
           .thenAnswer((_) async => tImageListModel);
 
       // act
       final result = await quoteRepository.getBackgroundImages();
 
       // assert
-      verify(mockKuwotApiRemoteDataSource.getRandomImages());
+      verify(() => mockKuwotApiRemoteDataSource.getRandomImages());
       result.fold(
         (failure) => fail('Expected BackgroundImages, but got $failure'),
         (photos) => expect(photos, tExpectedImages),
@@ -285,14 +289,14 @@ void main() {
     test('should return ClientFailure when a client exception is thrown',
         () async {
       // arrange
-      when(mockKuwotApiRemoteDataSource.getRandomImages())
+      when(() => mockKuwotApiRemoteDataSource.getRandomImages())
           .thenThrow(ClientException('test'));
 
       // act
       final result = await quoteRepository.getBackgroundImages();
 
       // assert
-      verify(mockKuwotApiRemoteDataSource.getRandomImages());
+      verify(() => mockKuwotApiRemoteDataSource.getRandomImages());
       result.fold(
         (failure) => expect(failure, isA<ClientFailure>()),
         (images) => fail('Expected ClientFailure, but got $images'),
@@ -302,14 +306,14 @@ void main() {
 
     test('should return UnknownFailure when an exception is thrown', () async {
       // arrange
-      when(mockKuwotApiRemoteDataSource.getRandomImages())
+      when(() => mockKuwotApiRemoteDataSource.getRandomImages())
           .thenThrow(Exception('test'));
 
       // act
       final result = await quoteRepository.getBackgroundImages();
 
       // assert
-      verify(mockKuwotApiRemoteDataSource.getRandomImages());
+      verify(() => mockKuwotApiRemoteDataSource.getRandomImages());
       result.fold(
         (failure) => expect(failure, isA<UnknownFailure>()),
         (images) => fail('Expected UnknownFailure, but got $images'),

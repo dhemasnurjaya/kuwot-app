@@ -4,7 +4,7 @@ import 'package:kuwot/features/quote/data/models/image_model.dart';
 part 'background_image.freezed.dart';
 
 @freezed
-class BackgroundImage with _$BackgroundImage {
+abstract class BackgroundImage with _$BackgroundImage {
   const BackgroundImage._();
 
   const factory BackgroundImage({

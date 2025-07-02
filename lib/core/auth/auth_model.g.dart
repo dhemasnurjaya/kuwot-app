@@ -6,13 +6,12 @@ part of 'auth_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AuthModelImpl _$$AuthModelImplFromJson(Map<String, dynamic> json) =>
-    _$AuthModelImpl(
+_AuthModel _$AuthModelFromJson(Map<String, dynamic> json) => _AuthModel(
       token: json['token'] as String,
       issuedAt: (json['issuedAt'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$AuthModelImplToJson(_$AuthModelImpl instance) =>
+Map<String, dynamic> _$AuthModelToJson(_AuthModel instance) =>
     <String, dynamic>{
       'token': instance.token,
       'issuedAt': instance.issuedAt,

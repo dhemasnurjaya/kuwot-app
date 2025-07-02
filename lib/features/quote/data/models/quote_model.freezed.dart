@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,148 +10,30 @@ part of 'quote_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-QuoteModel _$QuoteModelFromJson(Map<String, dynamic> json) {
-  return _QuoteModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$QuoteModel {
-  int get id => throw _privateConstructorUsedError;
-  String get text => throw _privateConstructorUsedError;
-  String get author => throw _privateConstructorUsedError;
-
-  /// Serializes this QuoteModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get id;
+  String get text;
+  String get author;
 
   /// Create a copy of QuoteModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $QuoteModelCopyWith<QuoteModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$QuoteModelCopyWithImpl<QuoteModel>(this as QuoteModel, _$identity);
 
-/// @nodoc
-abstract class $QuoteModelCopyWith<$Res> {
-  factory $QuoteModelCopyWith(
-          QuoteModel value, $Res Function(QuoteModel) then) =
-      _$QuoteModelCopyWithImpl<$Res, QuoteModel>;
-  @useResult
-  $Res call({int id, String text, String author});
-}
-
-/// @nodoc
-class _$QuoteModelCopyWithImpl<$Res, $Val extends QuoteModel>
-    implements $QuoteModelCopyWith<$Res> {
-  _$QuoteModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of QuoteModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? text = null,
-    Object? author = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      author: null == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$QuoteModelImplCopyWith<$Res>
-    implements $QuoteModelCopyWith<$Res> {
-  factory _$$QuoteModelImplCopyWith(
-          _$QuoteModelImpl value, $Res Function(_$QuoteModelImpl) then) =
-      __$$QuoteModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int id, String text, String author});
-}
-
-/// @nodoc
-class __$$QuoteModelImplCopyWithImpl<$Res>
-    extends _$QuoteModelCopyWithImpl<$Res, _$QuoteModelImpl>
-    implements _$$QuoteModelImplCopyWith<$Res> {
-  __$$QuoteModelImplCopyWithImpl(
-      _$QuoteModelImpl _value, $Res Function(_$QuoteModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of QuoteModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? text = null,
-    Object? author = null,
-  }) {
-    return _then(_$QuoteModelImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      author: null == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-@JsonSerializable(fieldRename: FieldRename.snake)
-class _$QuoteModelImpl implements _QuoteModel {
-  const _$QuoteModelImpl(
-      {required this.id, required this.text, required this.author});
-
-  factory _$QuoteModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$QuoteModelImplFromJson(json);
-
-  @override
-  final int id;
-  @override
-  final String text;
-  @override
-  final String author;
-
-  @override
-  String toString() {
-    return 'QuoteModel(id: $id, text: $text, author: $author)';
-  }
+  /// Serializes this QuoteModel to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$QuoteModelImpl &&
+            other is QuoteModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.author, author) || other.author == author));
@@ -160,42 +43,147 @@ class _$QuoteModelImpl implements _QuoteModel {
   @override
   int get hashCode => Object.hash(runtimeType, id, text, author);
 
-  /// Create a copy of QuoteModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$QuoteModelImplCopyWith<_$QuoteModelImpl> get copyWith =>
-      __$$QuoteModelImplCopyWithImpl<_$QuoteModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$QuoteModelImplToJson(
-      this,
-    );
+  String toString() {
+    return 'QuoteModel(id: $id, text: $text, author: $author)';
   }
 }
 
-abstract class _QuoteModel implements QuoteModel {
-  const factory _QuoteModel(
-      {required final int id,
-      required final String text,
-      required final String author}) = _$QuoteModelImpl;
+/// @nodoc
+abstract mixin class $QuoteModelCopyWith<$Res> {
+  factory $QuoteModelCopyWith(
+          QuoteModel value, $Res Function(QuoteModel) _then) =
+      _$QuoteModelCopyWithImpl;
+  @useResult
+  $Res call({int id, String text, String author});
+}
 
-  factory _QuoteModel.fromJson(Map<String, dynamic> json) =
-      _$QuoteModelImpl.fromJson;
+/// @nodoc
+class _$QuoteModelCopyWithImpl<$Res> implements $QuoteModelCopyWith<$Res> {
+  _$QuoteModelCopyWithImpl(this._self, this._then);
+
+  final QuoteModel _self;
+  final $Res Function(QuoteModel) _then;
+
+  /// Create a copy of QuoteModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? text = null,
+    Object? author = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      text: null == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      author: null == author
+          ? _self.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class _QuoteModel implements QuoteModel {
+  const _QuoteModel(
+      {required this.id, required this.text, required this.author});
+  factory _QuoteModel.fromJson(Map<String, dynamic> json) =>
+      _$QuoteModelFromJson(json);
 
   @override
-  int get id;
+  final int id;
   @override
-  String get text;
+  final String text;
   @override
-  String get author;
+  final String author;
 
   /// Create a copy of QuoteModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$QuoteModelImplCopyWith<_$QuoteModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$QuoteModelCopyWith<_QuoteModel> get copyWith =>
+      __$QuoteModelCopyWithImpl<_QuoteModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$QuoteModelToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _QuoteModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.author, author) || other.author == author));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, text, author);
+
+  @override
+  String toString() {
+    return 'QuoteModel(id: $id, text: $text, author: $author)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$QuoteModelCopyWith<$Res>
+    implements $QuoteModelCopyWith<$Res> {
+  factory _$QuoteModelCopyWith(
+          _QuoteModel value, $Res Function(_QuoteModel) _then) =
+      __$QuoteModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call({int id, String text, String author});
+}
+
+/// @nodoc
+class __$QuoteModelCopyWithImpl<$Res> implements _$QuoteModelCopyWith<$Res> {
+  __$QuoteModelCopyWithImpl(this._self, this._then);
+
+  final _QuoteModel _self;
+  final $Res Function(_QuoteModel) _then;
+
+  /// Create a copy of QuoteModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? text = null,
+    Object? author = null,
+  }) {
+    return _then(_QuoteModel(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      text: null == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      author: null == author
+          ? _self.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+// dart format on

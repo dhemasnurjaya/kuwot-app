@@ -4,7 +4,7 @@ part 'photo_list_model.freezed.dart';
 part 'photo_list_model.g.dart';
 
 @freezed
-class PhotoListModel with _$PhotoListModel {
+abstract class PhotoListModel with _$PhotoListModel {
   @JsonSerializable(
     fieldRename: FieldRename.snake,
   )
@@ -21,7 +21,7 @@ class PhotoListModel with _$PhotoListModel {
 }
 
 @freezed
-class PhotoModel with _$PhotoModel {
+abstract class PhotoModel with _$PhotoModel {
   @JsonSerializable(
     fieldRename: FieldRename.snake,
   )
@@ -44,7 +44,7 @@ class PhotoModel with _$PhotoModel {
 }
 
 @freezed
-class SrcModel with _$SrcModel {
+abstract class SrcModel with _$SrcModel {
   @JsonSerializable(
     fieldRename: FieldRename.snake,
   )

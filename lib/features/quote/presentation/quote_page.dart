@@ -210,8 +210,9 @@ class _QuotePageState extends State<QuotePage> {
     final image = await _screenshotController.capture();
     setState(() => _isSharingQuote = false);
     if (image == null) return;
-    await Share.shareXFiles(
-      [
+
+    final shareParams = ShareParams(
+      files: [
         XFile.fromData(
           image,
           mimeType: 'image/png',
@@ -219,5 +220,6 @@ class _QuotePageState extends State<QuotePage> {
         ),
       ],
     );
+    await SharePlus.instance.share(shareParams);
   }
 }

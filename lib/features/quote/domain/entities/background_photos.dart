@@ -4,7 +4,7 @@ import 'package:kuwot/features/quote/data/models/photo_list_model.dart';
 part 'background_photos.freezed.dart';
 
 @freezed
-class BackgroundPhotos with _$BackgroundPhotos {
+abstract class BackgroundPhotos with _$BackgroundPhotos {
   const factory BackgroundPhotos({
     required List<Photo> photos,
   }) = _BackgroundPhotos;
@@ -25,7 +25,7 @@ class BackgroundPhotos with _$BackgroundPhotos {
 }
 
 @freezed
-class Photo with _$Photo {
+abstract class Photo with _$Photo {
   const factory Photo({
     required String url,
     required String avgColor,

@@ -6,18 +6,27 @@ import 'package:kuwot/features/quote/data/data_sources/remote/kuwot_api_remote_d
 import 'package:kuwot/features/quote/data/models/image_model.dart';
 import 'package:kuwot/features/quote/data/models/quote_model.dart';
 import 'package:kuwot/features/quote/data/models/translation_model.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../../../../_responses/_response.dart';
-import 'kuwot_api_remote_data_source_test.mocks.dart';
 
-@GenerateMocks([Env, Auth, Network])
+class MockAuth extends Mock implements Auth {}
+
+class MockEnv extends Mock implements Env {}
+
+class MockNetwork extends Mock implements Network {}
+
+class FakeUri extends Fake implements Uri {}
+
 void main() {
   late MockAuth mockAuth;
   late MockEnv mockEnv;
   late MockNetwork mockNetwork;
   late KuwotApiRemoteDataSource dataSource;
+
+  setUpAll(() {
+    registerFallbackValue(FakeUri());
+  });
 
   setUp(() {
     mockAuth = MockAuth();
@@ -30,18 +39,18 @@ void main() {
     );
 
     // global stubs
-    when(mockEnv.authPublicKey).thenReturn('test');
-    when(mockEnv.quoteApiScheme).thenReturn('http');
-    when(mockEnv.quoteApiHost).thenReturn('10.0.2.2');
-    when(mockEnv.quoteApiPort).thenReturn(8080);
-    when(mockAuth.getAccessToken).thenReturn('test_token');
+    when(() => mockEnv.authPublicKey).thenReturn('test');
+    when(() => mockEnv.quoteApiScheme).thenReturn('http');
+    when(() => mockEnv.quoteApiHost).thenReturn('10.0.2.2');
+    when(() => mockEnv.quoteApiPort).thenReturn(8080);
+    when(() => mockAuth.getAccessToken).thenReturn('test_token');
   });
 
   group('getDailyQuote', () {
     test('should return random quote when response is successful', () async {
       // arrange
       final tResponse = readResponse('quote');
-      when(mockNetwork.get(any, headers: anyNamed('headers')))
+      when(() => mockNetwork.get(any(), headers: any(named: 'headers')))
           .thenAnswer((_) async => tResponse);
       // act
       final result = await dataSource.getQuote();
@@ -53,7 +62,7 @@ void main() {
         () async {
       // arrange
       final tResponse = readResponse('quote');
-      when(mockNetwork.get(any, headers: anyNamed('headers')))
+      when(() => mockNetwork.get(any(), headers: any(named: 'headers')))
           .thenAnswer((_) async => tResponse);
       // act
       final result = await dataSource.getTranslatedQuote(1);
@@ -64,7 +73,7 @@ void main() {
     test('should return random images when response is successful', () async {
       // arrange
       final tResponse = readResponse('random_images');
-      when(mockNetwork.get(any, headers: anyNamed('headers')))
+      when(() => mockNetwork.get(any(), headers: any(named: 'headers')))
           .thenAnswer((_) async => tResponse);
       // act
       final result = await dataSource.getRandomImages();
@@ -75,7 +84,7 @@ void main() {
     test('should return translations when response is successful', () async {
       // arrange
       final tResponse = readResponse('translations');
-      when(mockNetwork.get(any, headers: anyNamed('headers')))
+      when(() => mockNetwork.get(any(), headers: any(named: 'headers')))
           .thenAnswer((_) async => tResponse);
       // act
       final result = await dataSource.getTranslations();

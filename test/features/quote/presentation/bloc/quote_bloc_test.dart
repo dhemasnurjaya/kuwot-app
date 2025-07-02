@@ -4,27 +4,33 @@ import 'package:kuwot/core/data/local/config.dart';
 import 'package:kuwot/core/data/local/translation_target_config.dart';
 import 'package:kuwot/core/error/failure.dart';
 import 'package:kuwot/features/quote/domain/entities/quote.dart';
-import 'package:kuwot/features/quote/domain/use_cases/get_background_images.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_quote.dart';
 import 'package:kuwot/features/quote/domain/use_cases/get_translated_quote.dart';
 import 'package:kuwot/features/quote/presentation/bloc/quote_bloc.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'quote_bloc_test.mocks.dart';
+class MockGetQuote extends Mock implements GetQuote {}
 
-@GenerateMocks([
-  GetQuote,
-  GetTranslatedQuote,
-  GetBackgroundImages,
-], customMocks: [
-  MockSpec<Config<TranslationTarget>>(as: #MockTranslationTargetConfig),
-])
+class MockGetTranslatedQuote extends Mock implements GetTranslatedQuote {}
+
+class MockTranslationTargetConfig extends Mock
+    implements Config<TranslationTarget> {}
+
+class FakeQuoteParams extends Fake implements GetQuoteParams {}
+
+class FakeTranslatedQuoteParams extends Fake
+    implements GetTranslatedQuoteParams {}
+
 void main() {
   late MockGetQuote mockGetQuote;
   late MockGetTranslatedQuote mockGetTranslatedQuote;
   late MockTranslationTargetConfig mockTranslationTargetConfig;
   late QuoteBloc quoteBloc;
+
+  setUpAll(() {
+    registerFallbackValue(FakeQuoteParams());
+    registerFallbackValue(FakeTranslatedQuoteParams());
+  });
 
   setUp(() {
     mockGetQuote = MockGetQuote();
@@ -50,18 +56,17 @@ void main() {
   group('GetQuote', () {
     test('should get quote from GetQuote use case', () async {
       // arrange
-      provideDummy<Either<Failure, Quote>>(right(tQuote));
-      when(mockGetQuote(any)).thenAnswer((_) async => right(tQuote));
-      when(mockTranslationTargetConfig.get())
+      when(() => mockGetQuote(any())).thenAnswer((_) async => right(tQuote));
+      when(() => mockTranslationTargetConfig.get())
           .thenAnswer((_) async => tTranslationTarget);
 
       // act
       quoteBloc.add(const GetQuoteEvent());
-      await untilCalled(mockTranslationTargetConfig.get());
-      await untilCalled(mockGetQuote(any));
+      await untilCalled(() => mockTranslationTargetConfig.get());
+      await untilCalled(() => mockGetQuote(any()));
 
       // assert
-      verify(mockGetQuote(any));
+      verify(() => mockGetQuote(any()));
       verifyNoMoreInteractions(mockGetQuote);
     });
 
@@ -69,9 +74,8 @@ void main() {
         'should emit [QuoteLoading, QuoteLoaded] when data is gotten successfully',
         () async {
       // arrange
-      provideDummy<Either<Failure, Quote>>(right(tQuote));
-      when(mockGetQuote(any)).thenAnswer((_) async => right(tQuote));
-      when(mockTranslationTargetConfig.get())
+      when(() => mockGetQuote(any())).thenAnswer((_) async => right(tQuote));
+      when(() => mockTranslationTargetConfig.get())
           .thenAnswer((_) async => tTranslationTarget);
 
       // assert later
@@ -88,9 +92,8 @@ void main() {
     test('should emit [QuoteLoading, QuoteError] when getting data fails',
         () async {
       // arrange
-      provideDummy<Either<Failure, Quote>>(left(tFailure));
-      when(mockGetQuote(any)).thenAnswer((_) async => left(tFailure));
-      when(mockTranslationTargetConfig.get())
+      when(() => mockGetQuote(any())).thenAnswer((_) async => left(tFailure));
+      when(() => mockTranslationTargetConfig.get())
           .thenAnswer((_) async => tTranslationTarget);
 
       // assert later
@@ -109,18 +112,18 @@ void main() {
     test('should get translated quote from GetTranslatedQuote use case',
         () async {
       // arrange
-      provideDummy<Either<Failure, Quote>>(right(tQuote));
-      when(mockGetTranslatedQuote(any)).thenAnswer((_) async => right(tQuote));
-      when(mockTranslationTargetConfig.get())
+      when(() => mockGetTranslatedQuote(any()))
+          .thenAnswer((_) async => right(tQuote));
+      when(() => mockTranslationTargetConfig.get())
           .thenAnswer((_) async => tTranslationTarget);
 
       // act
       quoteBloc.add(const GetTranslatedQuoteEvent(tTranslationTarget));
-      await untilCalled(mockTranslationTargetConfig.get());
-      await untilCalled(mockGetTranslatedQuote(any));
+      await untilCalled(() => mockTranslationTargetConfig.get());
+      await untilCalled(() => mockGetTranslatedQuote(any()));
 
       // assert
-      verify(mockGetTranslatedQuote(any));
+      verify(() => mockGetTranslatedQuote(any()));
       verifyNoMoreInteractions(mockGetTranslatedQuote);
     });
 
@@ -128,9 +131,9 @@ void main() {
         'should emit [QuoteLoading, QuoteLoaded] when data is gotten successfully',
         () async {
       // arrange
-      provideDummy<Either<Failure, Quote>>(right(tQuote));
-      when(mockGetTranslatedQuote(any)).thenAnswer((_) async => right(tQuote));
-      when(mockTranslationTargetConfig.get())
+      when(() => mockGetTranslatedQuote(any()))
+          .thenAnswer((_) async => right(tQuote));
+      when(() => mockTranslationTargetConfig.get())
           .thenAnswer((_) async => tTranslationTarget);
 
       // assert later
@@ -147,9 +150,9 @@ void main() {
     test('should emit [QuoteLoading, QuoteError] when getting data fails',
         () async {
       // arrange
-      provideDummy<Either<Failure, Quote>>(left(tFailure));
-      when(mockGetTranslatedQuote(any)).thenAnswer((_) async => left(tFailure));
-      when(mockTranslationTargetConfig.get())
+      when(() => mockGetTranslatedQuote(any()))
+          .thenAnswer((_) async => left(tFailure));
+      when(() => mockTranslationTargetConfig.get())
           .thenAnswer((_) async => tTranslationTarget);
 
       // assert later

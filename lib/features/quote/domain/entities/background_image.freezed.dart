@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,322 +10,39 @@ part of 'background_image.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$BackgroundImage {
-  String get id => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  String get color => throw _privateConstructorUsedError;
-  String get blurHash => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
-  String get originUrl => throw _privateConstructorUsedError;
-  String get authorName => throw _privateConstructorUsedError;
-  String get authorProfileImageUrl => throw _privateConstructorUsedError;
-  String get authorUrl => throw _privateConstructorUsedError;
-  String get authorBio => throw _privateConstructorUsedError;
-  String get authorLocation => throw _privateConstructorUsedError;
-  int get authorTotalLikes => throw _privateConstructorUsedError;
-  int get authorTotalPhotos => throw _privateConstructorUsedError;
-  bool get authorIsForHire => throw _privateConstructorUsedError;
+  String get id;
+  String get description;
+  String get color;
+  String get blurHash;
+  String get url;
+  String get originUrl;
+  String get authorName;
+  String get authorProfileImageUrl;
+  String get authorUrl;
+  String get authorBio;
+  String get authorLocation;
+  int get authorTotalLikes;
+  int get authorTotalPhotos;
+  bool get authorIsForHire;
 
   /// Create a copy of BackgroundImage
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $BackgroundImageCopyWith<BackgroundImage> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $BackgroundImageCopyWith<$Res> {
-  factory $BackgroundImageCopyWith(
-          BackgroundImage value, $Res Function(BackgroundImage) then) =
-      _$BackgroundImageCopyWithImpl<$Res, BackgroundImage>;
-  @useResult
-  $Res call(
-      {String id,
-      String description,
-      String color,
-      String blurHash,
-      String url,
-      String originUrl,
-      String authorName,
-      String authorProfileImageUrl,
-      String authorUrl,
-      String authorBio,
-      String authorLocation,
-      int authorTotalLikes,
-      int authorTotalPhotos,
-      bool authorIsForHire});
-}
-
-/// @nodoc
-class _$BackgroundImageCopyWithImpl<$Res, $Val extends BackgroundImage>
-    implements $BackgroundImageCopyWith<$Res> {
-  _$BackgroundImageCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of BackgroundImage
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? description = null,
-    Object? color = null,
-    Object? blurHash = null,
-    Object? url = null,
-    Object? originUrl = null,
-    Object? authorName = null,
-    Object? authorProfileImageUrl = null,
-    Object? authorUrl = null,
-    Object? authorBio = null,
-    Object? authorLocation = null,
-    Object? authorTotalLikes = null,
-    Object? authorTotalPhotos = null,
-    Object? authorIsForHire = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String,
-      blurHash: null == blurHash
-          ? _value.blurHash
-          : blurHash // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      originUrl: null == originUrl
-          ? _value.originUrl
-          : originUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorName: null == authorName
-          ? _value.authorName
-          : authorName // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorProfileImageUrl: null == authorProfileImageUrl
-          ? _value.authorProfileImageUrl
-          : authorProfileImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorUrl: null == authorUrl
-          ? _value.authorUrl
-          : authorUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorBio: null == authorBio
-          ? _value.authorBio
-          : authorBio // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorLocation: null == authorLocation
-          ? _value.authorLocation
-          : authorLocation // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorTotalLikes: null == authorTotalLikes
-          ? _value.authorTotalLikes
-          : authorTotalLikes // ignore: cast_nullable_to_non_nullable
-              as int,
-      authorTotalPhotos: null == authorTotalPhotos
-          ? _value.authorTotalPhotos
-          : authorTotalPhotos // ignore: cast_nullable_to_non_nullable
-              as int,
-      authorIsForHire: null == authorIsForHire
-          ? _value.authorIsForHire
-          : authorIsForHire // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$BackgroundImageImplCopyWith<$Res>
-    implements $BackgroundImageCopyWith<$Res> {
-  factory _$$BackgroundImageImplCopyWith(_$BackgroundImageImpl value,
-          $Res Function(_$BackgroundImageImpl) then) =
-      __$$BackgroundImageImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String id,
-      String description,
-      String color,
-      String blurHash,
-      String url,
-      String originUrl,
-      String authorName,
-      String authorProfileImageUrl,
-      String authorUrl,
-      String authorBio,
-      String authorLocation,
-      int authorTotalLikes,
-      int authorTotalPhotos,
-      bool authorIsForHire});
-}
-
-/// @nodoc
-class __$$BackgroundImageImplCopyWithImpl<$Res>
-    extends _$BackgroundImageCopyWithImpl<$Res, _$BackgroundImageImpl>
-    implements _$$BackgroundImageImplCopyWith<$Res> {
-  __$$BackgroundImageImplCopyWithImpl(
-      _$BackgroundImageImpl _value, $Res Function(_$BackgroundImageImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of BackgroundImage
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? description = null,
-    Object? color = null,
-    Object? blurHash = null,
-    Object? url = null,
-    Object? originUrl = null,
-    Object? authorName = null,
-    Object? authorProfileImageUrl = null,
-    Object? authorUrl = null,
-    Object? authorBio = null,
-    Object? authorLocation = null,
-    Object? authorTotalLikes = null,
-    Object? authorTotalPhotos = null,
-    Object? authorIsForHire = null,
-  }) {
-    return _then(_$BackgroundImageImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String,
-      blurHash: null == blurHash
-          ? _value.blurHash
-          : blurHash // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      originUrl: null == originUrl
-          ? _value.originUrl
-          : originUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorName: null == authorName
-          ? _value.authorName
-          : authorName // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorProfileImageUrl: null == authorProfileImageUrl
-          ? _value.authorProfileImageUrl
-          : authorProfileImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorUrl: null == authorUrl
-          ? _value.authorUrl
-          : authorUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorBio: null == authorBio
-          ? _value.authorBio
-          : authorBio // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorLocation: null == authorLocation
-          ? _value.authorLocation
-          : authorLocation // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorTotalLikes: null == authorTotalLikes
-          ? _value.authorTotalLikes
-          : authorTotalLikes // ignore: cast_nullable_to_non_nullable
-              as int,
-      authorTotalPhotos: null == authorTotalPhotos
-          ? _value.authorTotalPhotos
-          : authorTotalPhotos // ignore: cast_nullable_to_non_nullable
-              as int,
-      authorIsForHire: null == authorIsForHire
-          ? _value.authorIsForHire
-          : authorIsForHire // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$BackgroundImageImpl extends _BackgroundImage {
-  const _$BackgroundImageImpl(
-      {required this.id,
-      required this.description,
-      required this.color,
-      required this.blurHash,
-      required this.url,
-      required this.originUrl,
-      required this.authorName,
-      required this.authorProfileImageUrl,
-      required this.authorUrl,
-      required this.authorBio,
-      required this.authorLocation,
-      required this.authorTotalLikes,
-      required this.authorTotalPhotos,
-      required this.authorIsForHire})
-      : super._();
-
-  @override
-  final String id;
-  @override
-  final String description;
-  @override
-  final String color;
-  @override
-  final String blurHash;
-  @override
-  final String url;
-  @override
-  final String originUrl;
-  @override
-  final String authorName;
-  @override
-  final String authorProfileImageUrl;
-  @override
-  final String authorUrl;
-  @override
-  final String authorBio;
-  @override
-  final String authorLocation;
-  @override
-  final int authorTotalLikes;
-  @override
-  final int authorTotalPhotos;
-  @override
-  final bool authorIsForHire;
-
-  @override
-  String toString() {
-    return 'BackgroundImage(id: $id, description: $description, color: $color, blurHash: $blurHash, url: $url, originUrl: $originUrl, authorName: $authorName, authorProfileImageUrl: $authorProfileImageUrl, authorUrl: $authorUrl, authorBio: $authorBio, authorLocation: $authorLocation, authorTotalLikes: $authorTotalLikes, authorTotalPhotos: $authorTotalPhotos, authorIsForHire: $authorIsForHire)';
-  }
+      _$BackgroundImageCopyWithImpl<BackgroundImage>(
+          this as BackgroundImage, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BackgroundImageImpl &&
+            other is BackgroundImage &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -370,67 +88,349 @@ class _$BackgroundImageImpl extends _BackgroundImage {
       authorTotalPhotos,
       authorIsForHire);
 
+  @override
+  String toString() {
+    return 'BackgroundImage(id: $id, description: $description, color: $color, blurHash: $blurHash, url: $url, originUrl: $originUrl, authorName: $authorName, authorProfileImageUrl: $authorProfileImageUrl, authorUrl: $authorUrl, authorBio: $authorBio, authorLocation: $authorLocation, authorTotalLikes: $authorTotalLikes, authorTotalPhotos: $authorTotalPhotos, authorIsForHire: $authorIsForHire)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $BackgroundImageCopyWith<$Res> {
+  factory $BackgroundImageCopyWith(
+          BackgroundImage value, $Res Function(BackgroundImage) _then) =
+      _$BackgroundImageCopyWithImpl;
+  @useResult
+  $Res call(
+      {String id,
+      String description,
+      String color,
+      String blurHash,
+      String url,
+      String originUrl,
+      String authorName,
+      String authorProfileImageUrl,
+      String authorUrl,
+      String authorBio,
+      String authorLocation,
+      int authorTotalLikes,
+      int authorTotalPhotos,
+      bool authorIsForHire});
+}
+
+/// @nodoc
+class _$BackgroundImageCopyWithImpl<$Res>
+    implements $BackgroundImageCopyWith<$Res> {
+  _$BackgroundImageCopyWithImpl(this._self, this._then);
+
+  final BackgroundImage _self;
+  final $Res Function(BackgroundImage) _then;
+
   /// Create a copy of BackgroundImage
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? description = null,
+    Object? color = null,
+    Object? blurHash = null,
+    Object? url = null,
+    Object? originUrl = null,
+    Object? authorName = null,
+    Object? authorProfileImageUrl = null,
+    Object? authorUrl = null,
+    Object? authorBio = null,
+    Object? authorLocation = null,
+    Object? authorTotalLikes = null,
+    Object? authorTotalPhotos = null,
+    Object? authorIsForHire = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      color: null == color
+          ? _self.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String,
+      blurHash: null == blurHash
+          ? _self.blurHash
+          : blurHash // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: null == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      originUrl: null == originUrl
+          ? _self.originUrl
+          : originUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorName: null == authorName
+          ? _self.authorName
+          : authorName // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorProfileImageUrl: null == authorProfileImageUrl
+          ? _self.authorProfileImageUrl
+          : authorProfileImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorUrl: null == authorUrl
+          ? _self.authorUrl
+          : authorUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorBio: null == authorBio
+          ? _self.authorBio
+          : authorBio // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorLocation: null == authorLocation
+          ? _self.authorLocation
+          : authorLocation // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorTotalLikes: null == authorTotalLikes
+          ? _self.authorTotalLikes
+          : authorTotalLikes // ignore: cast_nullable_to_non_nullable
+              as int,
+      authorTotalPhotos: null == authorTotalPhotos
+          ? _self.authorTotalPhotos
+          : authorTotalPhotos // ignore: cast_nullable_to_non_nullable
+              as int,
+      authorIsForHire: null == authorIsForHire
+          ? _self.authorIsForHire
+          : authorIsForHire // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _BackgroundImage extends BackgroundImage {
+  const _BackgroundImage(
+      {required this.id,
+      required this.description,
+      required this.color,
+      required this.blurHash,
+      required this.url,
+      required this.originUrl,
+      required this.authorName,
+      required this.authorProfileImageUrl,
+      required this.authorUrl,
+      required this.authorBio,
+      required this.authorLocation,
+      required this.authorTotalLikes,
+      required this.authorTotalPhotos,
+      required this.authorIsForHire})
+      : super._();
+
+  @override
+  final String id;
+  @override
+  final String description;
+  @override
+  final String color;
+  @override
+  final String blurHash;
+  @override
+  final String url;
+  @override
+  final String originUrl;
+  @override
+  final String authorName;
+  @override
+  final String authorProfileImageUrl;
+  @override
+  final String authorUrl;
+  @override
+  final String authorBio;
+  @override
+  final String authorLocation;
+  @override
+  final int authorTotalLikes;
+  @override
+  final int authorTotalPhotos;
+  @override
+  final bool authorIsForHire;
+
+  /// Create a copy of BackgroundImage
+  /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BackgroundImageCopyWith<_BackgroundImage> get copyWith =>
+      __$BackgroundImageCopyWithImpl<_BackgroundImage>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _BackgroundImage &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.blurHash, blurHash) ||
+                other.blurHash == blurHash) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.originUrl, originUrl) ||
+                other.originUrl == originUrl) &&
+            (identical(other.authorName, authorName) ||
+                other.authorName == authorName) &&
+            (identical(other.authorProfileImageUrl, authorProfileImageUrl) ||
+                other.authorProfileImageUrl == authorProfileImageUrl) &&
+            (identical(other.authorUrl, authorUrl) ||
+                other.authorUrl == authorUrl) &&
+            (identical(other.authorBio, authorBio) ||
+                other.authorBio == authorBio) &&
+            (identical(other.authorLocation, authorLocation) ||
+                other.authorLocation == authorLocation) &&
+            (identical(other.authorTotalLikes, authorTotalLikes) ||
+                other.authorTotalLikes == authorTotalLikes) &&
+            (identical(other.authorTotalPhotos, authorTotalPhotos) ||
+                other.authorTotalPhotos == authorTotalPhotos) &&
+            (identical(other.authorIsForHire, authorIsForHire) ||
+                other.authorIsForHire == authorIsForHire));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      description,
+      color,
+      blurHash,
+      url,
+      originUrl,
+      authorName,
+      authorProfileImageUrl,
+      authorUrl,
+      authorBio,
+      authorLocation,
+      authorTotalLikes,
+      authorTotalPhotos,
+      authorIsForHire);
+
+  @override
+  String toString() {
+    return 'BackgroundImage(id: $id, description: $description, color: $color, blurHash: $blurHash, url: $url, originUrl: $originUrl, authorName: $authorName, authorProfileImageUrl: $authorProfileImageUrl, authorUrl: $authorUrl, authorBio: $authorBio, authorLocation: $authorLocation, authorTotalLikes: $authorTotalLikes, authorTotalPhotos: $authorTotalPhotos, authorIsForHire: $authorIsForHire)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$BackgroundImageCopyWith<$Res>
+    implements $BackgroundImageCopyWith<$Res> {
+  factory _$BackgroundImageCopyWith(
+          _BackgroundImage value, $Res Function(_BackgroundImage) _then) =
+      __$BackgroundImageCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String description,
+      String color,
+      String blurHash,
+      String url,
+      String originUrl,
+      String authorName,
+      String authorProfileImageUrl,
+      String authorUrl,
+      String authorBio,
+      String authorLocation,
+      int authorTotalLikes,
+      int authorTotalPhotos,
+      bool authorIsForHire});
+}
+
+/// @nodoc
+class __$BackgroundImageCopyWithImpl<$Res>
+    implements _$BackgroundImageCopyWith<$Res> {
+  __$BackgroundImageCopyWithImpl(this._self, this._then);
+
+  final _BackgroundImage _self;
+  final $Res Function(_BackgroundImage) _then;
+
+  /// Create a copy of BackgroundImage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  _$$BackgroundImageImplCopyWith<_$BackgroundImageImpl> get copyWith =>
-      __$$BackgroundImageImplCopyWithImpl<_$BackgroundImageImpl>(
-          this, _$identity);
+  $Res call({
+    Object? id = null,
+    Object? description = null,
+    Object? color = null,
+    Object? blurHash = null,
+    Object? url = null,
+    Object? originUrl = null,
+    Object? authorName = null,
+    Object? authorProfileImageUrl = null,
+    Object? authorUrl = null,
+    Object? authorBio = null,
+    Object? authorLocation = null,
+    Object? authorTotalLikes = null,
+    Object? authorTotalPhotos = null,
+    Object? authorIsForHire = null,
+  }) {
+    return _then(_BackgroundImage(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      color: null == color
+          ? _self.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String,
+      blurHash: null == blurHash
+          ? _self.blurHash
+          : blurHash // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: null == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      originUrl: null == originUrl
+          ? _self.originUrl
+          : originUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorName: null == authorName
+          ? _self.authorName
+          : authorName // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorProfileImageUrl: null == authorProfileImageUrl
+          ? _self.authorProfileImageUrl
+          : authorProfileImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorUrl: null == authorUrl
+          ? _self.authorUrl
+          : authorUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorBio: null == authorBio
+          ? _self.authorBio
+          : authorBio // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorLocation: null == authorLocation
+          ? _self.authorLocation
+          : authorLocation // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorTotalLikes: null == authorTotalLikes
+          ? _self.authorTotalLikes
+          : authorTotalLikes // ignore: cast_nullable_to_non_nullable
+              as int,
+      authorTotalPhotos: null == authorTotalPhotos
+          ? _self.authorTotalPhotos
+          : authorTotalPhotos // ignore: cast_nullable_to_non_nullable
+              as int,
+      authorIsForHire: null == authorIsForHire
+          ? _self.authorIsForHire
+          : authorIsForHire // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
-abstract class _BackgroundImage extends BackgroundImage {
-  const factory _BackgroundImage(
-      {required final String id,
-      required final String description,
-      required final String color,
-      required final String blurHash,
-      required final String url,
-      required final String originUrl,
-      required final String authorName,
-      required final String authorProfileImageUrl,
-      required final String authorUrl,
-      required final String authorBio,
-      required final String authorLocation,
-      required final int authorTotalLikes,
-      required final int authorTotalPhotos,
-      required final bool authorIsForHire}) = _$BackgroundImageImpl;
-  const _BackgroundImage._() : super._();
-
-  @override
-  String get id;
-  @override
-  String get description;
-  @override
-  String get color;
-  @override
-  String get blurHash;
-  @override
-  String get url;
-  @override
-  String get originUrl;
-  @override
-  String get authorName;
-  @override
-  String get authorProfileImageUrl;
-  @override
-  String get authorUrl;
-  @override
-  String get authorBio;
-  @override
-  String get authorLocation;
-  @override
-  int get authorTotalLikes;
-  @override
-  int get authorTotalPhotos;
-  @override
-  bool get authorIsForHire;
-
-  /// Create a copy of BackgroundImage
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BackgroundImageImplCopyWith<_$BackgroundImageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on
