@@ -3,7 +3,7 @@ Daily quote app with beautiful pics from [Unsplash](https://unsplash.com/), buil
 
 # Environment Variables
 ## Visual Studio Code
-Add or modify `launch.json`, fills out the required environment variables.
+Add or modify `.vscode/launch.json`, fills out the required environment variables.
 
 ```json
 {
