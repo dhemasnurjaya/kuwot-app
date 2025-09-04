@@ -43,6 +43,7 @@ workflows:
           BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))
           BUILD_NAME="1.1.$BUILD_NUMBER"
 
+          echo "BUILD_NUMBER=$BUILD_NUMBER" >> $CM_ENV
           echo "BUILD_NAME=$BUILD_NAME" >> $CM_ENV
 
           flutter build appbundle --release \
@@ -61,4 +62,12 @@ workflows:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: $GOOGLE_PLAY_TRACK
         submit_as_draft: true
-        name: $BUILD_NAME
+    post-publishing:
+      scripts:
+        - name: Set correct release name on Google Play
+          script: |
+            google-play releases edit \
+              --package-name "$PACKAGE_NAME" \
+              --track "$GOOGLE_PLAY_TRACK" \
+              --version-code "$BUILD_NUMBER" \
+              --release-name "$BUILD_NAME"
