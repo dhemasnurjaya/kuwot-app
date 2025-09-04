@@ -62,12 +62,13 @@ workflows:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: $GOOGLE_PLAY_TRACK
         submit_as_draft: true
-    success:
-      scripts:
-        - name: Set correct release name on Google Play
-          script: |
-            google-play releases edit \
-              --package-name "$PACKAGE_NAME" \
-              --track "$GOOGLE_PLAY_TRACK" \
-              --version-code "$BUILD_NUMBER" \
-              --release-name "$BUILD_NAME"
+
+success:
+  scripts:
+    - name: Set correct release name on Google Play
+      script: |
+        google-play releases edit \
+          --package-name "$PACKAGE_NAME" \
+          --track "$GOOGLE_PLAY_TRACK" \
+          --version-code "$BUILD_NUMBER" \
+          --release-name "$BUILD_NAME"
