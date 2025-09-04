@@ -1,3 +1,4 @@
+# This is the top level of the file
 workflows:
   android-workflow:
     name: Android Workflow
@@ -40,11 +41,13 @@ workflows:
         ignore_failure: false
       - name: Build AAB with Flutter
         script: |
+          # Define local variables for this script
           BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))
           BUILD_NAME="1.1.$BUILD_NUMBER"
 
-          echo "BUILD_NUMBER=$BUILD_NUMBER" >> $CM_ENV
-          echo "BUILD_NAME=$BUILD_NAME" >> $CM_ENV
+          # Export these variables so the *next script step* can use them
+          echo "export BUILD_NUMBER=$BUILD_NUMBER" >> $CM_BUILD_SCRIPT
+          echo "export BUILD_NAME=$BUILD_NAME" >> $CM_BUILD_SCRIPT
 
           flutter build appbundle --release \
             --dart-define=QUOTE_API_SCHEME=$QUOTE_API_SCHEME \
@@ -53,22 +56,34 @@ workflows:
             --dart-define=SENTRY_DSN=$SENTRY_DSN \
             --build-name=$BUILD_NAME \
             --build-number=$BUILD_NUMBER
+      - name: Upload to Google Play and Set Release Name
+        script: |
+          set -e # Exit immediately if a command fails
+          echo "--- Starting manual upload and release naming ---"
+          
+          # Find the AAB file. Codemagic sets this path.
+          LATEST_AAB=$(find $CM_BUILD_DIR/build -name "*.aab" | head -1)
+          if [ -z "$LATEST_AAB" ]; then
+            echo "Error: AAB file not found!"
+            exit 1
+          fi
+          echo "Found AAB at: $LATEST_AAB"
+
+          echo "Uploading AAB to track: $GOOGLE_PLAY_TRACK for version code: $BUILD_NUMBER"
+          google-play releases upload \
+            --package-name "$PACKAGE_NAME" \
+            --track "$GOOGLE_PLAY_TRACK" \
+            --aab "$LATEST_AAB"
+
+          echo "Upload complete. Now setting release name to: '$BUILD_NAME'"
+          google-play releases edit \
+            --package-name "$PACKAGE_NAME" \
+            --track "$GOOGLE_PLAY_TRACK" \
+            --version-code "$BUILD_NUMBER" \
+            --release-name "$BUILD_NAME"
+
+          echo "--- Release name successfully updated on Google Play ---"
     artifacts:
       - build/**/outputs/**/*.aab
       - build/**/outputs/**/mapping.txt
       - flutter_drive.log
-    publishing:
-      google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: $GOOGLE_PLAY_TRACK
-        submit_as_draft: true
-
-success:
-  scripts:
-    - name: Set correct release name on Google Play
-      script: |
-        google-play releases edit \
-          --package-name "$PACKAGE_NAME" \
-          --track "$GOOGLE_PLAY_TRACK" \
-          --version-code "$BUILD_NUMBER" \
-          --release-name "$BUILD_NAME"
