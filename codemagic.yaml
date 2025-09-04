@@ -1,16 +1,17 @@
-# This is the top level of the file
 workflows:
   android-workflow:
     name: Android Workflow
     instance_type: mac_mini_m2
     max_build_duration: 30
+
     triggering:
       events:
         - push
       branch_patterns:
-        - pattern: 'dev'
+        - pattern: "dev"
           include: true
           source: false
+
     environment:
       android_signing:
         - dhemasnurjaya_keystore
@@ -21,66 +22,55 @@ workflows:
         PACKAGE_NAME: "com.dhemasnurjaya.kuwot"
         GOOGLE_PLAY_TRACK: "alpha"
       flutter: stable
+
     cache:
       cache_paths:
         - $HOME/.gradle/caches
         - $FLUTTER_ROOT/.pub-cache
+
     scripts:
       - name: Set up local.properties
         script: |
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+
       - name: Get Flutter packages
         script: |
           flutter packages pub get
+
       - name: Flutter analyze
         script: |
           flutter analyze
+
       - name: Flutter unit tests
         script: |
           flutter test
         ignore_failure: false
+
       - name: Build AAB with Flutter
         script: |
-          BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))
-          BUILD_NAME="1.1.$BUILD_NUMBER"
+          # Calculate the next build number from Google Play
+          NEW_BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))
 
-          echo "export BUILD_NUMBER=$BUILD_NUMBER" >> $CM_BUILD_SCRIPT
-          echo "export BUILD_NAME=$BUILD_NAME" >> $CM_BUILD_SCRIPT
+          # Export to Codemagic env so it can be reused later (including publishing section)
+          echo "BUILD_NUMBER=$NEW_BUILD_NUMBER" >> $CM_ENV_FILE
 
+          # Build app bundle with new version
           flutter build appbundle --release \
             --dart-define=QUOTE_API_SCHEME=$QUOTE_API_SCHEME \
             --dart-define=QUOTE_API_HOST=$QUOTE_API_HOST \
             --dart-define=AUTH_PUBLIC_KEY=$AUTH_PUBLIC_KEY \
             --dart-define=SENTRY_DSN=$SENTRY_DSN \
-            --build-name=$BUILD_NAME \
+            --build-name=1.1.$BUILD_NUMBER \
             --build-number=$BUILD_NUMBER
-      - name: Upload to Google Play and Set Release Name
-        script: |
-          set -e 
-          echo "--- Starting manual upload and release naming ---"
-          
-          LATEST_AAB=$(find $CM_BUILD_DIR/build -name "*.aab" | head -1)
-          if [ -z "$LATEST_AAB" ]; then
-            echo "Error: AAB file not found!"
-            exit 1
-          fi
-          echo "Found AAB at: $LATEST_AAB"
 
-          echo "Uploading bundle to track: $GOOGLE_PLAY_TRACK for version code: $BUILD_NUMBER"
-          google-play bundles upload \
-            --package-name "$PACKAGE_NAME" \
-            --track "$GOOGLE_PLAY_TRACK" \
-            --bundle "$LATEST_AAB"
-
-          echo "Upload complete. Now updating track with release name: '$BUILD_NAME'"
-          google-play tracks update \
-            --package-name "$PACKAGE_NAME" \
-            --track "$GOOGLE_PLAY_TRACK" \
-            --version-code "$BUILD_NUMBER" \
-            --release-name "$BUILD_NAME"
-
-          echo "--- Release name successfully updated on Google Play ---"
     artifacts:
       - build/**/outputs/**/*.aab
       - build/**/outputs/**/mapping.txt
       - flutter_drive.log
+
+    publishing:
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: $GOOGLE_PLAY_TRACK
+        release_name: "1.1.$BUILD_NUMBER"
+        submit_as_draft: true
