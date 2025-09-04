@@ -41,11 +41,9 @@ workflows:
         ignore_failure: false
       - name: Build AAB with Flutter
         script: |
-          # Define local variables for this script
           BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))
           BUILD_NAME="1.1.$BUILD_NUMBER"
 
-          # Export these variables so the *next script step* can use them
           echo "export BUILD_NUMBER=$BUILD_NUMBER" >> $CM_BUILD_SCRIPT
           echo "export BUILD_NAME=$BUILD_NAME" >> $CM_BUILD_SCRIPT
 
@@ -58,10 +56,9 @@ workflows:
             --build-number=$BUILD_NUMBER
       - name: Upload to Google Play and Set Release Name
         script: |
-          set -e # Exit immediately if a command fails
+          set -e 
           echo "--- Starting manual upload and release naming ---"
           
-          # Find the AAB file. Codemagic sets this path.
           LATEST_AAB=$(find $CM_BUILD_DIR/build -name "*.aab" | head -1)
           if [ -z "$LATEST_AAB" ]; then
             echo "Error: AAB file not found!"
@@ -69,14 +66,14 @@ workflows:
           fi
           echo "Found AAB at: $LATEST_AAB"
 
-          echo "Uploading AAB to track: $GOOGLE_PLAY_TRACK for version code: $BUILD_NUMBER"
-          google-play releases upload \
+          echo "Uploading bundle to track: $GOOGLE_PLAY_TRACK for version code: $BUILD_NUMBER"
+          google-play bundles upload \
             --package-name "$PACKAGE_NAME" \
             --track "$GOOGLE_PLAY_TRACK" \
-            --aab "$LATEST_AAB"
+            --bundle "$LATEST_AAB"
 
-          echo "Upload complete. Now setting release name to: '$BUILD_NAME'"
-          google-play releases edit \
+          echo "Upload complete. Now updating track with release name: '$BUILD_NAME'"
+          google-play tracks update \
             --package-name "$PACKAGE_NAME" \
             --track "$GOOGLE_PLAY_TRACK" \
             --version-code "$BUILD_NUMBER" \
