@@ -62,7 +62,7 @@ workflows:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: $GOOGLE_PLAY_TRACK
         submit_as_draft: true
-    post-publishing:
+    success:
       scripts:
         - name: Set correct release name on Google Play
           script: |
